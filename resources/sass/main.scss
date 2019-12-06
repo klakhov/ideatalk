@@ -1,15 +1,32 @@
 .button-primary{
-    margin-top: 2%;
     background:$my-orange;
     border-radius:5px;
     color:white;
     font-size:24px;
     border:none;
-    padding: 10px;
+}
+button{
+    outline: none !important;
 }
 .button-primary-welcome{
+    margin-top: 2%;
+    padding: 10px;
     height: 65px;
+    min-width: 210px;
 }
 .button-primary:hover{
     background: $my-orange-darked;
+}
+.orange-text{
+    color:$my-orange;
+}
+.orange{
+    background: $my-orange;
+}
+.invalid-feedback{
+    margin-left: 10px;
+    margin-bottom: -5px;
+}
+main{
+    min-width:400px;
 }

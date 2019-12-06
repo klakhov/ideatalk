@@ -21,8 +21,8 @@
 </head>
 <body>
     <div id="app">
-        @yield('welcome')
-
+        @yield('header')
+        @yield('modal')
         <main class="py-4" style="background: white">
             @yield('content')
         </main>
