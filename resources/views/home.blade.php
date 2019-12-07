@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('header')
-    <main-header></main-header>
+    <main-header v-bind:user="{{Auth::user()}}"></main-header>
 @endsection
 
 @section('modal')

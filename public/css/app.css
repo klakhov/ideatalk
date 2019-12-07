@@ -11504,3 +11504,26 @@ main {
   padding: 8px 16px;
 }
 
+.pop-container {
+  width: 180px;
+}
+
+.pop-link {
+  color: gray;
+}
+
+.pop-link:hover {
+  text-decoration: none;
+  color: gray;
+}
+
+.pop-link-main {
+  color: black;
+  font-size: 14px;
+}
+
+.pop-link-main:hover {
+  text-decoration: none;
+  color: gray;
+}
+
