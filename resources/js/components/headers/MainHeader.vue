@@ -11,9 +11,9 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a id="navbarDropdown" class="nav-link" href="#" role="button" data-html="true"
-                           data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="        <div class='container pop-container border-dark hide'>
+                    <li class="nav-item container">
+                        <div class="row" data-html="true"
+                             data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="        <div class='container pop-container border-dark hide'>
             <div class='row justify-content-center p-2  border-bottom'>
                 <a href='' class='pop-link-main'>Name</a>
             </div>
@@ -30,25 +30,27 @@
                 <a href='' class='pop-link'>Publications</a>
             </div>
             <div class='row justify-content-start p-2 pt-3 '>
-                <a href='' class='pop-link'>Profile</a>
+                <a href='/profile' class='pop-link'>Profile</a>
             </div>
             <div class='row justify-content-start p-2'>
                 <a href='' class='pop-link'>Sign out</a>
             </div>
-        </div>"
-                        v-text="this.user.name"></a>
+        </div>">
+                            <a id="navbarDropdown" class="nav-link col" href="#" role="button"
+                               v-text="this.user.name"></a>
+                            <img :src="this.user.avatar" alt="" height="35" width="35" style="border-radius: 50%;margin-top: 2px" >
+                        </div>
+                        <!--                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">-->
+                        <!--                            <a class="dropdown-item" href=""-->
+                        <!--                               onclick="event.preventDefault();-->
+                        <!--                                                     document.getElementById('logout-form').submit();">-->
+                        <!--                                logout-->
+                        <!--                            </a>-->
 
-<!--                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">-->
-<!--                            <a class="dropdown-item" href=""-->
-<!--                               onclick="event.preventDefault();-->
-<!--                                                     document.getElementById('logout-form').submit();">-->
-<!--                                logout-->
-<!--                            </a>-->
-
-<!--                            <form id="logout-form" action="" method="POST" style="display: none;">-->
-<!--                                @csrf-->
-<!--                            </form>-->
-<!--                        </div>-->
+                        <!--                            <form id="logout-form" action="" method="POST" style="display: none;">-->
+                        <!--                                @csrf-->
+                        <!--                            </form>-->
+                        <!--                        </div>-->
                     </li>
                 </ul>
             </div>

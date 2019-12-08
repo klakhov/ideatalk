@@ -23,10 +23,27 @@ button{
 .orange{
     background: $my-orange;
 }
+.text-gray{
+    color:gray;
+}
 .invalid-feedback{
     margin-left: 10px;
     margin-bottom: -5px;
 }
 main{
     min-width:400px;
+}
+#app{
+    min-height: 935px;
+    background: white;
+}
+.border-link{
+    border-radius: 5px;
+    border: 1px solid gray;
+    color:black;
+}
+.border-link:hover{
+    text-decoration: none;
+    border: 1px solid black;
+    color:black;
 }

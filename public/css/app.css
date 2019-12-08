@@ -11451,6 +11451,10 @@ button {
   background: #ff8520;
 }
 
+.text-gray {
+  color: gray;
+}
+
 .invalid-feedback {
   margin-left: 10px;
   margin-bottom: -5px;
@@ -11458,6 +11462,23 @@ button {
 
 main {
   min-width: 400px;
+}
+
+#app {
+  min-height: 935px;
+  background: white;
+}
+
+.border-link {
+  border-radius: 5px;
+  border: 1px solid gray;
+  color: black;
+}
+
+.border-link:hover {
+  text-decoration: none;
+  border: 1px solid black;
+  color: black;
 }
 
 .button-primary-header {
@@ -11525,5 +11546,81 @@ main {
 .pop-link-main:hover {
   text-decoration: none;
   color: gray;
+}
+
+.profile-container {
+  padding-right: 15%;
+  padding-left: 15%;
+}
+
+.user-name {
+  font-size: 22px;
+}
+
+.edit-link {
+  height: 17px;
+  font-size: 12px;
+  padding-right: 8px;
+  padding-left: 8px;
+  margin-top: 10px;
+  padding-bottom: 3px;
+}
+
+.button-profile {
+  font-size: 18px;
+  padding: 5px 15px;
+  height: 40px;
+}
+
+.link-profile {
+  height: 40px;
+  font-size: 18px;
+  padding: 5px 10px;
+  display: block;
+}
+
+#file {
+  display: none;
+}
+
+#file-icon {
+  cursor: pointer;
+}
+
+.file-label {
+  width: 130px;
+  height: 130px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+}
+
+.file-label-dark {
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0.4;
+  position: relative;
+  top: -50%;
+  cursor: pointer;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+.material-icons.md-light {
+  color: white;
+  z-index: 100;
+}
+
+.material-icons.md-light {
+  color: white;
+}
+
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.8);
 }
 
