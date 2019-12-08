@@ -2444,12 +2444,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
     return {
       image: this.user.avatar,
-      inactive: true
+      inactive: true,
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
   mounted: function mounted() {
@@ -41661,52 +41666,75 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container profile-container" }, [
-    _c("div", { staticClass: "row mt-2" }, [
-      _c("div", { staticClass: "col-8 container" }, [
-        _c("div", { staticClass: "row align-middle" }, [
-          _c("div", { staticClass: "col-auto user-name" }, [
-            _c("strong", [_vm._v(_vm._s(this.user.name))])
+    _c(
+      "form",
+      {
+        attrs: {
+          action: "/profile/edit",
+          method: "post",
+          enctype: "multipart/form-data"
+        }
+      },
+      [
+        _c("div", { staticClass: "row mt-2" }, [
+          _c("div", { staticClass: "col-8 container" }, [
+            _c("div", { staticClass: "row align-middle" }, [
+              _c("div", { staticClass: "col-auto user-name" }, [
+                _c("strong", [_vm._v(_vm._s(this.user.name))])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(0)
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-4 text-right" }, [
+            _c("input", {
+              attrs: { type: "file", id: "file", name: "avatar" }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "file-label",
+                style: { backgroundImage: "url(" + _vm.image + ")" },
+                attrs: { for: "file" }
+              },
+              [
+                _c(
+                  "i",
+                  {
+                    staticClass: "material-icons md-light md-48",
+                    class: { "md-inactive": _vm.inactive },
+                    attrs: { id: "file-icon" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        photo_camera\n                    "
+                    )
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("label", {
+              staticClass: "file-label file-label-dark",
+              attrs: {
+                for: "file",
+                id: "file-label",
+                title: "Upload an avatar image"
+              }
+            })
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0)
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-4 text-right" }, [
-        _c("input", { attrs: { type: "file", id: "file" } }),
+        _vm._m(1),
         _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "file-label",
-            style: { backgroundImage: "url(" + _vm.image + ")" },
-            attrs: { for: "file" }
-          },
-          [
-            _c(
-              "i",
-              {
-                staticClass: "material-icons md-light md-48",
-                class: { "md-inactive": _vm.inactive },
-                attrs: { id: "file-icon" }
-              },
-              [_vm._v("\n                    photo_camera\n                ")]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("label", {
-          staticClass: "file-label file-label-dark",
-          attrs: {
-            for: "file",
-            id: "file-label",
-            title: "Upload an avatar image"
-          }
+        _c("input", {
+          attrs: { type: "hidden", name: "_token" },
+          domProps: { value: _vm.csrf }
         })
-      ])
-    ]),
-    _vm._v(" "),
-    _vm._m(1)
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -41724,9 +41752,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-auto pr-0" }, [
-        _c("button", { staticClass: "button-primary button-profile" }, [
-          _vm._v("Save")
-        ])
+        _c(
+          "button",
+          {
+            staticClass: "button-primary button-profile",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Save")]
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-auto" }, [
