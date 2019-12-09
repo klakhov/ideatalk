@@ -1,0 +1,49 @@
+.article-header{
+    font-weight: 600;
+    font-size: 22px;
+}
+.article-description{
+    font-weight: 400;
+    font-size: 13px;
+    color:gray;
+}
+.article-author{
+    font-size: 14px;
+    line-height:20px;
+}
+.article-date{
+    font-weight: 400;
+    font-size: 12px;
+    color:gray;
+}
+.ar-small-header{
+    font-weight: 600;
+    overflow: hidden;
+    line-height: 15px;
+    max-height: 32px;
+    font-size:14px;
+    white-space:nowrap;
+    max-width: 240px;
+    text-overflow:ellipsis;
+}
+.ar-small-description{
+    font-weight: 400;
+    font-size: 12px;
+    color:gray;
+    margin-bottom: 0;
+}
+.ar-small-author{
+    font-size: 12px;
+    line-height:20px;
+    overflow: hidden;
+    white-space:nowrap;
+    max-width: 240px;
+    text-overflow:ellipsis;
+}
+.featured-link{
+    color:$my-orange;
+}
+.featured-link:hover{
+    color:$my-orange-darked;
+    text-decoration: none;
+}
