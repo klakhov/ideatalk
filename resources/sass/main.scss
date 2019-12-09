@@ -23,8 +23,17 @@ button{
 .orange{
     background: $my-orange;
 }
+.mt-05{
+    margin-top:0.15rem !important;
+}
 .text-gray{
     color:gray;
+}
+.text-black{
+    color:black;
+}
+.text-light-gray{
+    color:lightgray;
 }
 .invalid-feedback{
     margin-left: 10px;
@@ -36,6 +45,7 @@ main{
 #app{
     min-height: 935px;
     background: white;
+    min-width: 400px;
 }
 .border-link{
     border-radius: 5px;
@@ -46,4 +56,12 @@ main{
     text-decoration: none;
     border: 1px solid black;
     color:black;
+}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

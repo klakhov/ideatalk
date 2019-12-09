@@ -29,6 +29,7 @@
 
     <div id="app">
         @yield('header')
+        @yield('meta')
         @yield('modal')
         <main class="py-4 page-container" style="background: white">
             @yield('content')

@@ -11451,8 +11451,20 @@ button {
   background: #ff8520;
 }
 
+.mt-05 {
+  margin-top: 0.15rem !important;
+}
+
 .text-gray {
   color: gray;
+}
+
+.text-black {
+  color: black;
+}
+
+.text-light-gray {
+  color: lightgray;
 }
 
 .invalid-feedback {
@@ -11467,6 +11479,7 @@ main {
 #app {
   min-height: 935px;
   background: white;
+  min-width: 400px;
 }
 
 .border-link {
@@ -11479,6 +11492,14 @@ main {
   text-decoration: none;
   border: 1px solid black;
   color: black;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .button-primary-header {
@@ -11618,5 +11639,48 @@ main {
 
 .material-icons.md-light.md-inactive {
   color: rgba(255, 255, 255, 0.4);
+}
+
+#meta-menu {
+  padding: 10px 5%;
+}
+
+#meta-list {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.arrow {
+  width: 22px;
+  cursor: pointer;
+}
+
+.arrow:hover {
+  color: black;
+}
+
+.unclickable {
+  color: lightgray;
+  cursor: default;
+}
+
+.unclickable:hover {
+  color: lightgray;
+}
+
+.meta-item {
+  display: inline;
+  color: gray;
+  margin-left: 2%;
+}
+
+.meta-item:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
 }
 

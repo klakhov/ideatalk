@@ -1,0 +1,33 @@
+#meta-menu{
+    padding:10px 5%;
+}
+#meta-list{
+    overflow: hidden;
+    white-space: nowrap;
+    width:100%;
+}
+
+.arrow{
+    width: 22px;
+    cursor:pointer;
+}
+.arrow:hover{
+    color:black;
+}
+.unclickable{
+    color:lightgray;
+    cursor: default;
+}
+.unclickable:hover{
+    color:lightgray;
+}
+.meta-item{
+    display: inline;
+    color:gray;
+    margin-left: 2%;
+}
+.meta-item:hover{
+    text-decoration: none;
+    color:black;
+}
+.material-icons.md-18 { font-size: 18px; }

@@ -13,11 +13,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/','PagesController@welcome');
-
+Route::get('/welcome','PagesController@welcome')->name('welcome')->middleware('guest');
 Auth::routes();
 
-Route::get('/home', 'PagesController@home')->middleware('auth');
+Route::get('/', 'PagesController@home')->middleware('auth')->name('home');
 Route::get('/profile','ProfileController@index');
 Route::get('/profile/edit','ProfileController@edit');
 Route::post('/profile/edit','ProfileController@update');
