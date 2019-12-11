@@ -23,20 +23,13 @@
         </div>
         <div class="row border-bottom ml-auto mr-auto justify-content-end" style="width: 85%">
             <div class="col-8">
-                <mid-article></mid-article>
-                <mid-article></mid-article>
-                <mid-article></mid-article>
-                <mid-article></mid-article>
-                <mid-article></mid-article>
-                <mid-article></mid-article>
-                <mid-article></mid-article>
-                <mid-article></mid-article>
-                <mid-article></mid-article>
+                <mid-article v-for="article in midArticles" :article="article"></mid-article>
             </div>
             <div class="col-4">
                 <popular></popular>
             </div>
         </div>
+        <observer v-on:intersect="intersected"></observer>
     </div>
 </template>
 
@@ -45,14 +38,38 @@
     import smallArticle from './SmallArticle'
     import midArticle from './MidArticle'
     import Popular from './Popular'
+    import Observer from "./Observer";
     export default {
+        data() {
+            return {
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                midArticles: [],
+            }
+        },
         components:{
             'big-article':  bigArticle,
             'small-article': smallArticle,
             'mid-article':midArticle,
-            'popular':Popular
+            'popular':Popular,
+            'observer':Observer
         },
         mounted() {
+            axios.get('/article?_token='+this.csrf)
+                .then((response)=>{
+                    const articles = response.data;
+                    this.midArticles = [...this.midArticles, ...articles];
+                    console.log(this.midArticles)
+                })
+        },
+        methods: {
+            intersected() {
+                axios.get('/article?_token='+this.csrf)
+                    .then((response)=>{
+                        const articles = response.data;
+                        this.midArticles = [...this.midArticles, ...articles];
+                        console.log(this.midArticles)
+                    })
+            }
         },
     }
 </script>

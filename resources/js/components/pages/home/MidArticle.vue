@@ -6,13 +6,13 @@
                     <div class="col ar-middle-tag">Data Science</div>
                 </div>
                 <div class="row">
-                    <h2 class="col ar-middle-header">How To Achieve More In A Single Year Than Most Achieve In A Lifetime</h2>
+                    <h2 class="col ar-middle-header">{{this.article.header}}</h2>
                 </div>
                 <div class="row">
-                    <div class="col ar-middle-description">Live the best year of your life</div>
+                    <div class="col ar-middle-description">{{this.article.description}}</div>
                 </div>
                 <div class="row">
-                    <div class="col ar-middle-author">George J. Ziogas in Live Your Life On Purpose</div>
+                    <div class="col ar-middle-author">{{this.article.user_id}}</div>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col article-date text-left">Jan 3</div>
@@ -27,6 +27,9 @@
 
 <script>
     export default {
+        props: [
+            'article',
+        ],
         mounted() {
         },
     }
