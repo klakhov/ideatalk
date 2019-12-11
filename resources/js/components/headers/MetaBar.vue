@@ -1,5 +1,5 @@
 <template>
-    <div class="sticky-top container">
+    <div class="sticky-top container-fluid bg-white" style="z-index: 100">
         <div id="meta-menu" class="d-flex mt-3">
             <div id="previous" class="arrow text-gray unclickable">
                 <i class="material-icons md-18 mt-05 noselect">arrow_back_ios</i>

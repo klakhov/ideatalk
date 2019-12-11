@@ -47,3 +47,31 @@
     color:$my-orange-darked;
     text-decoration: none;
 }
+.arrow-m{
+    margin-top: 0.7rem;
+}
+.ar-middle-tag{
+    text-transform: uppercase;
+    color:gray;
+    font-weight: 400;
+}
+.ar-middle-header{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    font-weight:600;
+    font-size:18px;
+    max-height: 64px;
+}
+.ar-middle-description{
+    color:gray;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    font-size:14px;
+    max-height: 40px;
+}
+.ar-middle-author{
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    max-height: 20px;
+}

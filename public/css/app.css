@@ -11502,6 +11502,10 @@ main {
   user-select: none;
 }
 
+.material-icons.md-14 {
+  font-size: 14px;
+}
+
 .button-primary-header {
   font-size: 16px;
   height: 35px;
@@ -11740,5 +11744,72 @@ main {
 .featured-link:hover {
   color: #e16500;
   text-decoration: none;
+}
+
+.arrow-m {
+  margin-top: 0.7rem;
+}
+
+.ar-middle-tag {
+  text-transform: uppercase;
+  color: gray;
+  font-weight: 400;
+}
+
+.ar-middle-header {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  font-size: 18px;
+  max-height: 64px;
+}
+
+.ar-middle-description {
+  color: gray;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  max-height: 40px;
+}
+
+.ar-middle-author {
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 20px;
+}
+
+.popular {
+  top: 3em;
+}
+
+.p-header {
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.p-number {
+  font-weight: 600;
+  color: lightgray;
+  font-size: 28px;
+}
+
+.pop-header {
+  font-weight: 600;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.pop-author {
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 
