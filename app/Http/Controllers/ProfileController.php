@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Barryvdh\Debugbar\Facade as Debugbar;
 
 use Illuminate\Http\Request;
