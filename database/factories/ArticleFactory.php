@@ -11,5 +11,6 @@ $factory->define(Article::class, function (Faker $faker) {
         'header' => $faker->paragraph(1),
         'description' => $faker->paragraph(2),
         'body' => $faker->text(350),
+        'date'=>$faker->monthName.' '.$faker->numberBetween(1,31),
     ];
 });

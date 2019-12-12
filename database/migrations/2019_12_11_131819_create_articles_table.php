@@ -20,6 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('header');
             $table->string('description');
             $table->text('body');
+            $table->string('date');
         });
     }
 

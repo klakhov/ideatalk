@@ -2570,20 +2570,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/article?_token=' + this.csrf).then(function (response) {
+    axios.get('/article?_token=' + this.csrf + '&amount=' + this.midArticles.length).then(function (response) {
       var articles = response.data;
       _this.midArticles = [].concat(_toConsumableArray(_this.midArticles), _toConsumableArray(articles));
-      console.log(_this.midArticles);
     });
   },
   methods: {
     intersected: function intersected() {
       var _this2 = this;
 
-      axios.get('/article?_token=' + this.csrf).then(function (response) {
+      axios.get('/article?_token=' + this.csrf + '&amount=' + this.midArticles.length).then(function (response) {
         var articles = response.data;
         _this2.midArticles = [].concat(_toConsumableArray(_this2.midArticles), _toConsumableArray(articles));
-        console.log(_this2.midArticles);
       });
     }
   }
@@ -2628,7 +2626,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['article'],
+  props: ['articles'],
   mounted: function mounted() {}
 });
 
@@ -42336,9 +42334,7 @@ var render = function() {
           _c(
             "div",
             { staticClass: "col-8" },
-            _vm._l(_vm.midArticles, function(article) {
-              return _c("mid-article", { attrs: { article: article } })
-            }),
+            [_c("mid-article", { attrs: { articles: _vm.midArticles } })],
             1
           ),
           _vm._v(" "),
@@ -42399,42 +42395,51 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mb-5 mt-5" }, [
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        {
-          staticClass: "col container",
-          staticStyle: { "max-height": "130px" }
-        },
-        [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("h2", { staticClass: "col ar-middle-header" }, [
-              _vm._v(_vm._s(this.article.header))
+  return _c(
+    "div",
+    { staticClass: "container mb-5 mt-5" },
+    _vm._l(this.articles, function(article) {
+      return _c("div", { staticClass: "row mb-5 mt-5" }, [
+        _c(
+          "div",
+          {
+            staticClass: "col container",
+            staticStyle: { "max-height": "130px" }
+          },
+          [
+            _vm._m(0, true),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("h2", { staticClass: "col ar-middle-header" }, [
+                _vm._v(_vm._s(article.header))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col ar-middle-description" }, [
+                _vm._v(_vm._s(article.description))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col ar-middle-author" }, [
+                _vm._v(_vm._s(article.user_id))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row justify-content-start" }, [
+              _c("div", { staticClass: "col article-date text-left" }, [
+                _vm._v(_vm._s(article.date))
+              ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col ar-middle-description" }, [
-              _vm._v(_vm._s(this.article.description))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col ar-middle-author" }, [
-              _vm._v(_vm._s(this.article.user_id))
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(1)
-        ]
-      ),
-      _vm._v(" "),
-      _vm._m(2)
-    ])
-  ])
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(1, true)
+      ])
+    }),
+    0
+  )
 }
 var staticRenderFns = [
   function() {
@@ -42443,16 +42448,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col ar-middle-tag" }, [_vm._v("Data Science")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row justify-content-start" }, [
-      _c("div", { staticClass: "col article-date text-left" }, [
-        _vm._v("Jan 3")
-      ])
     ])
   },
   function() {

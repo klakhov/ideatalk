@@ -23,7 +23,7 @@
         </div>
         <div class="row border-bottom ml-auto mr-auto justify-content-end" style="width: 85%">
             <div class="col-8">
-                <mid-article v-for="article in midArticles" :article="article"></mid-article>
+                <mid-article :articles="midArticles"></mid-article>
             </div>
             <div class="col-4">
                 <popular></popular>
@@ -54,20 +54,18 @@
             'observer':Observer
         },
         mounted() {
-            axios.get('/article?_token='+this.csrf)
+            axios.get('/article?_token='+this.csrf+'&amount='+this.midArticles.length)
                 .then((response)=>{
                     const articles = response.data;
                     this.midArticles = [...this.midArticles, ...articles];
-                    console.log(this.midArticles)
                 })
         },
         methods: {
             intersected() {
-                axios.get('/article?_token='+this.csrf)
+                axios.get('/article?_token='+this.csrf+'&amount='+this.midArticles.length)
                     .then((response)=>{
                         const articles = response.data;
                         this.midArticles = [...this.midArticles, ...articles];
-                        console.log(this.midArticles)
                     })
             }
         },
