@@ -1931,6 +1931,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
@@ -1938,7 +1940,12 @@ __webpack_require__.r(__webpack_exports__);
       name: 123
     };
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {},
+  methods: {
+    profile: function profile() {
+      console.log('red');
+    }
+  }
 });
 
 /***/ }),
@@ -2857,8 +2864,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user'],
-  mounted: function mounted() {}
+  props: ['user', 'editable'],
+  data: function data() {
+    return {
+      edit: false
+    };
+  },
+  mounted: function mounted() {
+    this.edit = this.editable === 1;
+  }
 });
 
 /***/ }),
@@ -41041,7 +41055,7 @@ var render = function() {
                       "data-placement": "bottom",
                       "data-trigger": "focus",
                       "data-content":
-                        "        <div class='container pop-container border-dark hide'>\n        <div class='row justify-content-center p-2  border-bottom'>\n            <a href='' class='pop-link-main'>Name</a>\n        </div>\n        <div class='row justify-content-start p-2 pt-3'>\n            <a href='' class='pop-link'>How to share?</a>\n        </div>\n        <div class='row justify-content-start p-2 pb-3 border-bottom'>\n            <a href='' class='pop-link'>New idea</a>\n        </div>\n        <div class='row justify-content-start p-2 pt-3'>\n            <a href='' class='pop-link'>Bookmarks</a>\n        </div>\n        <div class='row justify-content-start p-2 pb-3 border-bottom'>\n            <a href='' class='pop-link'>Publications</a>\n        </div>\n        <div class='row justify-content-start p-2 pt-3 '>\n            <a href='/profile' class='pop-link'>Profile</a>\n        </div>\n        <div class='row justify-content-start p-2'>\n            <a href='' class='pop-link'>Sign out</a>\n        </div>\n    </div>"
+                        "\n                         <div class='container pop-container border-dark hide'>\n        <div class='row justify-content-center p-2  border-bottom'>\n            <a href='' class='pop-link-main'>Name</a>\n        </div>\n        <div class='row justify-content-start p-2 pt-3'>\n            <a href='' class='pop-link'>How to share?</a>\n        </div>\n        <div class='row justify-content-start p-2 pb-3 border-bottom'>\n            <a href='' class='pop-link'>New idea</a>\n        </div>\n        <div class='row justify-content-start p-2 pt-3'>\n            <a href='' class='pop-link'>Bookmarks</a>\n        </div>\n        <div class='row justify-content-start p-2 pb-3 border-bottom'>\n            <a href='' class='pop-link'>Publications</a>\n        </div>\n        <div class='row justify-content-start p-2 pt-3 '>\n            <a class='pop-link' role='button' @click='profile'>Profile</a>\n        </div>\n        <div class='row justify-content-start p-2'>\n            <a href='' class='pop-link'>Sign out</a>\n        </div>\n    </div>"
                     }
                   },
                   [
@@ -42712,18 +42726,24 @@ var render = function() {
             _c("strong", [_vm._v(_vm._s(this.user.name))])
           ]),
           _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "col-auto border-link edit-link text-center align-middle",
-              attrs: { href: "/profile/edit" }
-            },
-            [_vm._v("Edit profile")]
-          )
+          _vm.edit
+            ? _c(
+                "a",
+                {
+                  staticClass:
+                    "col-auto border-link edit-link text-center align-middle",
+                  attrs: { href: "/profile/edit" }
+                },
+                [_vm._v("Edit profile")]
+              )
+            : _vm._e()
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col text-gray" }, [
+            _vm._v("followers: " + _vm._s(this.user.followers))
+          ])
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-4 text-right" }, [
@@ -42734,27 +42754,14 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(1)
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col text-gray" }, [
+        _vm._v(_vm._s(this.user.bio))
+      ])
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col text-gray" }, [_vm._v("followers")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col text-gray" }, [_vm._v("some info")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

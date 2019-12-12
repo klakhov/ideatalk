@@ -4,10 +4,10 @@
                 <div class="col-8 container">
                     <div class="row align-middle">
                         <div class="col-auto user-name"><strong>{{this.user.name}}</strong></div>
-                        <a class="col-auto border-link edit-link text-center align-middle" href="/profile/edit">Edit profile</a>
+                        <a class="col-auto border-link edit-link text-center align-middle"  v-if="edit" href="/profile/edit">Edit profile</a>
                     </div>
                     <div class="row">
-                        <div class="col text-gray">followers</div>
+                        <div class="col text-gray">followers: {{this.user.followers}}</div>
                     </div>
                 </div>
                 <div class="col-4 text-right">
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col text-gray">some info</div>
+                <div class="col text-gray">{{this.user.bio}}</div>
             </div>
     </div>
 </template>
@@ -23,9 +23,17 @@
 <script>
     export default {
         props:[
-          'user'
+            'user',
+            'editable'
         ],
+        data() {
+            return{
+                edit:false,
+            }
+        },
         mounted() {
+            this.edit = (this.editable === 1);
+
         },
     }
 </script>

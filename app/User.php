@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Barryvdh\Debugbar\Facade as Debugbar;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -37,8 +37,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    static function token($token){
+        return User::where('profile_token','=',$token)->first();
+    }
+
+
     public function articles()
     {
         return $this->hasMany('App\Article');
     }
+
 }

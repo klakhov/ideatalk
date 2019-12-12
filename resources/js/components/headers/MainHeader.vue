@@ -1,9 +1,10 @@
 <template>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand"  href="/">
                 Idea Talk
             </a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false">
                 <span class="navbar-toggler-icon"></span>
@@ -13,7 +14,8 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item container">
                         <div class="row" data-html="true"
-                             data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="        <div class='container pop-container border-dark hide'>
+                             data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
+                             <div class='container pop-container border-dark hide'>
             <div class='row justify-content-center p-2  border-bottom'>
                 <a href='' class='pop-link-main'>Name</a>
             </div>
@@ -30,7 +32,7 @@
                 <a href='' class='pop-link'>Publications</a>
             </div>
             <div class='row justify-content-start p-2 pt-3 '>
-                <a href='/profile' class='pop-link'>Profile</a>
+                <a class='pop-link' role='button' @click='profile'>Profile</a>
             </div>
             <div class='row justify-content-start p-2'>
                 <a href='' class='pop-link'>Sign out</a>
@@ -69,6 +71,11 @@
             }
         },
         mounted() {
+        },
+        methods: {
+            profile() {
+                console.log('red');
+            }
         },
     }
 </script>

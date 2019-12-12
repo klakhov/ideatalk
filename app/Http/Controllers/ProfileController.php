@@ -16,9 +16,11 @@ class ProfileController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index($token)
     {
-        return view('profile');
+        $user = User::token($token);
+        $editable = (Auth::id() == $user->id) ? 1 : 0;
+        return view('profile',compact('user','editable'));
     }
 
     public function edit()

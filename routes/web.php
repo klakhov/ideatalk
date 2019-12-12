@@ -17,8 +17,8 @@ Route::get('/welcome','PagesController@welcome')->name('welcome')->middleware('g
 Auth::routes();
 
 Route::get('/', 'PagesController@home')->middleware('auth')->name('home');
-Route::get('/profile','ProfileController@index');
-Route::get('/profile/edit','ProfileController@edit');
+Route::get('/profile/{token}','ProfileController@index');
+Route::get('/profile/{token}/edit','ProfileController@edit')->middleware('can_edit');
 Route::post('/profile/edit','ProfileController@update');
 
 Route::get('/article','ArticleController@index');

@@ -7,5 +7,5 @@
 
 @endsection
 @section('content')
-    <profile v-bind:user="{{Auth::user()}}"></profile>
+    <profile v-bind:user="{{$user}}" v-bind:editable="{{$editable}}"></profile>
 @endsection
