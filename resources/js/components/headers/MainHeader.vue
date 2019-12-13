@@ -14,30 +14,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item container">
                         <div class="row" data-html="true"
-                             data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="
-                             <div class='container pop-container border-dark hide'>
-            <div class='row justify-content-center p-2  border-bottom'>
-                <a href='' class='pop-link-main'>Name</a>
-            </div>
-            <div class='row justify-content-start p-2 pt-3'>
-                <a href='' class='pop-link'>How to share?</a>
-            </div>
-            <div class='row justify-content-start p-2 pb-3 border-bottom'>
-                <a href='' class='pop-link'>New idea</a>
-            </div>
-            <div class='row justify-content-start p-2 pt-3'>
-                <a href='' class='pop-link'>Bookmarks</a>
-            </div>
-            <div class='row justify-content-start p-2 pb-3 border-bottom'>
-                <a href='' class='pop-link'>Publications</a>
-            </div>
-            <div class='row justify-content-start p-2 pt-3 '>
-                <a class='pop-link' role='button' @click='profile'>Profile</a>
-            </div>
-            <div class='row justify-content-start p-2'>
-                <a href='' class='pop-link'>Sign out</a>
-            </div>
-        </div>">
+                             data-toggle="popover" data-placement="bottom" data-trigger="focus" :data-content="inner">
                             <a id="navbarDropdown" class="nav-link col" href="#" role="button"
                                v-text="this.user.name"></a>
                             <img :src="this.user.avatar" alt="" height="35" width="35" style="border-radius: 50%;margin-top: 2px" >
@@ -49,9 +26,9 @@
                         <!--                                logout-->
                         <!--                            </a>-->
 
-                        <!--                            <form id="logout-form" action="" method="POST" style="display: none;">-->
-                        <!--                                @csrf-->
-                        <!--                            </form>-->
+<!--                                                    <form id="logout-form" action="" method="POST" style="display: none;">-->
+<!--                                                        @csrf-->
+<!--                                                    </form>-->
                         <!--                        </div>-->
                     </li>
                 </ul>
@@ -67,14 +44,54 @@
         ],
         data() {
             return {
-                name: 123
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                inner:"<div class='container pop-container border-dark hide'>" +
+                    "            <div class='row justify-content-center p-2  border-bottom'>\n" +
+                    "                <a href='' class='pop-link-main'>Name</a>\n" +
+                    "            </div>" +
+                    "            <div class='row justify-content-start p-2 pt-3'>\n" +
+                    "                <a href='' class='pop-link'>How to share?</a>\n" +
+                    "            </div>"+
+                    "            <div class='row justify-content-start p-2 pb-2 border-bottom'>\n" +
+                    "                <a href='' class='pop-link'>New idea</a>\n" +
+                    "            </div>"+
+                    "            <div class='row justify-content-start p-2  border-bottom'>\n" +
+                    "                <a href='' class='pop-link'>New idea</a>\n" +
+                    "            </div>\n" +
+                    "            <div class='row justify-content-start p-2 pt-3'>\n" +
+                    "                <a href='' class='pop-link'>Bookmarks</a>\n" +
+                    "            </div>\n" +
+                    "            <div class='row justify-content-start p-2 pb-3 border-bottom'>\n" +
+                    "                <a href='' class='pop-link'>Publications</a>\n" +
+                    "            </div>\n" +
+                    "            <div class='row justify-content-start p-2 pt-3 '>\n" +
+                    "                <a href='/profile/" + this.user.profile_token +"' class='pop-link'>Profile</a>"+
+                    "            </div>\n" +
+                    "            <div class='row justify-content-start p-2'>\n" +
+                    "                <div class='pop-link'  id='logout' role='button' >Sign out</div>\n" +
+                    "            </div>"+
+                    "</div>"
+
             }
         },
         mounted() {
+            $('#logout').click(function(event){
+                console.log('red');
+                event.preventDefault();
+                this.logout();
+            });
+            console.log($('#logout'))
         },
         methods: {
             profile() {
                 console.log('red');
+            },
+            logout(){
+                console.log('red');
+
+                axios.post({
+                    _token:this.csrf,
+                })
             }
         },
     }

@@ -1910,40 +1910,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
     return {
-      name: 123
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      inner: "<div class='container pop-container border-dark hide'>" + "            <div class='row justify-content-center p-2  border-bottom'>\n" + "                <a href='' class='pop-link-main'>Name</a>\n" + "            </div>" + "            <div class='row justify-content-start p-2 pt-3'>\n" + "                <a href='' class='pop-link'>How to share?</a>\n" + "            </div>" + "            <div class='row justify-content-start p-2 pb-2 border-bottom'>\n" + "                <a href='' class='pop-link'>New idea</a>\n" + "            </div>" + "            <div class='row justify-content-start p-2  border-bottom'>\n" + "                <a href='' class='pop-link'>New idea</a>\n" + "            </div>\n" + "            <div class='row justify-content-start p-2 pt-3'>\n" + "                <a href='' class='pop-link'>Bookmarks</a>\n" + "            </div>\n" + "            <div class='row justify-content-start p-2 pb-3 border-bottom'>\n" + "                <a href='' class='pop-link'>Publications</a>\n" + "            </div>\n" + "            <div class='row justify-content-start p-2 pt-3 '>\n" + "                <a href='/profile/" + this.user.profile_token + "' class='pop-link'>Profile</a>" + "            </div>\n" + "            <div class='row justify-content-start p-2'>\n" + "                <div class='pop-link'  id='logout' role='button' >Sign out</div>\n" + "            </div>" + "</div>"
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    $('#logout').click(function (event) {
+      console.log('red');
+      event.preventDefault();
+      this.logout();
+    });
+    console.log($('#logout'));
+  },
   methods: {
     profile: function profile() {
       console.log('red');
+    },
+    logout: function logout() {
+      console.log('red');
+      axios.post({
+        _token: this.csrf
+      });
     }
   }
 });
@@ -41031,7 +41022,7 @@ var render = function() {
     [
       _c("div", { staticClass: "container" }, [
         _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
-          _vm._v("\n            Idea Talk\n        ")
+          _vm._v("\n                Idea Talk\n            ")
         ]),
         _vm._v(" "),
         _vm._m(0),
@@ -41054,8 +41045,7 @@ var render = function() {
                       "data-toggle": "popover",
                       "data-placement": "bottom",
                       "data-trigger": "focus",
-                      "data-content":
-                        "\n                         <div class='container pop-container border-dark hide'>\n        <div class='row justify-content-center p-2  border-bottom'>\n            <a href='' class='pop-link-main'>Name</a>\n        </div>\n        <div class='row justify-content-start p-2 pt-3'>\n            <a href='' class='pop-link'>How to share?</a>\n        </div>\n        <div class='row justify-content-start p-2 pb-3 border-bottom'>\n            <a href='' class='pop-link'>New idea</a>\n        </div>\n        <div class='row justify-content-start p-2 pt-3'>\n            <a href='' class='pop-link'>Bookmarks</a>\n        </div>\n        <div class='row justify-content-start p-2 pb-3 border-bottom'>\n            <a href='' class='pop-link'>Publications</a>\n        </div>\n        <div class='row justify-content-start p-2 pt-3 '>\n            <a class='pop-link' role='button' @click='profile'>Profile</a>\n        </div>\n        <div class='row justify-content-start p-2'>\n            <a href='' class='pop-link'>Sign out</a>\n        </div>\n    </div>"
+                      "data-content": _vm.inner
                     }
                   },
                   [
@@ -42435,10 +42425,15 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col ar-middle-author" }, [
-                _vm._v(_vm._s(article.user_id))
-              ])
+            _c("div", { staticClass: "row mt-3" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "col ar-middle-author",
+                  attrs: { href: "/profile/" + article.userToken }
+                },
+                [_vm._v(_vm._s(article.userName))]
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row justify-content-start" }, [
@@ -42469,7 +42464,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-3" }, [
-      _c("img", { attrs: { src: "https://picsum.photos/130", alt: "" } })
+      _c("img", { attrs: { src: "https://picsum.photos/150", alt: "" } })
     ])
   }
 ]
@@ -42660,7 +42655,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container mb-4" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-3" }, [
+        _c("div", { staticClass: "col-3 p-0" }, [
           _c("img", { attrs: { src: "https://picsum.photos/90", alt: "" } })
         ]),
         _vm._v(" "),
@@ -42721,26 +42716,37 @@ var render = function() {
   return _c("div", { staticClass: "container profile-container" }, [
     _c("div", { staticClass: "row mt-5" }, [
       _c("div", { staticClass: "col-8 container" }, [
-        _c("div", { staticClass: "row align-middle" }, [
-          _c("div", { staticClass: "col-auto user-name" }, [
-            _c("strong", [_vm._v(_vm._s(this.user.name))])
-          ]),
-          _vm._v(" "),
-          _vm.edit
-            ? _c(
-                "a",
-                {
-                  staticClass:
-                    "col-auto border-link edit-link text-center align-middle",
-                  attrs: { href: "/profile/edit" }
-                },
-                [_vm._v("Edit profile")]
-              )
-            : _vm._e()
-        ]),
+        _c(
+          "div",
+          {
+            staticClass:
+              "row align-middle justify-content-md-start justify-content-center"
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "col-sm-auto  user-name text-center text-md-left"
+              },
+              [_c("strong", [_vm._v(_vm._s(this.user.name))])]
+            ),
+            _vm._v(" "),
+            _vm.edit
+              ? _c(
+                  "a",
+                  {
+                    staticClass:
+                      "col-sm-auto col-6 border-link edit-link text-center align-middle",
+                    attrs: { href: "/profile/edit" }
+                  },
+                  [_vm._v("Edit profile")]
+                )
+              : _vm._e()
+          ]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col text-gray" }, [
+        _c("div", { staticClass: "row mt-md-2 mt-4 justify-content-center" }, [
+          _c("div", { staticClass: "col-auto col-md text-gray" }, [
             _vm._v("followers: " + _vm._s(this.user.followers))
           ])
         ])
@@ -42754,8 +42760,8 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col text-gray" }, [
+    _c("div", { staticClass: "row justify-content-start" }, [
+      _c("div", { staticClass: "col-8 text-gray" }, [
         _vm._v(_vm._s(this.user.bio))
       ])
     ])

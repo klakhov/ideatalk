@@ -59,8 +59,11 @@
     overflow: hidden;
     text-overflow:ellipsis;
     font-weight:600;
-    font-size:18px;
+    font-size:17px;
     max-height: 64px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 .ar-middle-description{
     color:gray;
@@ -68,10 +71,18 @@
     text-overflow:ellipsis;
     font-size:14px;
     max-height: 40px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-height: 1.2;
 }
 .ar-middle-author{
     font-size: 12px;
     overflow: hidden;
     text-overflow:ellipsis;
     max-height: 20px;
+    color:black;
+}
+.ar-middle-author:hover{
+    color:black;
 }

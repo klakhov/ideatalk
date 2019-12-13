@@ -2,19 +2,25 @@
 
 namespace App;
 
+use Barryvdh\Debugbar\Facade as Debugbar;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends BaseModel
 {
     protected $fillable = ['user_id', 'header', 'description', 'body'];
-
     static function firstDecId(){
         return Article::orderBy('id','desc')->first()->id;
     }
 
 
     static function chunkLoad($end_id, $start_id){
-        return Article::orderBy('id','desc')->where([['id','>=',$end_id],['id','<=',$start_id]])->get();
+        $articles = Article::orderBy('id','desc')->where([['id','>=',$end_id],['id','<=',$start_id]])->get();
+        $articles = $articles->map(function ($article){
+           $article->userName = $article->user->name;
+           $article->userToken = $article->user->profile_token;
+           return $article;
+        });
+        return $articles;
     }
 
 
@@ -23,5 +29,9 @@ class Article extends BaseModel
         return $this->belongsTo('App\User');
     }
 
+    public function addUserInfo()
+    {
+        $this->userName = $this->user->name;
+    }
 
 }

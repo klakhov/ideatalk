@@ -11,16 +11,16 @@
                 <div class="row">
                     <div class="col ar-middle-description">{{article.description}}</div>
                 </div>
-                <div class="row">
-                    <div class="col ar-middle-author">{{article.user_id}}</div>
+                <div class="row mt-3">
+                    <a class="col ar-middle-author" :href="'/profile/'+article.userToken">{{article.userName}}</a>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col article-date text-left">{{article.date}}</div>
                 </div>
             </div>
             <div class="col-3">
-                <img src="https://picsum.photos/130" alt="">
-            </div>
+                <img src="https://picsum.photos/150" alt="">
+        </div>
         </div>
     </div>
 </template>

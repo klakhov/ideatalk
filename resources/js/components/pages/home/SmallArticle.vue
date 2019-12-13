@@ -1,7 +1,7 @@
 <template>
     <div class="container mb-4">
         <div class="row">
-            <div class="col-3">
+            <div class="col-3 p-0" >
                 <img src="https://picsum.photos/90" alt="">
             </div>
             <div class="col-9 container">
