@@ -34,6 +34,7 @@ const app = new Vue({
             register:'http://127.0.0.1:8000/register',
             login:'http://127.0.0.1:8000/login',
             home:'http://127.0.0.1:8000/',
+            welcome:'http://127.0.0.1:8000/welcome'
         }
     }
 });

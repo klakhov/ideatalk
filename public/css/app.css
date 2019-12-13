@@ -11573,6 +11573,11 @@ main {
   color: gray;
 }
 
+.divider {
+  margin: 0;
+  width: 90%;
+}
+
 .profile-container {
   padding-right: 15%;
   padding-left: 15%;

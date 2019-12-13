@@ -13,23 +13,24 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item container">
-                        <div class="row" data-html="true"
-                             data-toggle="popover" data-placement="bottom" data-trigger="focus" :data-content="inner">
-                            <a id="navbarDropdown" class="nav-link col" href="#" role="button"
-                               v-text="this.user.name"></a>
+                        <div class="dropdown row">
+                            <a class="nav-link col"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    v-text="this.user.name" role="button">
+                            </a>
+                            <div class="dropdown-menu pop-container" aria-labelledby="dropdownMenuButton">
+                                <a :href="'/profile/' + this.user.profile_token" class="dropdown-item pop-link-main text-center p-2">{{this.user.name}}</a>
+                                <div class="dropdown-divider divider mr-auto ml-auto"></div>
+                                <a href="" class="dropdown-item pop-link p-2 pl-3">How to share?</a>
+                                <a href="" class="dropdown-item pop-link p-2 pl-3">New idea</a>
+                                <div class="dropdown-divider divider mr-auto ml-auto"></div>
+                                <a href="" class="dropdown-item pop-link p-2 pl-3">Bookmarks</a>
+                                <a href="" class="dropdown-item pop-link p-2 pl-3">Publications</a>
+                                <div class="dropdown-divider divider mr-auto ml-auto"></div>
+                                <a :href="'/profile/' + this.user.profile_token" class="dropdown-item pop-link p-2 pl-3">Profile</a>
+                                <a href="" class="dropdown-item pop-link p-2 pl-3" role="button" @click="logout">Sign out</a>
+                            </div>
                             <img :src="this.user.avatar" alt="" height="35" width="35" style="border-radius: 50%;margin-top: 2px" >
                         </div>
-                        <!--                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">-->
-                        <!--                            <a class="dropdown-item" href=""-->
-                        <!--                               onclick="event.preventDefault();-->
-                        <!--                                                     document.getElementById('logout-form').submit();">-->
-                        <!--                                logout-->
-                        <!--                            </a>-->
-
-<!--                                                    <form id="logout-form" action="" method="POST" style="display: none;">-->
-<!--                                                        @csrf-->
-<!--                                                    </form>-->
-                        <!--                        </div>-->
                     </li>
                 </ul>
             </div>
@@ -45,52 +46,18 @@
         data() {
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                inner:"<div class='container pop-container border-dark hide'>" +
-                    "            <div class='row justify-content-center p-2  border-bottom'>\n" +
-                    "                <a href='' class='pop-link-main'>Name</a>\n" +
-                    "            </div>" +
-                    "            <div class='row justify-content-start p-2 pt-3'>\n" +
-                    "                <a href='' class='pop-link'>How to share?</a>\n" +
-                    "            </div>"+
-                    "            <div class='row justify-content-start p-2 pb-2 border-bottom'>\n" +
-                    "                <a href='' class='pop-link'>New idea</a>\n" +
-                    "            </div>"+
-                    "            <div class='row justify-content-start p-2  border-bottom'>\n" +
-                    "                <a href='' class='pop-link'>New idea</a>\n" +
-                    "            </div>\n" +
-                    "            <div class='row justify-content-start p-2 pt-3'>\n" +
-                    "                <a href='' class='pop-link'>Bookmarks</a>\n" +
-                    "            </div>\n" +
-                    "            <div class='row justify-content-start p-2 pb-3 border-bottom'>\n" +
-                    "                <a href='' class='pop-link'>Publications</a>\n" +
-                    "            </div>\n" +
-                    "            <div class='row justify-content-start p-2 pt-3 '>\n" +
-                    "                <a href='/profile/" + this.user.profile_token +"' class='pop-link'>Profile</a>"+
-                    "            </div>\n" +
-                    "            <div class='row justify-content-start p-2'>\n" +
-                    "                <div class='pop-link'  id='logout' role='button' >Sign out</div>\n" +
-                    "            </div>"+
-                    "</div>"
-
             }
         },
         mounted() {
-            $('#logout').click(function(event){
-                console.log('red');
-                event.preventDefault();
-                this.logout();
-            });
-            console.log($('#logout'))
         },
         methods: {
-            profile() {
-                console.log('red');
-            },
             logout(){
-                console.log('red');
-
-                axios.post({
+                axios.post('/logout',{
                     _token:this.csrf,
+                }).then(()=>{
+                    $(location).attr('href',this.$root.welcome);
+                }).catch(()=>{
+                    $(location).attr('href',this.$root.welcome);
                 })
             }
         },

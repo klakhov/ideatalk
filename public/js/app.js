@@ -1910,30 +1910,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
     return {
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      inner: "<div class='container pop-container border-dark hide'>" + "            <div class='row justify-content-center p-2  border-bottom'>\n" + "                <a href='' class='pop-link-main'>Name</a>\n" + "            </div>" + "            <div class='row justify-content-start p-2 pt-3'>\n" + "                <a href='' class='pop-link'>How to share?</a>\n" + "            </div>" + "            <div class='row justify-content-start p-2 pb-2 border-bottom'>\n" + "                <a href='' class='pop-link'>New idea</a>\n" + "            </div>" + "            <div class='row justify-content-start p-2  border-bottom'>\n" + "                <a href='' class='pop-link'>New idea</a>\n" + "            </div>\n" + "            <div class='row justify-content-start p-2 pt-3'>\n" + "                <a href='' class='pop-link'>Bookmarks</a>\n" + "            </div>\n" + "            <div class='row justify-content-start p-2 pb-3 border-bottom'>\n" + "                <a href='' class='pop-link'>Publications</a>\n" + "            </div>\n" + "            <div class='row justify-content-start p-2 pt-3 '>\n" + "                <a href='/profile/" + this.user.profile_token + "' class='pop-link'>Profile</a>" + "            </div>\n" + "            <div class='row justify-content-start p-2'>\n" + "                <div class='pop-link'  id='logout' role='button' >Sign out</div>\n" + "            </div>" + "</div>"
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
-  mounted: function mounted() {
-    $('#logout').click(function (event) {
-      console.log('red');
-      event.preventDefault();
-      this.logout();
-    });
-    console.log($('#logout'));
-  },
+  mounted: function mounted() {},
   methods: {
-    profile: function profile() {
-      console.log('red');
-    },
     logout: function logout() {
-      console.log('red');
-      axios.post({
+      var _this = this;
+
+      axios.post('/logout', {
         _token: this.csrf
+      }).then(function () {
+        $(location).attr('href', _this.$root.welcome);
+      })["catch"](function () {
+        $(location).attr('href', _this.$root.welcome);
       });
     }
   }
@@ -41022,7 +41017,7 @@ var render = function() {
     [
       _c("div", { staticClass: "container" }, [
         _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
-          _vm._v("\n                Idea Talk\n            ")
+          _vm._v("\n            Idea Talk\n        ")
         ]),
         _vm._v(" "),
         _vm._m(0),
@@ -41036,43 +41031,118 @@ var render = function() {
           [
             _c("ul", { staticClass: "navbar-nav ml-auto" }, [
               _c("li", { staticClass: "nav-item container" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "row",
+                _c("div", { staticClass: "dropdown row" }, [
+                  _c("a", {
+                    staticClass: "nav-link col",
                     attrs: {
-                      "data-html": "true",
-                      "data-toggle": "popover",
-                      "data-placement": "bottom",
-                      "data-trigger": "focus",
-                      "data-content": _vm.inner
+                      id: "dropdownMenuButton",
+                      "data-toggle": "dropdown",
+                      "aria-haspopup": "true",
+                      "aria-expanded": "false",
+                      role: "button"
+                    },
+                    domProps: { textContent: _vm._s(this.user.name) }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "dropdown-menu pop-container",
+                      attrs: { "aria-labelledby": "dropdownMenuButton" }
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "dropdown-item pop-link-main text-center p-2",
+                          attrs: { href: "/profile/" + this.user.profile_token }
+                        },
+                        [_vm._v(_vm._s(this.user.name))]
+                      ),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "dropdown-divider divider mr-auto ml-auto"
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-item pop-link p-2 pl-3",
+                          attrs: { href: "" }
+                        },
+                        [_vm._v("How to share?")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-item pop-link p-2 pl-3",
+                          attrs: { href: "" }
+                        },
+                        [_vm._v("New idea")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "dropdown-divider divider mr-auto ml-auto"
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-item pop-link p-2 pl-3",
+                          attrs: { href: "" }
+                        },
+                        [_vm._v("Bookmarks")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-item pop-link p-2 pl-3",
+                          attrs: { href: "" }
+                        },
+                        [_vm._v("Publications")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "dropdown-divider divider mr-auto ml-auto"
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-item pop-link p-2 pl-3",
+                          attrs: { href: "/profile/" + this.user.profile_token }
+                        },
+                        [_vm._v("Profile")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-item pop-link p-2 pl-3",
+                          attrs: { href: "", role: "button" },
+                          on: { click: _vm.logout }
+                        },
+                        [_vm._v("Sign out")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("img", {
+                    staticStyle: {
+                      "border-radius": "50%",
+                      "margin-top": "2px"
+                    },
+                    attrs: {
+                      src: this.user.avatar,
+                      alt: "",
+                      height: "35",
+                      width: "35"
                     }
-                  },
-                  [
-                    _c("a", {
-                      staticClass: "nav-link col",
-                      attrs: {
-                        id: "navbarDropdown",
-                        href: "#",
-                        role: "button"
-                      },
-                      domProps: { textContent: _vm._s(this.user.name) }
-                    }),
-                    _vm._v(" "),
-                    _c("img", {
-                      staticStyle: {
-                        "border-radius": "50%",
-                        "margin-top": "2px"
-                      },
-                      attrs: {
-                        src: this.user.avatar,
-                        alt: "",
-                        height: "35",
-                        width: "35"
-                      }
-                    })
-                  ]
-                )
+                  })
+                ])
               ])
             ])
           ]
@@ -55142,7 +55212,8 @@ var app = new Vue({
     return {
       register: 'http://127.0.0.1:8000/register',
       login: 'http://127.0.0.1:8000/login',
-      home: 'http://127.0.0.1:8000/'
+      home: 'http://127.0.0.1:8000/',
+      welcome: 'http://127.0.0.1:8000/welcome'
     };
   }
 });
