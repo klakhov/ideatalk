@@ -16,4 +16,9 @@ class ArticleController extends Controller
         $articles = Article::chunkLoad($end_id, $start_id);
         return response()->json($articles);
     }
+
+    public function create()
+    {
+        return view('article_create');
+    }
 }

@@ -12,10 +12,13 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" v-if="this.isNewArticle">
+                        <button class="button-primary publish-button mt-1" data-toggle="modal" data-target="#create-modal">Publish</button>
+                    </li>
                     <li class="nav-item container">
                         <div class="dropdown row">
                             <a class="nav-link col"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    v-text="this.user.name" role="button">
+                                    v-text="this.user.name" role="button" style="cursor: pointer">
                             </a>
                             <div class="dropdown-menu pop-container" aria-labelledby="dropdownMenuButton">
                                 <a :href="'/profile/' + this.user.profile_token" class="dropdown-item pop-link-main text-center p-2">{{this.user.name}}</a>
@@ -41,7 +44,8 @@
 <script>
     export default {
         props: [
-            'user'
+            'user',
+            'isNewArticle'
         ],
         data() {
             return {
@@ -49,6 +53,11 @@
             }
         },
         mounted() {
+            if(this.isNewArticle){
+                // $("#create-modal").on('show.bs.modal', function(){
+                //     $("#create-modal").data('bs.modal').$backdrop.css('background-color','orange')
+                // });
+            }
         },
         methods: {
             logout(){

@@ -22,3 +22,4 @@ Route::get('/profile/{token}/edit','ProfileController@edit')->middleware('can_ed
 Route::post('/profile/edit','ProfileController@update');
 
 Route::get('/article','ArticleController@index');
+Route::get('/new-article','ArticleController@create');

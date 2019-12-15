@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('header')
-    <main-header v-bind:user="{{Auth::user()}}"></main-header>
+    <main-header v-bind:user="{{Auth::user()}}" v-bind:is-new-article="false"></main-header>
 @endsection
 
 @section('meta')
