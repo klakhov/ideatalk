@@ -1,19 +1,63 @@
 <template>
-    <div class="modal" tabindex="-1" role="dialog" id="create-modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <div class="modal fade" tabindex="-1" role="dialog" id="create-modal">
+        <div class="modal-dialog dialog" role="document">
+            <div class="modal-content pt-5 pb-5">
+                <div class="container">
+                    <div class="row justify-content-end">
+                        <button type="button" class="close col-auto" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col create-header pl-5">Idea preview</div>
+                    </div>
+                    <div class="row pr-5 pl-5">
+                        <div class="col-6  mb-2 container">
+                            <div class="row">
+                                <div class="col file-create-col">
+                                    <input type="file" id="file-create" name="avatar">
+                                    <label for="file-create" class="file-create-label">
+                                        <i class="material-icons md-48"  id="file-icon">
+                                            photo_camera
+                                        </i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                    <textarea-autosize placeholder="Preview title"
+                                                       class="col bb big-input"
+                                                       v-bind:class="{'bb-2':title.length<=50}"
+                                                       rows="1" maxlength="100"
+                                                       :min-height=25
+                                                       v-model="title"/>
+                            </div>
+                            <div class="row">
+                                <p class="col bb-2 size-info" v-if="title.length>50"  v-text="title.length+'/100'"></p>
+                            </div>
+                            <div class="row mt-3">
+                                <textarea-autosize placeholder="Preview description"
+                                                   class="col bb small-input"
+                                                   v-bind:class="{'bb-1':description.length<=50}"
+                                                   rows="1" maxlength="140"
+                                                   :min-height=25
+                                v-model="description"/>
+                            </div>
+                            <div class="row">
+                                <p class="col bb-1 size-info" v-if="description.length>50"  v-text="description.length+'/140'"></p>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col create-info"><strong>Note:</strong> Make short and impressive title to get more views</div>
+                            </div>
+                        </div>
+                        <div class="col-6 container pl-5">
+                            <div class="row">
+                                <div class="col std-info ">Add tags (up to 5) so everyone know what your idea is about</div>
+                            </div>
+                            <div class="row">
+                                <tag-creator></tag-creator>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -21,7 +65,17 @@
 </template>
 
 <script>
+    import TagCreator from "../pages/create/TagCreator";
     export default {
+        components:{
+            TagCreator,
+        },
+        data() {
+            return {
+                description: "",
+                title:"",
+            }
+        },
         mounted() {
         },
     }

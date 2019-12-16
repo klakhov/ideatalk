@@ -1922,9 +1922,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    if (this.isNewArticle) {// $("#create-modal").on('show.bs.modal', function(){
-      //     $("#create-modal").data('bs.modal').$backdrop.css('background-color','orange')
-      // });
+    if (this.isNewArticle) {
+      $('#create-modal').modal('toggle');
     }
   },
   methods: {
@@ -2085,6 +2084,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pages_create_TagCreator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pages/create/TagCreator */ "./resources/js/components/pages/create/TagCreator.vue");
 //
 //
 //
@@ -2107,7 +2107,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    TagCreator: _pages_create_TagCreator__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      description: "",
+      title: ""
+    };
+  },
   mounted: function mounted() {}
 });
 
@@ -2523,6 +2577,57 @@ __webpack_require__.r(__webpack_exports__);
       body: ""
     };
   },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/create/TagCreator.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/create/TagCreator.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {}
 });
 
@@ -41592,73 +41697,192 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: { tabindex: "-1", role: "dialog", id: "create-modal" }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "modal-dialog dialog", attrs: { role: "document" } },
+        [
+          _c("div", { staticClass: "modal-content pt-5 pb-5" }, [
+            _c("div", { staticClass: "container" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "row pr-5 pl-5" }, [
+                _c("div", { staticClass: "col-6  mb-2 container" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "row mt-3" },
+                    [
+                      _c("textarea-autosize", {
+                        staticClass: "col bb big-input",
+                        class: { "bb-2": _vm.title.length <= 50 },
+                        attrs: {
+                          placeholder: "Preview title",
+                          rows: "1",
+                          maxlength: "100",
+                          "min-height": 25
+                        },
+                        model: {
+                          value: _vm.title,
+                          callback: function($$v) {
+                            _vm.title = $$v
+                          },
+                          expression: "title"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _vm.title.length > 50
+                      ? _c("p", {
+                          staticClass: "col bb-2 size-info",
+                          domProps: {
+                            textContent: _vm._s(_vm.title.length + "/100")
+                          }
+                        })
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "row mt-3" },
+                    [
+                      _c("textarea-autosize", {
+                        staticClass: "col bb small-input",
+                        class: { "bb-1": _vm.description.length <= 50 },
+                        attrs: {
+                          placeholder: "Preview description",
+                          rows: "1",
+                          maxlength: "140",
+                          "min-height": 25
+                        },
+                        model: {
+                          value: _vm.description,
+                          callback: function($$v) {
+                            _vm.description = $$v
+                          },
+                          expression: "description"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _vm.description.length > 50
+                      ? _c("p", {
+                          staticClass: "col bb-1 size-info",
+                          domProps: {
+                            textContent: _vm._s(_vm.description.length + "/140")
+                          }
+                        })
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(3)
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6 container pl-5" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [_c("tag-creator")], 1)
+                ])
+              ])
+            ])
+          ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal",
-        attrs: { tabindex: "-1", role: "dialog", id: "create-modal" }
-      },
-      [
+    return _c("div", { staticClass: "row justify-content-end" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close col-auto",
+          attrs: { type: "button", "aria-label": "Close" }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col create-header pl-5" }, [
+        _vm._v("Idea preview")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col file-create-col" }, [
+        _c("input", {
+          attrs: { type: "file", id: "file-create", name: "avatar" }
+        }),
+        _vm._v(" "),
         _c(
-          "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          "label",
+          { staticClass: "file-create-label", attrs: { for: "file-create" } },
           [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c("h5", { staticClass: "modal-title" }, [
-                  _vm._v("Modal title")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-label": "Close"
-                    }
-                  },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
-                    ])
-                  ]
+            _c(
+              "i",
+              {
+                staticClass: "material-icons md-48",
+                attrs: { id: "file-icon" }
+              },
+              [
+                _vm._v(
+                  "\n                                        photo_camera\n                                    "
                 )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("p", [_vm._v("Modal body text goes here.")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "button" } },
-                  [_vm._v("Save changes")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Close")]
-                )
-              ])
-            ])
+              ]
+            )
           ]
         )
-      ]
-    )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-4" }, [
+      _c("div", { staticClass: "col create-info" }, [
+        _c("strong", [_vm._v("Note:")]),
+        _vm._v(" Make short and impressive title to get more views")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col std-info " }, [
+        _vm._v("Add tags (up to 5) so everyone know what your idea is about")
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -42545,6 +42769,105 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/create/TagCreator.vue?vue&type=template&id=1021f33f&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/create/TagCreator.vue?vue&type=template&id=1021f33f& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col tag-creator" }, [
+      _c("div", { staticClass: "tag-list container" }, [
+        _c("div", { staticClass: "tag d-inline-block pl-2 pr-2" }, [
+          _c("div", { staticClass: " tag-name d-inline-block" }, [
+            _vm._v("Tag Name hello")
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "close d-inline-block",
+              attrs: { type: "button", "aria-label": "Close" }
+            },
+            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "tag d-inline-block pl-2 pr-2" }, [
+          _c("div", { staticClass: " tag-name d-inline-block" }, [
+            _vm._v("Tag Name hello")
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "close d-inline-block",
+              attrs: { type: "button", "aria-label": "Close" }
+            },
+            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "tag d-inline-block pl-2 pr-2" }, [
+          _c("div", { staticClass: " tag-name d-inline-block" }, [
+            _vm._v("Tag Name hello")
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "close d-inline-block",
+              attrs: { type: "button", "aria-label": "Close" }
+            },
+            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "tag d-inline-block pl-2 pr-2" }, [
+          _c("div", { staticClass: " tag-name d-inline-block" }, [
+            _vm._v("Tag Name hello")
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "close d-inline-block",
+              attrs: { type: "button", "aria-label": "Close" }
+            },
+            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col" }, [
+          _c("input", { attrs: { type: "text" } })
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -55665,6 +55988,7 @@ var map = {
 	"./components/pages/Home.vue": "./resources/js/components/pages/Home.vue",
 	"./components/pages/Welcome.vue": "./resources/js/components/pages/Welcome.vue",
 	"./components/pages/create/NewArticle.vue": "./resources/js/components/pages/create/NewArticle.vue",
+	"./components/pages/create/TagCreator.vue": "./resources/js/components/pages/create/TagCreator.vue",
 	"./components/pages/home/BigArticle.vue": "./resources/js/components/pages/home/BigArticle.vue",
 	"./components/pages/home/Featured.vue": "./resources/js/components/pages/home/Featured.vue",
 	"./components/pages/home/MidArticle.vue": "./resources/js/components/pages/home/MidArticle.vue",
@@ -56483,6 +56807,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewArticle_vue_vue_type_template_id_36388143___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewArticle_vue_vue_type_template_id_36388143___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/create/TagCreator.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/pages/create/TagCreator.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TagCreator_vue_vue_type_template_id_1021f33f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TagCreator.vue?vue&type=template&id=1021f33f& */ "./resources/js/components/pages/create/TagCreator.vue?vue&type=template&id=1021f33f&");
+/* harmony import */ var _TagCreator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TagCreator.vue?vue&type=script&lang=js& */ "./resources/js/components/pages/create/TagCreator.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TagCreator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TagCreator_vue_vue_type_template_id_1021f33f___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TagCreator_vue_vue_type_template_id_1021f33f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/pages/create/TagCreator.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/create/TagCreator.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/pages/create/TagCreator.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TagCreator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TagCreator.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/create/TagCreator.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TagCreator_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/create/TagCreator.vue?vue&type=template&id=1021f33f&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/pages/create/TagCreator.vue?vue&type=template&id=1021f33f& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TagCreator_vue_vue_type_template_id_1021f33f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TagCreator.vue?vue&type=template&id=1021f33f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/create/TagCreator.vue?vue&type=template&id=1021f33f&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TagCreator_vue_vue_type_template_id_1021f33f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TagCreator_vue_vue_type_template_id_1021f33f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

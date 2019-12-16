@@ -54,9 +54,7 @@
         },
         mounted() {
             if(this.isNewArticle){
-                // $("#create-modal").on('show.bs.modal', function(){
-                //     $("#create-modal").data('bs.modal').$backdrop.css('background-color','orange')
-                // });
+                $('#create-modal').modal('toggle')
             }
         },
         methods: {

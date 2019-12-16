@@ -11506,6 +11506,13 @@ main {
   font-size: 14px;
 }
 
+:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
 .button-primary-header {
   font-size: 16px;
   height: 35px;
@@ -11852,5 +11859,88 @@ main {
 
 #create-modal {
   background: black;
+}
+
+.dialog {
+  margin-top: 10%;
+}
+
+.create-header {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0;
+}
+
+#file-create {
+  display: none;
+}
+
+.file-create-col {
+  background: #f5f5f5;
+  height: 150px;
+}
+
+.file-create-label {
+  height: 150px;
+  width: 100%;
+  cursor: pointer;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.bb {
+  border: none;
+}
+
+.bb-2 {
+  border: none;
+  border-bottom: #f5f5f5 solid 2px;
+}
+
+.big-input {
+  font-weight: 600;
+  padding: 0;
+  width: 100%;
+}
+
+.small-input {
+  padding: 0;
+  font-weight: 400;
+  color: gray;
+}
+
+.bb-1 {
+  border: none;
+  border-bottom: #f5f5f5 solid 1px;
+}
+
+.size-info {
+  font-size: 10px;
+  color: lightgray;
+  padding: 0;
+}
+
+.create-info {
+  padding: 0;
+  font-size: 14px;
+  color: gray;
+}
+
+.tag-creator {
+  padding: 3px;
+}
+
+.tag-name {
+  padding: 0;
+}
+
+.tag {
+  background: white;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 

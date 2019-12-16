@@ -68,3 +68,7 @@ main{
 .material-icons.md-14{
  font-size: 14px;
 }
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
