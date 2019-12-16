@@ -27,7 +27,7 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $email,
         'email_verified_at' => now(),
-        'password' => '$2y$10$6n61mjgH6oiBmRTnVXD3CeZeAH51YLzWu9MMaEyFbm2E.yhTGr0T.', // password
+        'password' => '$2y$10$6n61mjgH6oiBmRTnVXD3CeZeAH51YLzWu9MMaEyFbm2E.yhTGr0T.', // passworwd
         'remember_token' => Str::random(10),
         'profile_token' => $profile_token,
         'bio' => $faker->text(500),

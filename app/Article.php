@@ -24,14 +24,20 @@ class Article extends BaseModel
     }
 
 
+    public function addUserInfo()
+    {
+        $this->userName = $this->user->name;
+    }
+
+
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function addUserInfo()
+    public function tags()
     {
-        $this->userName = $this->user->name;
+        return $this->belongsToMany('App\Tag');
     }
 
 }

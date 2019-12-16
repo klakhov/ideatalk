@@ -1,6 +1,7 @@
 <?php
 
 use App\Article;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class ArticleTableSeeder extends Seeder
@@ -12,6 +13,10 @@ class ArticleTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Article::class,40)->create();
+        $users = User::all();
+        $users->each(function($user){
+           $articles = factory(Article::class, rand(1,3))->make();
+           $user->articles()->saveMany($articles);
+        });
     }
 }

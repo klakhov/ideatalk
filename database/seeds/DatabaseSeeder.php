@@ -1,6 +1,9 @@
 <?php
 
+use App\Article;
+use App\Tag;
 use Illuminate\Database\Seeder;
+use function foo\func;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(ArticleTableSeeder::class);
+        $this->call(UserTableSeeder::class);
+        $this->call(ArticleTableSeeder::class);
+        $this->call(TagTableSeeder::class);
     }
 }
