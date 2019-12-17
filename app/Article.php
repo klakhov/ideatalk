@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends BaseModel
 {
-    protected $fillable = ['user_id', 'header', 'description', 'body'];
+    protected $fillable = ['user_id', 'header', 'description', 'body', 'date'];
     static function firstDecId(){
         return Article::orderBy('id','desc')->first()->id;
     }

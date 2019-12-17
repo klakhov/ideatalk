@@ -2151,6 +2151,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2158,11 +2164,41 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       description: "",
-      title: ""
+      title: "",
+      body: "",
+      error: false,
+      errors: [],
+      descriptionErrors: [],
+      titleErrors: [],
+      bodyErrors: []
     };
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {},
+  methods: {
+    createArticle: function createArticle() {
+      var _this = this;
+
+      this.title = $('#idea-header').val();
+      this.body = $('#idea-body').val();
+      axios.post('/new-article', {
+        _token: this.csrf,
+        title: this.title,
+        body: this.body,
+        description: this.description
+      }).then(function (response) {
+        $(location).attr('href', _this.$root.home);
+      })["catch"](function (error) {
+        _this.error = true;
+        var errors = error.response.data.errors;
+        _this.titleErrors = errors.header ? errors.header : [];
+        _this.bodyErrors = errors.body ? errors.body : [];
+        _this.descriptionErrors = errors.description ? errors.description : [];
+        _this.errors = _this.titleErrors.concat(_this.bodyErrors, _this.descriptionErrors);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -41793,11 +41829,39 @@ var render = function() {
                   _vm._m(3)
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-6 container pl-5" }, [
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [_c("tag-creator")], 1)
-                ])
+                _c(
+                  "div",
+                  { staticClass: "col-6 container pl-5" },
+                  [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [_c("tag-creator")], 1),
+                    _vm._v(" "),
+                    _vm._l(_vm.errors, function(er) {
+                      return _vm.error
+                        ? _c("div", { staticClass: "row" }, [
+                            _c("div", {
+                              staticClass: "col",
+                              attrs: { id: "error-box" },
+                              domProps: { textContent: _vm._s(er) }
+                            })
+                          ])
+                        : _vm._e()
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn-primary",
+                          on: { click: _vm.createArticle }
+                        },
+                        [_vm._v("Submit")]
+                      )
+                    ])
+                  ],
+                  2
+                )
               ])
             ])
           ])
@@ -57520,8 +57584,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! e:\OSPanel\domains\ideatalk\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! e:\OSPanel\domains\ideatalk\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! c:\Server\OSPanel\domains\ideatalk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! c:\Server\OSPanel\domains\ideatalk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

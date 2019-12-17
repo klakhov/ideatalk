@@ -56,6 +56,12 @@
                             <div class="row">
                                 <tag-creator></tag-creator>
                             </div>
+                            <div class="row" v-if="error" v-for="er in errors">
+                                <div class="col" id="error-box" v-text="er"></div>
+                            </div>
+                            <div class="row">
+                                <button class="btn-primary" @click="createArticle">Submit</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,11 +78,39 @@
         },
         data() {
             return {
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 description: "",
                 title:"",
+                body:"",
+                error:false,
+                errors:[],
+                descriptionErrors:[],
+                titleErrors:[],
+                bodyErrors:[],
             }
         },
         mounted() {
+            },
+        methods: {
+            createArticle() {
+                this.title = $('#idea-header').val();
+                this.body = $('#idea-body').val();
+                axios.post('/new-article',{
+                    _token:this.csrf,
+                    title:this.title,
+                    body:this.body,
+                    description:this.description,
+                }).then((response)=>{
+                    $(location).attr('href',this.$root.home);
+                }).catch((error)=>{
+                    this.error = true;
+                    const errors = error.response.data.errors;
+                    this.titleErrors = errors.header ? errors.header : [];
+                    this.bodyErrors = errors.body ? errors.body : [];
+                    this.descriptionErrors = errors.description ? errors.description : [];
+                    this.errors = this.titleErrors.concat(this.bodyErrors,this.descriptionErrors);
+                });
+            }
         },
     }
 </script>
