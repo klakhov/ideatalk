@@ -2663,8 +2663,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {}
+  data: function data() {
+    return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      searching: "",
+      isSearching: false,
+      found: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var search = $('#tag-search');
+    var result = $('#search-result');
+    result.css({
+      'width': search.scrollWidth + 'px'
+    });
+    search.on('keyup', function () {
+      if (search.val().length) {
+        axios.get('/tag?_token=' + _this.csrf + '&name=' + search.val()).then(function (response) {
+          _this.found = Object.values(response.data);
+        });
+
+        if (!_this.isSearching) {
+          result.css({
+            'width': search.outerWidth(true) + 'px'
+          });
+          result.fadeToggle('d-none');
+          _this.isSearching = true;
+        }
+      } else {
+        result.fadeOut('d-none');
+        _this.isSearching = false;
+      }
+    });
+    $(document).on('click', function (event) {
+      if (!event.target.classList.contains('search-result-folder') && _this.isSearching) {
+        result.fadeToggle('d-none');
+        _this.isSearching = false;
+      }
+    });
+  }
 });
 
 /***/ }),
@@ -42854,80 +42907,122 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "col tag-creator" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row mt-2" }, [
+        _c("div", { staticClass: "col" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.searching,
+                expression: "searching"
+              }
+            ],
+            attrs: {
+              type: "text",
+              id: "tag-search",
+              placeholder: "Add a tag",
+              autocomplete: "off"
+            },
+            domProps: { value: _vm.searching },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.searching = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("span", { staticClass: "d-none", attrs: { id: "search-model" } })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row", attrs: { id: "search-result" } }, [
+        _c(
+          "div",
+          { staticClass: "col container" },
+          _vm._l(_vm.found, function(tag) {
+            return _c("div", { staticClass: "row justify-content-start" }, [
+              _c("div", {
+                staticClass: "col text-left search-result-folder",
+                domProps: { textContent: _vm._s(tag.name) }
+              })
+            ])
+          }),
+          0
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col tag-creator" }, [
-      _c("div", { staticClass: "tag-list container" }, [
-        _c("div", { staticClass: "tag d-inline-block pl-2 pr-2" }, [
-          _c("div", { staticClass: " tag-name d-inline-block" }, [
-            _vm._v("Tag Name hello")
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "close d-inline-block",
-              attrs: { type: "button", "aria-label": "Close" }
-            },
-            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-          )
+    return _c("div", { staticClass: "tag-list container mt-3" }, [
+      _c("div", { staticClass: "tag d-inline-block pl-2 pr-1" }, [
+        _c("div", { staticClass: "tag-name d-inline-block" }, [
+          _vm._v("Tag Name hello")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "tag d-inline-block pl-2 pr-2" }, [
-          _c("div", { staticClass: " tag-name d-inline-block" }, [
-            _vm._v("Tag Name hello")
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "close d-inline-block",
-              attrs: { type: "button", "aria-label": "Close" }
-            },
-            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "tag d-inline-block pl-2 pr-2" }, [
-          _c("div", { staticClass: " tag-name d-inline-block" }, [
-            _vm._v("Tag Name hello")
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "close d-inline-block",
-              attrs: { type: "button", "aria-label": "Close" }
-            },
-            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "tag d-inline-block pl-2 pr-2" }, [
-          _c("div", { staticClass: " tag-name d-inline-block" }, [
-            _vm._v("Tag Name hello")
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "close d-inline-block",
-              attrs: { type: "button", "aria-label": "Close" }
-            },
-            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-          )
-        ])
+        _c(
+          "button",
+          {
+            staticClass: "close d-inline-block ml-1 mr-1",
+            attrs: { type: "button", "aria-label": "Close" }
+          },
+          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+        )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col" }, [
-          _c("input", { attrs: { type: "text" } })
-        ])
+      _c("div", { staticClass: "tag d-inline-block pl-2 pr-1" }, [
+        _c("div", { staticClass: " tag-name d-inline-block" }, [
+          _vm._v("hello")
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "close d-inline-block ml-1 mr-1",
+            attrs: { type: "button", "aria-label": "Close" }
+          },
+          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "tag d-inline-block pl-2 pr-1" }, [
+        _c("div", { staticClass: " tag-name d-inline-block" }, [_vm._v("bue")]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "close d-inline-block ml-1 mr-1",
+            attrs: { type: "button", "aria-label": "Close" }
+          },
+          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "tag d-inline-block pl-2 pr-1" }, [
+        _c("div", { staticClass: " tag-name d-inline-block" }, [
+          _vm._v("Data science")
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "close d-inline-block ml-1 mr-1",
+            attrs: { type: "button", "aria-label": "Close" }
+          },
+          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+        )
       ])
     ])
   }
@@ -57584,8 +57679,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\Server\OSPanel\domains\ideatalk\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\Server\OSPanel\domains\ideatalk\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! e:\OSPanel\domains\ideatalk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! e:\OSPanel\domains\ideatalk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

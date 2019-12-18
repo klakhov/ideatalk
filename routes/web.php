@@ -24,3 +24,5 @@ Route::post('/profile/edit','ProfileController@update');
 Route::get('/article','ArticleController@index');
 Route::get('/new-article','ArticleController@create');
 Route::post('/new-article', 'ArticleController@store');
+
+Route::get('/tag','TagController@index');
