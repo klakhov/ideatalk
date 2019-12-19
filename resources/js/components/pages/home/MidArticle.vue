@@ -1,21 +1,21 @@
 <template>
-    <div class="container mb-5 mt-5"  >
-        <div class="row mb-5 mt-5" v-for="article in this.articles">
+    <div class="container mb-5"  >
+        <div class="row">
             <div class="col container" style="max-height: 130px">
                 <div class="row">
                     <div class="col ar-middle-tag">Data Science</div>
                 </div>
                 <div class="row">
-                    <h2 class="col ar-middle-header">{{article.header}}</h2>
+                    <h2 class="col ar-middle-header">{{this.article.header}}</h2>
                 </div>
                 <div class="row">
-                    <div class="col ar-middle-description">{{article.description}}</div>
+                    <div class="col ar-middle-description">{{this.article.description}}</div>
                 </div>
                 <div class="row mt-3">
-                    <a class="col ar-middle-author" :href="'/profile/'+article.userToken">{{article.userName}}</a>
+                    <a class="col ar-middle-author" :href="'/profile/'+this.article.userToken">{{this.article.userName}}</a>
                 </div>
                 <div class="row justify-content-start">
-                    <div class="col article-date text-left">{{article.date}}</div>
+                    <div class="col article-date text-left">{{this.article.date}}</div>
                 </div>
             </div>
             <div class="col-3">
@@ -28,7 +28,7 @@
 <script>
     export default {
         props: [
-            'articles',
+            'article',
         ],
         mounted() {
         },
