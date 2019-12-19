@@ -4,7 +4,6 @@
 @endsection
 
 @section('modal')
-    <create-modal></create-modal>
 @endsection
 
 @section('content')

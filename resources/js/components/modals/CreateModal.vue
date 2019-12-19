@@ -1,10 +1,10 @@
 <template>
-    <div class="modal fade" tabindex="-1" role="dialog" id="create-modal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="create-modal" data-backdrop="static">
         <div class="modal-dialog dialog" role="document">
-            <div class="modal-content pt-5 pb-5">
+            <div class="modal-content pt-5 pb-5 b-none">
                 <div class="container">
                     <div class="row justify-content-end">
-                        <button type="button" class="close col-auto" aria-label="Close">
+                        <button type="button" class="close col-auto" aria-label="Close" @click="closeWindow" style="font-size: 28px">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -26,10 +26,11 @@
                             <div class="row mt-3">
                                     <textarea-autosize placeholder="Preview title"
                                                        class="col bb big-input"
-                                                       v-bind:class="{'bb-2':title.length<=50}"
+                                                       v-bind:class="{'bb-2':this.title.length<=50}"
                                                        rows="1" maxlength="100"
                                                        :min-height=25
-                                                       v-model="title"/>
+                                                       v-model="title"
+                                                       id="idea-modal-title"/>
                             </div>
                             <div class="row">
                                 <p class="col bb-2 size-info" v-if="title.length>50"  v-text="title.length+'/100'"></p>
@@ -40,7 +41,7 @@
                                                    v-bind:class="{'bb-1':description.length<=50}"
                                                    rows="1" maxlength="140"
                                                    :min-height=25
-                                v-model="description"/>
+                                                   v-model="description"/>
                             </div>
                             <div class="row">
                                 <p class="col bb-1 size-info" v-if="description.length>50"  v-text="description.length+'/140'"></p>
@@ -54,13 +55,13 @@
                                 <div class="col std-info ">Add tags (up to 5) so everyone know what your idea is about</div>
                             </div>
                             <div class="row">
-                                <tag-creator></tag-creator>
+                                <tag-creator v-on:tagChange="tagList"></tag-creator>
                             </div>
                             <div class="row" v-if="error" v-for="er in errors">
                                 <div class="col" id="error-box" v-text="er"></div>
                             </div>
-                            <div class="row">
-                                <button class="btn-primary" @click="createArticle">Submit</button>
+                            <div class="row justify-content-center">
+                                <button class="button-primary col-auto create-article-submit" @click="createArticle">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -73,6 +74,9 @@
 <script>
     import TagCreator from "../pages/create/TagCreator";
     export default {
+        props: [
+            'titleBase'
+        ],
         components:{
             TagCreator,
         },
@@ -80,21 +84,23 @@
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 description: "",
-                title:"",
                 body:"",
+                title:"",
                 error:false,
                 errors:[],
                 descriptionErrors:[],
                 titleErrors:[],
                 bodyErrors:[],
+                tags:[],
             }
         },
         mounted() {
+            $('#idea-modal-title').on('keyup',()=>{
+                this.$emit('titleChange',this.title);
+            });
             },
         methods: {
             createArticle() {
-                this.title = $('#idea-header').val();
-                this.body = $('#idea-body').val();
                 axios.post('/new-article',{
                     _token:this.csrf,
                     title:this.title,
@@ -110,7 +116,18 @@
                     this.descriptionErrors = errors.description ? errors.description : [];
                     this.errors = this.titleErrors.concat(this.bodyErrors,this.descriptionErrors);
                 });
+            },
+            tagList(data){
+                this.tags = data.map((tag)=>{return tag.id});
+            },
+            closeWindow(){
+                $('#create-modal').modal('hide');
             }
         },
+        watch:{
+            titleBase: function(newVal){
+                this.title = newVal;
+            }
+        }
     }
 </script>

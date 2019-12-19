@@ -1,31 +1,41 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <textarea-autosize placeholder="Name your idea"
-                               id="idea-header"
-                               class="col-auto mr-auto ml-auto def-text"
-                               :min-height=10
-                               v-model="header"/>
-            <textarea-autosize placeholder="Express the details"
-                               id="idea-body"
-                               class="col-auto mr-auto ml-auto def-text mt-5"
-                               :min-height=10
-                               v-model="body"/>
+    <div class="">
+        <create-modal v-bind:title-base="this.title" v-on:titleChange="titleChange"></create-modal>
+        <div class="container">
+            <div class="row">
+                <textarea-autosize placeholder="Name your idea"
+                                   id="idea-title"
+                                   class="col-auto mr-auto ml-auto def-text"
+                                   :min-height=10
+                                   v-model="title"/>
+                <textarea-autosize placeholder="Express the details"
+                                   id="idea-body"
+                                   class="col-auto mr-auto ml-auto def-text mt-5"
+                                   :min-height=10
+                                   v-model="body"/>
+            </div>
         </div>
     </div>
-
 </template>
 
 <script>
+    import CreateModal from "../../modals/CreateModal";
     export default {
+        components:{
+            CreateModal
+        },
         data() {
             return {
-                header: "",
+                title: "",
                 body: "",
             }
         },
         mounted() {
-
+        },
+        methods: {
+            titleChange(data){
+                this.title = data;
+            }
         },
     }
 </script>

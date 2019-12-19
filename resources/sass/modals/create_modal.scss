@@ -1,5 +1,5 @@
 #create-modal{
-    background: black;
+    background: white;
 }
 .dialog{
     margin-top: 10%;
@@ -112,4 +112,7 @@
     background: $my-orange;
     color:white;
     cursor:pointer;
+}
+.create-article-submit{
+    font-size:20px;
 }

@@ -53,9 +53,6 @@
             }
         },
         mounted() {
-            if(this.isNewArticle){
-                $('#create-modal').modal('toggle')
-            }
         },
         methods: {
             logout(){

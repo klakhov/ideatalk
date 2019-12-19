@@ -1921,11 +1921,7 @@ __webpack_require__.r(__webpack_exports__);
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
-  mounted: function mounted() {
-    if (this.isNewArticle) {
-      $('#create-modal').modal('toggle');
-    }
-  },
+  mounted: function mounted() {},
   methods: {
     logout: function logout() {
       var _this = this;
@@ -2157,8 +2153,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['titleBase'],
   components: {
     TagCreator: _pages_create_TagCreator__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -2166,37 +2164,55 @@ __webpack_require__.r(__webpack_exports__);
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       description: "",
-      title: "",
       body: "",
+      title: "",
       error: false,
       errors: [],
       descriptionErrors: [],
       titleErrors: [],
-      bodyErrors: []
+      bodyErrors: [],
+      tags: []
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    var _this = this;
+
+    $('#idea-modal-title').on('keyup', function () {
+      _this.$emit('titleChange', _this.title);
+    });
+  },
   methods: {
     createArticle: function createArticle() {
-      var _this = this;
+      var _this2 = this;
 
-      this.title = $('#idea-header').val();
-      this.body = $('#idea-body').val();
       axios.post('/new-article', {
         _token: this.csrf,
         title: this.title,
         body: this.body,
         description: this.description
       }).then(function (response) {
-        $(location).attr('href', _this.$root.home);
+        $(location).attr('href', _this2.$root.home);
       })["catch"](function (error) {
-        _this.error = true;
+        _this2.error = true;
         var errors = error.response.data.errors;
-        _this.titleErrors = errors.header ? errors.header : [];
-        _this.bodyErrors = errors.body ? errors.body : [];
-        _this.descriptionErrors = errors.description ? errors.description : [];
-        _this.errors = _this.titleErrors.concat(_this.bodyErrors, _this.descriptionErrors);
+        _this2.titleErrors = errors.header ? errors.header : [];
+        _this2.bodyErrors = errors.body ? errors.body : [];
+        _this2.descriptionErrors = errors.description ? errors.description : [];
+        _this2.errors = _this2.titleErrors.concat(_this2.bodyErrors, _this2.descriptionErrors);
       });
+    },
+    tagList: function tagList(data) {
+      this.tags = data.map(function (tag) {
+        return tag.id;
+      });
+    },
+    closeWindow: function closeWindow() {
+      $('#create-modal').modal('hide');
+    }
+  },
+  watch: {
+    titleBase: function titleBase(newVal) {
+      this.title = newVal;
     }
   }
 });
@@ -2592,6 +2608,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modals_CreateModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../modals/CreateModal */ "./resources/js/components/modals/CreateModal.vue");
 //
 //
 //
@@ -2610,14 +2627,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    CreateModal: _modals_CreateModal__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
-      header: "",
+      title: "",
       body: ""
     };
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {},
+  methods: {
+    titleChange: function titleChange(data) {
+      this.title = data;
+    }
+  }
 });
 
 /***/ }),
@@ -2631,6 +2659,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modals_CreateModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../modals/CreateModal */ "./resources/js/components/modals/CreateModal.vue");
 //
 //
 //
@@ -2660,33 +2689,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       searching: "",
       isSearching: false,
-      found: []
+      found: [],
+      tags: []
     };
   },
   mounted: function mounted() {
@@ -2721,6 +2732,33 @@ __webpack_require__.r(__webpack_exports__);
         _this.isSearching = false;
       }
     });
+  },
+  methods: {
+    addTag: function addTag(tag) {
+      var ids = this.tags.map(function (element) {
+        return element.id;
+      });
+
+      if (!ids.includes(tag.id)) {
+        this.tags.push(tag);
+        this.tagListChange();
+      }
+
+      $('#search-result').fadeOut('d-none');
+      this.isSearching = false;
+      this.searching = "";
+    },
+    removeTag: function removeTag(tag) {
+      var ids = this.tags.map(function (tag) {
+        return tag.id;
+      });
+      var id = ids.indexOf(tag.id);
+      this.tags.splice(id, 1);
+      this.tagListChange();
+    },
+    tagListChange: function tagListChange() {
+      this.$emit('tagChange', this.tags);
+    }
   }
 });
 
@@ -41832,22 +41870,42 @@ var render = function() {
     "div",
     {
       staticClass: "modal fade",
-      attrs: { tabindex: "-1", role: "dialog", id: "create-modal" }
+      attrs: {
+        tabindex: "-1",
+        role: "dialog",
+        id: "create-modal",
+        "data-backdrop": "static"
+      }
     },
     [
       _c(
         "div",
         { staticClass: "modal-dialog dialog", attrs: { role: "document" } },
         [
-          _c("div", { staticClass: "modal-content pt-5 pb-5" }, [
+          _c("div", { staticClass: "modal-content pt-5 pb-5 b-none" }, [
             _c("div", { staticClass: "container" }, [
-              _vm._m(0),
+              _c("div", { staticClass: "row justify-content-end" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "close col-auto",
+                    staticStyle: { "font-size": "28px" },
+                    attrs: { type: "button", "aria-label": "Close" },
+                    on: { click: _vm.closeWindow }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
               _vm._v(" "),
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c("div", { staticClass: "row pr-5 pl-5" }, [
                 _c("div", { staticClass: "col-6  mb-2 container" }, [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -41855,12 +41913,13 @@ var render = function() {
                     [
                       _c("textarea-autosize", {
                         staticClass: "col bb big-input",
-                        class: { "bb-2": _vm.title.length <= 50 },
+                        class: { "bb-2": this.title.length <= 50 },
                         attrs: {
                           placeholder: "Preview title",
                           rows: "1",
                           maxlength: "100",
-                          "min-height": 25
+                          "min-height": 25,
+                          id: "idea-modal-title"
                         },
                         model: {
                           value: _vm.title,
@@ -41921,16 +41980,21 @@ var render = function() {
                       : _vm._e()
                   ]),
                   _vm._v(" "),
-                  _vm._m(3)
+                  _vm._m(2)
                 ]),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "col-6 container pl-5" },
                   [
-                    _vm._m(4),
+                    _vm._m(3),
                     _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [_c("tag-creator")], 1),
+                    _c(
+                      "div",
+                      { staticClass: "row" },
+                      [_c("tag-creator", { on: { tagChange: _vm.tagList } })],
+                      1
+                    ),
                     _vm._v(" "),
                     _vm._l(_vm.errors, function(er) {
                       return _vm.error
@@ -41944,11 +42008,12 @@ var render = function() {
                         : _vm._e()
                     }),
                     _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "row justify-content-center" }, [
                       _c(
                         "button",
                         {
-                          staticClass: "btn-primary",
+                          staticClass:
+                            "button-primary col-auto create-article-submit",
                           on: { click: _vm.createArticle }
                         },
                         [_vm._v("Submit")]
@@ -41966,21 +42031,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row justify-content-end" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close col-auto",
-          attrs: { type: "button", "aria-label": "Close" }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -42891,46 +42941,58 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "row" },
-      [
-        _c("textarea-autosize", {
-          staticClass: "col-auto mr-auto ml-auto def-text",
-          attrs: {
-            placeholder: "Name your idea",
-            id: "idea-header",
-            "min-height": 10
-          },
-          model: {
-            value: _vm.header,
-            callback: function($$v) {
-              _vm.header = $$v
-            },
-            expression: "header"
-          }
-        }),
-        _vm._v(" "),
-        _c("textarea-autosize", {
-          staticClass: "col-auto mr-auto ml-auto def-text mt-5",
-          attrs: {
-            placeholder: "Express the details",
-            id: "idea-body",
-            "min-height": 10
-          },
-          model: {
-            value: _vm.body,
-            callback: function($$v) {
-              _vm.body = $$v
-            },
-            expression: "body"
-          }
-        })
-      ],
-      1
-    )
-  ])
+  return _c(
+    "div",
+    {},
+    [
+      _c("create-modal", {
+        attrs: { "title-base": this.title },
+        on: { titleChange: _vm.titleChange }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c("textarea-autosize", {
+              staticClass: "col-auto mr-auto ml-auto def-text",
+              attrs: {
+                placeholder: "Name your idea",
+                id: "idea-title",
+                "min-height": 10
+              },
+              model: {
+                value: _vm.title,
+                callback: function($$v) {
+                  _vm.title = $$v
+                },
+                expression: "title"
+              }
+            }),
+            _vm._v(" "),
+            _c("textarea-autosize", {
+              staticClass: "col-auto mr-auto ml-auto def-text mt-5",
+              attrs: {
+                placeholder: "Express the details",
+                id: "idea-body",
+                "min-height": 10
+              },
+              model: {
+                value: _vm.body,
+                callback: function($$v) {
+                  _vm.body = $$v
+                },
+                expression: "body"
+              }
+            })
+          ],
+          1
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42996,7 +43058,12 @@ var render = function() {
             return _c("div", { staticClass: "row justify-content-start" }, [
               _c("div", {
                 staticClass: "col text-left search-result-folder",
-                domProps: { textContent: _vm._s(tag.name) }
+                domProps: { textContent: _vm._s(tag.name) },
+                on: {
+                  click: function($event) {
+                    return _vm.addTag(tag)
+                  }
+                }
               })
             ])
           }),
@@ -43005,75 +43072,35 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _c(
+      "div",
+      { staticClass: "tag-list container mt-3" },
+      _vm._l(_vm.tags, function(tag) {
+        return _c("div", { staticClass: "tag d-inline-block pl-2 pr-1" }, [
+          _c("div", { staticClass: "tag-name d-inline-block" }, [
+            _vm._v(_vm._s(tag.name))
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "close d-inline-block ml-1 mr-1",
+              attrs: { type: "button", "aria-label": "Close" },
+              on: {
+                click: function($event) {
+                  return _vm.removeTag(tag)
+                }
+              }
+            },
+            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+          )
+        ])
+      }),
+      0
+    )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tag-list container mt-3" }, [
-      _c("div", { staticClass: "tag d-inline-block pl-2 pr-1" }, [
-        _c("div", { staticClass: "tag-name d-inline-block" }, [
-          _vm._v("Tag Name hello")
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "close d-inline-block ml-1 mr-1",
-            attrs: { type: "button", "aria-label": "Close" }
-          },
-          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tag d-inline-block pl-2 pr-1" }, [
-        _c("div", { staticClass: " tag-name d-inline-block" }, [
-          _vm._v("hello")
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "close d-inline-block ml-1 mr-1",
-            attrs: { type: "button", "aria-label": "Close" }
-          },
-          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tag d-inline-block pl-2 pr-1" }, [
-        _c("div", { staticClass: " tag-name d-inline-block" }, [_vm._v("bue")]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "close d-inline-block ml-1 mr-1",
-            attrs: { type: "button", "aria-label": "Close" }
-          },
-          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tag d-inline-block pl-2 pr-1" }, [
-        _c("div", { staticClass: " tag-name d-inline-block" }, [
-          _vm._v("Data science")
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "close d-inline-block ml-1 mr-1",
-            attrs: { type: "button", "aria-label": "Close" }
-          },
-          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

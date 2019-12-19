@@ -11513,6 +11513,10 @@ main {
   outline-offset: 0;
 }
 
+.b-none {
+  border: none;
+}
+
 .button-primary-header {
   font-size: 16px;
   height: 35px;
@@ -11844,7 +11848,7 @@ main {
   border: none;
 }
 
-#idea-header {
+#idea-title {
   font-size: 26px;
   min-height: 30px;
 }
@@ -11858,7 +11862,7 @@ main {
 }
 
 #create-modal {
-  background: black;
+  background: white;
 }
 
 .dialog {
@@ -11993,5 +11997,9 @@ main {
   background: #ff8520;
   color: white;
   cursor: pointer;
+}
+
+.create-article-submit {
+  font-size: 20px;
 }
 
