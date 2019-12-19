@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Http\Requests\StoreArticle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\Debugbar\Facade as Debugbar;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -25,22 +27,17 @@ class ArticleController extends Controller
         return view('article_create');
     }
 
-    public function store(Request $request)
+    public function store(StoreArticle $request)
     {
         $date = getdate();
-        $request->validate(
-            [
-                'header' => 'required|max:140',
-                'body' => 'required|max:140',
-                'description' => 'required'
-            ]
-        );
+        $validated = $request->validated();
         Article::create([
-            'header'=>$request->title,
-            'body'=>$request->body,
-            'description'=>$request->description,
+            'header'=>$validated->title,
+            'body'=>$validated->body,
+            'description'=>$validated->description,
             'user_id' => Auth::user()->id,
             'date' => $date["month"]." ".$date["mday"],
+            'token'=>Str::random(25),
         ]);
     }
 }

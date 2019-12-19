@@ -12,5 +12,6 @@ $factory->define(Article::class, function (Faker $faker) {
         'description' => $faker->paragraph(2),
         'body' => $faker->text(350),
         'date'=>$faker->monthName.' '.$faker->numberBetween(1,31),
+        'token'=>$faker->asciify('********************'),
     ];
 });
