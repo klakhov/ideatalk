@@ -27,7 +27,8 @@ class StoreArticle extends FormRequest
             'title' => 'required|max:140',
             'body' => 'required|max:140',
             'description' => 'required',
-            'tags'=>'required'
+            'tags'=>'required',
+            'preview'=>'required|file',
         ];
     }
 

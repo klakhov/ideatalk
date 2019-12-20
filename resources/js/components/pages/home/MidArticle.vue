@@ -12,14 +12,14 @@
                     <div class="col ar-middle-description">{{this.article.description}}</div>
                 </div>
                 <div class="row mt-3">
-                    <a class="col ar-middle-author" :href="'/profile/'+this.article.userToken">{{this.article.userName}}</a>
+                    <a class="col-auto ar-middle-author" :href="'/profile/'+this.article.userToken">{{this.article.userName}}</a>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col article-date text-left">{{this.article.date}}</div>
                 </div>
             </div>
             <div class="col-3">
-                <img src="https://picsum.photos/150" alt="">
+                <img :src="this.article.images.image_150" alt="">
         </div>
         </div>
     </div>
@@ -31,6 +31,7 @@
             'article',
         ],
         mounted() {
-        },
+            console.log(this.article.images);
+            },
     }
 </script>

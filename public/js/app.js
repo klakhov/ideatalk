@@ -2167,7 +2167,9 @@ __webpack_require__.r(__webpack_exports__);
       title: "",
       error: false,
       errors: [],
-      tags: []
+      tags: [],
+      articlePreview: null,
+      previewUrl: null
     };
   },
   mounted: function mounted() {
@@ -2179,26 +2181,36 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createArticle: function createArticle() {
-      var _this2 = this;
-
-      axios.post('/new-article', {
-        _token: this.csrf,
-        title: this.title,
-        body: this.body,
-        description: this.description,
-        tags: this.tags
-      }).then(function (response) {
-        $(location).attr('href', _this2.$root.home);
-      })["catch"](function (error) {
-        _this2.error = true;
-        console.log(error.response.data.errors);
-        var errors = error.response.data.errors;
-        var titleErrors = errors.title ? errors.title : [];
-        var bodyErrors = errors.body ? errors.body : [];
-        var descriptionErrors = errors.description ? errors.description : [];
-        var tagsErrors = errors.tags ? errors.tags : [];
-        _this2.errors = titleErrors.concat(bodyErrors, descriptionErrors, tagsErrors);
-      });
+      var formData = new FormData();
+      formData.append('preview', this.articlePreview);
+      formData.append('_token', this.csrf);
+      formData.append('title', this.title);
+      formData.append('body', this.body);
+      formData.append('description', this.description);
+      formData.append('tags', this.tags);
+      axios.post('/new-article', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }); //
+      // axios.post('/new-article',{
+      //     _token:this.csrf,
+      //     title:this.title,
+      //     body:this.body,
+      //     description:this.description,
+      //     tags:this.tags,
+      // }).then((response)=>{
+      //     $(location).attr('href',this.$root.home);
+      // }).catch((error)=>{
+      //     this.error = true;
+      //     console.log(error.response.data.errors);
+      //     const errors = error.response.data.errors;
+      //     let titleErrors = errors.title ? errors.title : [];
+      //     let bodyErrors = errors.body ? errors.body : [];
+      //     let descriptionErrors = errors.description ? errors.description : [];
+      //     let tagsErrors = errors.tags ? errors.tags : [];
+      //     this.errors = titleErrors.concat(bodyErrors,descriptionErrors,tagsErrors);
+      // });
     },
     tagList: function tagList(data) {
       this.tags = data.map(function (tag) {
@@ -2207,6 +2219,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     closeWindow: function closeWindow() {
       $('#create-modal').modal('hide');
+    },
+    onFileSelected: function onFileSelected(event) {
+      this.articlePreview = event.target.files[0];
+      this.previewUrl = URL.createObjectURL(this.articlePreview);
+      console.log(this.articlePreview);
     }
   },
   watch: {
@@ -2900,7 +2917,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['article'],
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    console.log(this.article.images);
+  }
 });
 
 /***/ }),
@@ -41904,7 +41923,43 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "row pr-5 pl-5" }, [
                 _c("div", { staticClass: "col-6  mb-2 container" }, [
-                  _vm._m(1),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col file-create-col p-0" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "file",
+                          id: "file-create",
+                          name: "avatar"
+                        },
+                        on: { change: _vm.onFileSelected }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "file-create-label",
+                          style: {
+                            "background-image": "url(" + _vm.previewUrl + ")"
+                          },
+                          attrs: { for: "file-create" }
+                        },
+                        [
+                          _c(
+                            "i",
+                            {
+                              staticClass: "material-icons md-48",
+                              attrs: { id: "file-icon" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                        photo_camera\n                                    "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -41979,14 +42034,14 @@ var render = function() {
                       : _vm._e()
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _vm._m(1)
                 ]),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "col-6 container pl-5" },
                   [
-                    _vm._m(3),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -42037,37 +42092,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col create-header pl-5" }, [
         _vm._v("Idea preview")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col file-create-col" }, [
-        _c("input", {
-          attrs: { type: "file", id: "file-create", name: "avatar" }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          { staticClass: "file-create-label", attrs: { for: "file-create" } },
-          [
-            _c(
-              "i",
-              {
-                staticClass: "material-icons md-48",
-                attrs: { id: "file-icon" }
-              },
-              [
-                _vm._v(
-                  "\n                                        photo_camera\n                                    "
-                )
-              ]
-            )
-          ]
-        )
       ])
     ])
   },
@@ -43280,7 +43304,7 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "col ar-middle-author",
+                staticClass: "col-auto ar-middle-author",
                 attrs: { href: "/profile/" + this.article.userToken }
               },
               [_vm._v(_vm._s(this.article.userName))]
@@ -43295,7 +43319,9 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._m(1)
+      _c("div", { staticClass: "col-3" }, [
+        _c("img", { attrs: { src: this.article.images.image_150, alt: "" } })
+      ])
     ])
   ])
 }
@@ -43306,14 +43332,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col ar-middle-tag" }, [_vm._v("Data Science")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-3" }, [
-      _c("img", { attrs: { src: "https://picsum.photos/150", alt: "" } })
     ])
   }
 ]

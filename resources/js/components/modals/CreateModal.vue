@@ -14,9 +14,9 @@
                     <div class="row pr-5 pl-5">
                         <div class="col-6  mb-2 container">
                             <div class="row">
-                                <div class="col file-create-col">
-                                    <input type="file" id="file-create" name="avatar">
-                                    <label for="file-create" class="file-create-label">
+                                <div class="col file-create-col p-0">
+                                    <input type="file" id="file-create" name="avatar" @change="onFileSelected">
+                                    <label for="file-create" class="file-create-label" v-bind:style="{ 'background-image': 'url(' + previewUrl + ')' }">
                                         <i class="material-icons md-48"  id="file-icon">
                                             photo_camera
                                         </i>
@@ -89,6 +89,8 @@
                 error:false,
                 errors:[],
                 tags:[],
+                articlePreview:null,
+                previewUrl:null
             }
         },
         mounted() {
@@ -98,31 +100,49 @@
             },
         methods: {
             createArticle() {
-                axios.post('/new-article',{
-                    _token:this.csrf,
-                    title:this.title,
-                    body:this.body,
-                    description:this.description,
-                    tags:this.tags,
-                }).then((response)=>{
-                    $(location).attr('href',this.$root.home);
-                }).catch((error)=>{
-                    this.error = true;
-                    console.log(error.response.data.errors);
-                    const errors = error.response.data.errors;
-                    let titleErrors = errors.title ? errors.title : [];
-                    let bodyErrors = errors.body ? errors.body : [];
-                    let descriptionErrors = errors.description ? errors.description : [];
-                    let tagsErrors = errors.tags ? errors.tags : [];
-                    this.errors = titleErrors.concat(bodyErrors,descriptionErrors,tagsErrors);
+                let formData = new FormData();
+                formData.append('preview', this.articlePreview);
+                formData.append('_token', this.csrf);
+                formData.append('title', this.title);
+                formData.append('body', this.body);
+                formData.append('description', this.description);
+                formData.append('tags', this.tags);
+                axios.post('/new-article', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
                 });
+                //
+                // axios.post('/new-article',{
+                //     _token:this.csrf,
+                //     title:this.title,
+                //     body:this.body,
+                //     description:this.description,
+                //     tags:this.tags,
+                // }).then((response)=>{
+                //     $(location).attr('href',this.$root.home);
+                // }).catch((error)=>{
+                //     this.error = true;
+                //     console.log(error.response.data.errors);
+                //     const errors = error.response.data.errors;
+                //     let titleErrors = errors.title ? errors.title : [];
+                //     let bodyErrors = errors.body ? errors.body : [];
+                //     let descriptionErrors = errors.description ? errors.description : [];
+                //     let tagsErrors = errors.tags ? errors.tags : [];
+                //     this.errors = titleErrors.concat(bodyErrors,descriptionErrors,tagsErrors);
+                // });
             },
             tagList(data){
                 this.tags = data.map((tag)=>{return tag.id});
             },
             closeWindow(){
                 $('#create-modal').modal('hide');
-            }
+            },
+            onFileSelected(event){
+                this.articlePreview = event.target.files[0];
+                this.previewUrl = URL.createObjectURL(this.articlePreview);
+                console.log(this.articlePreview);
+            },
         },
         watch:{
             titleBase: function(newVal){

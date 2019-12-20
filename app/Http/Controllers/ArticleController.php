@@ -40,6 +40,7 @@ class ArticleController extends Controller
             'date' => $date["month"]." ".$date["mday"],
             'token'=>Str::random(25),
         ]);
+        $article->imageSelfConstruct($request->file('preview'));
         $article->tags()->attach($validated['tags']);
     }
 

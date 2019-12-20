@@ -22,6 +22,7 @@ class CreateArticlesTable extends Migration
             $table->text('body');
             $table->string('date');
             $table->string('token');
+            $table->string('images')->nullable();
         });
     }
 
