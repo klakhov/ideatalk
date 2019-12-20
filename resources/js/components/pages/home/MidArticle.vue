@@ -3,7 +3,9 @@
         <div class="row">
             <div class="col container" style="max-height: 130px">
                 <div class="row">
-                    <div class="col ar-middle-tag">Data Science</div>
+                    <div class="col ar-middle-tag">
+                        <span v-for="tag in this.article.tagList" v-text="tag" class="mr-2"></span>
+                    </div>
                 </div>
                 <div class="row">
                     <h2 class="col ar-middle-header">{{this.article.header}}</h2>
@@ -31,7 +33,7 @@
             'article',
         ],
         mounted() {
-            console.log(this.article.images);
+            console.log(this.article);
             },
     }
 </script>

@@ -26,6 +26,9 @@ class Article extends BaseModel
            $article->userToken = $article->user->profile_token;
            return $article;
         });
+        $articles->each(function ($item){
+            $item->tagList = array_map(function ($elem){return $elem['name'];}, $item->tags->toArray());
+        });
         return $articles;
     }
 

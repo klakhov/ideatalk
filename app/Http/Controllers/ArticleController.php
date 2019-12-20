@@ -41,7 +41,16 @@ class ArticleController extends Controller
             'token'=>Str::random(25),
         ]);
         $article->imageSelfConstruct($request->file('preview'));
-        $article->tags()->attach($validated['tags']);
+        $tags = array_map(function ($item){
+            return (int)$item;
+        }, explode(',', $validated['tags']));
+        foreach ($tags as $tag_id){
+            $article->tags()->attach($tag_id);
+        }
+        Debugbar::info(explode(',', $validated['tags']));
+//        foreach ($validated['tags'] as $tag_id){
+//            $article->tags()->attach($tag_id);
+//        }
     }
 
 }

@@ -2915,10 +2915,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['article'],
   mounted: function mounted() {
-    console.log(this.article.images);
+    console.log(this.article);
   }
 });
 
@@ -43286,7 +43288,19 @@ var render = function() {
           staticStyle: { "max-height": "130px" }
         },
         [
-          _vm._m(0),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              { staticClass: "col ar-middle-tag" },
+              _vm._l(this.article.tagList, function(tag) {
+                return _c("span", {
+                  staticClass: "mr-2",
+                  domProps: { textContent: _vm._s(tag) }
+                })
+              }),
+              0
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("h2", { staticClass: "col ar-middle-header" }, [
@@ -43325,16 +43339,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col ar-middle-tag" }, [_vm._v("Data Science")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
