@@ -75,7 +75,8 @@
     import TagCreator from "../pages/create/TagCreator";
     export default {
         props: [
-            'titleBase'
+            'titleBase',
+            'body'
         ],
         components:{
             TagCreator,
@@ -84,13 +85,9 @@
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 description: "",
-                body:"",
                 title:"",
                 error:false,
                 errors:[],
-                descriptionErrors:[],
-                titleErrors:[],
-                bodyErrors:[],
                 tags:[],
             }
         },
@@ -106,15 +103,18 @@
                     title:this.title,
                     body:this.body,
                     description:this.description,
+                    tags:this.tags,
                 }).then((response)=>{
                     $(location).attr('href',this.$root.home);
                 }).catch((error)=>{
                     this.error = true;
+                    console.log(error.response.data.errors);
                     const errors = error.response.data.errors;
-                    this.titleErrors = errors.header ? errors.header : [];
-                    this.bodyErrors = errors.body ? errors.body : [];
-                    this.descriptionErrors = errors.description ? errors.description : [];
-                    this.errors = this.titleErrors.concat(this.bodyErrors,this.descriptionErrors);
+                    let titleErrors = errors.title ? errors.title : [];
+                    let bodyErrors = errors.body ? errors.body : [];
+                    let descriptionErrors = errors.description ? errors.description : [];
+                    let tagsErrors = errors.tags ? errors.tags : [];
+                    this.errors = titleErrors.concat(bodyErrors,descriptionErrors,tagsErrors);
                 });
             },
             tagList(data){

@@ -2156,7 +2156,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['titleBase'],
+  props: ['titleBase', 'body'],
   components: {
     TagCreator: _pages_create_TagCreator__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -2164,13 +2164,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       description: "",
-      body: "",
       title: "",
       error: false,
       errors: [],
-      descriptionErrors: [],
-      titleErrors: [],
-      bodyErrors: [],
       tags: []
     };
   },
@@ -2189,16 +2185,19 @@ __webpack_require__.r(__webpack_exports__);
         _token: this.csrf,
         title: this.title,
         body: this.body,
-        description: this.description
+        description: this.description,
+        tags: this.tags
       }).then(function (response) {
         $(location).attr('href', _this2.$root.home);
       })["catch"](function (error) {
         _this2.error = true;
+        console.log(error.response.data.errors);
         var errors = error.response.data.errors;
-        _this2.titleErrors = errors.header ? errors.header : [];
-        _this2.bodyErrors = errors.body ? errors.body : [];
-        _this2.descriptionErrors = errors.description ? errors.description : [];
-        _this2.errors = _this2.titleErrors.concat(_this2.bodyErrors, _this2.descriptionErrors);
+        var titleErrors = errors.title ? errors.title : [];
+        var bodyErrors = errors.body ? errors.body : [];
+        var descriptionErrors = errors.description ? errors.description : [];
+        var tagsErrors = errors.tags ? errors.tags : [];
+        _this2.errors = titleErrors.concat(bodyErrors, descriptionErrors, tagsErrors);
       });
     },
     tagList: function tagList(data) {
@@ -42946,7 +42945,7 @@ var render = function() {
     {},
     [
       _c("create-modal", {
-        attrs: { "title-base": this.title },
+        attrs: { "title-base": this.title, body: _vm.body },
         on: { titleChange: _vm.titleChange }
       }),
       _vm._v(" "),

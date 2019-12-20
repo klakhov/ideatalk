@@ -13,7 +13,7 @@ class StoreArticle extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,9 +24,18 @@ class StoreArticle extends FormRequest
     public function rules()
     {
         return [
-            'header' => 'required|max:140',
+            'title' => 'required|max:140',
             'body' => 'required|max:140',
-            'description' => 'required'
+            'description' => 'required',
+            'tags'=>'required'
+        ];
+    }
+
+
+    public function messages()
+    {
+        return [
+            'tags.required' => 'At least one tag is required',
         ];
     }
 }

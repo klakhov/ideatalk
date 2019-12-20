@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <create-modal v-bind:title-base="this.title" v-on:titleChange="titleChange"></create-modal>
+        <create-modal v-bind:title-base="this.title" v-bind:body="body" v-on:titleChange="titleChange"></create-modal>
         <div class="container">
             <div class="row">
                 <textarea-autosize placeholder="Name your idea"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Http\Requests\StoreArticle;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -31,13 +32,15 @@ class ArticleController extends Controller
     {
         $date = getdate();
         $validated = $request->validated();
-        Article::create([
-            'header'=>$validated->title,
-            'body'=>$validated->body,
-            'description'=>$validated->description,
+        $article = Article::create([
+            'header'=>$validated['title'],
+            'body'=>$validated['body'],
+            'description'=>$validated['description'],
             'user_id' => Auth::user()->id,
             'date' => $date["month"]." ".$date["mday"],
             'token'=>Str::random(25),
         ]);
+        $article->tags()->attach($validated['tags']);
     }
+
 }

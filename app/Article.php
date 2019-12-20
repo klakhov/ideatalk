@@ -39,5 +39,4 @@ class Article extends BaseModel
     {
         return $this->belongsToMany('App\Tag');
     }
-
 }

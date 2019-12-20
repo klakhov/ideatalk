@@ -3,10 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use function foo\func;
 use Barryvdh\Debugbar\Facade as Debugbar;
 
-class Tag extends Model
+class Tag extends BaseModel
 {
     protected $fillable = ['name'];
 
