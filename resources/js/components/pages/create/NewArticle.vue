@@ -10,7 +10,7 @@
                                    v-model="title"/>
                 <textarea-autosize placeholder="Express the details"
                                    id="idea-body"
-                                   class="col-auto mr-auto ml-auto def-text mt-5"
+                                   class="col-auto mr-auto ml-auto def-text mt-3"
                                    :min-height=10
                                    v-model="body"/>
             </div>

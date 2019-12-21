@@ -40,17 +40,20 @@ class ArticleController extends Controller
             'date' => $date["month"]." ".$date["mday"],
             'token'=>Str::random(25),
         ]);
-        $article->imageSelfConstruct($request->file('preview'));
+        $article->imageConstruct($request->file('preview'));
         $tags = array_map(function ($item){
             return (int)$item;
         }, explode(',', $validated['tags']));
         foreach ($tags as $tag_id){
             $article->tags()->attach($tag_id);
         }
-        Debugbar::info(explode(',', $validated['tags']));
-//        foreach ($validated['tags'] as $tag_id){
-//            $article->tags()->attach($tag_id);
-//        }
+    }
+
+    public function show($token)
+    {
+        $article=Article::token($token);
+        $article->user;
+        return view('article_show',compact('article'));
     }
 
 }

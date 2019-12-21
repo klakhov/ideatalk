@@ -22,7 +22,7 @@ Route::get('/profile/{token}/edit','ProfileController@edit')->middleware('can_ed
 Route::post('/profile/edit','ProfileController@update');
 
 Route::get('/article','ArticleController@index');
-Route::get('/new-article','ArticleController@create');
-Route::post('/new-article', 'ArticleController@store');
-
-Route::get('/tag','TagController@index');
+Route::get('/new-idea','ArticleController@create')->middleware('auth');
+Route::post('/new-idea', 'ArticleController@store')->middleware('auth');
+Route::get('/idea/{token}','ArticleController@show');
+Route::get('/tag','TagController@index')->middleware('auth');

@@ -32,6 +32,9 @@ class Article extends BaseModel
         return $articles;
     }
 
+    public static function token($token){
+        return Article::where('token','=',$token)->first();
+    }
 
     public function addUserInfo()
     {
@@ -49,7 +52,7 @@ class Article extends BaseModel
         return $this->belongsToMany('App\Tag');
     }
 
-    public function imageSelfConstruct($image)
+    public function imageConstruct($image)
     {
         $images_path = '/uploads/previews/'.Str::random(10);
         File::makeDirectory(public_path($images_path));

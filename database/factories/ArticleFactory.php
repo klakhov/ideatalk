@@ -4,6 +4,7 @@
 
 use App\Article;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 $factory->define(Article::class, function (Faker $faker) {
     return [
@@ -12,6 +13,6 @@ $factory->define(Article::class, function (Faker $faker) {
         'description' => $faker->paragraph(2),
         'body' => $faker->text(350),
         'date'=>$faker->monthName.' '.$faker->numberBetween(1,31),
-        'token'=>$faker->asciify('********************'),
+        'token'=>Str::random(10),
     ];
 });

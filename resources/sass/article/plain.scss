@@ -1,0 +1,76 @@
+@media (max-width: 575.98px) {
+    .ar-padding{
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    .ar-padding{
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+    .ar-padding{
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+    .ar-padding{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .ar-padding{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+.ar-plain-header{
+    font-size: 48px;
+}
+.ar-plain-description{
+    font-size: 24px;
+    color:lightgray;
+}
+.ar-plain-date{
+    color:lightgray;
+    font-size: 14px;
+}
+.ar-plain-username{
+    color:black;
+    font-size: 16px;
+}
+.plain-button{
+    background: none;
+    border:1px solid gray;
+    color:black;
+    border-radius: 4px;
+}
+.plain-button:hover{
+    cursor: pointer;
+    border:1px solid black;
+
+}
+.ar-plain-button{
+    vertical-align: middle;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 14px;
+    line-height: 18px;
+}
+.ar-plain-body{
+    font-size: 20px;
+
+}

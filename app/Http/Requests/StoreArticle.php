@@ -25,7 +25,7 @@ class StoreArticle extends FormRequest
     {
         return [
             'title' => 'required|max:140',
-            'body' => 'required|max:140',
+            'body' => 'required|max:5000',
             'description' => 'required',
             'tags'=>'required',
             'preview'=>'required|file',
@@ -37,6 +37,8 @@ class StoreArticle extends FormRequest
     {
         return [
             'tags.required' => 'At least one tag is required',
+            'preview.required' => 'You should add preview image',
+            'preview.file' =>'You should add preview image',
         ];
     }
 }

@@ -11517,6 +11517,14 @@ main {
   border: none;
 }
 
+.pointer:hover {
+  cursor: pointer;
+}
+
+.br-50 {
+  border-radius: 50%;
+}
+
 .button-primary-header {
   font-size: 16px;
   height: 35px;
@@ -11807,8 +11815,17 @@ main {
   color: black;
 }
 
+.ar-link {
+  color: black;
+}
+
+.ar-link:hover {
+  color: black;
+  text-decoration: none;
+}
+
 .popular {
-  top: 3em;
+  top: 4em;
 }
 
 .p-header {
@@ -12000,6 +12017,89 @@ main {
 }
 
 .create-article-submit {
+  font-size: 20px;
+}
+
+.error-box {
+  color: #ff8520;
+  font-weight: 700;
+}
+
+@media (max-width: 575.98px) {
+  .ar-padding {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ar-padding {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .ar-padding {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .ar-padding {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ar-padding {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+.ar-plain-header {
+  font-size: 48px;
+}
+
+.ar-plain-description {
+  font-size: 24px;
+  color: lightgray;
+}
+
+.ar-plain-date {
+  color: lightgray;
+  font-size: 14px;
+}
+
+.ar-plain-username {
+  color: black;
+  font-size: 16px;
+}
+
+.plain-button {
+  background: none;
+  border: 1px solid gray;
+  color: black;
+  border-radius: 4px;
+}
+
+.plain-button:hover {
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.ar-plain-button {
+  vertical-align: middle;
+  padding-right: 5px;
+  padding-left: 5px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.ar-plain-body {
   font-size: 20px;
 }
 

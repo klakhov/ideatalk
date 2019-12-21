@@ -24,7 +24,7 @@
                                 <a :href="'/profile/' + this.user.profile_token" class="dropdown-item pop-link-main text-center p-2">{{this.user.name}}</a>
                                 <div class="dropdown-divider divider mr-auto ml-auto"></div>
                                 <a href="" class="dropdown-item pop-link p-2 pl-3">How to share?</a>
-                                <a href="" class="dropdown-item pop-link p-2 pl-3">New idea</a>
+                                <a href="/new-idea" class="dropdown-item pop-link p-2 pl-3">New idea</a>
                                 <div class="dropdown-divider divider mr-auto ml-auto"></div>
                                 <a href="" class="dropdown-item pop-link p-2 pl-3">Bookmarks</a>
                                 <a href="" class="dropdown-item pop-link p-2 pl-3">Publications</a>

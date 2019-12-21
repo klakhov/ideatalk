@@ -57,8 +57,8 @@
                             <div class="row">
                                 <tag-creator v-on:tagChange="tagList"></tag-creator>
                             </div>
-                            <div class="row" v-if="error" v-for="er in errors">
-                                <div class="col" id="error-box" v-text="er"></div>
+                            <div class="row justify-content-center" v-if="error" v-for="er in errors">
+                                <div class="col-auto mb-2 error-box" id="" v-text="er"></div>
                             </div>
                             <div class="row justify-content-center">
                                 <button class="button-primary col-auto create-article-submit" @click="createArticle">Submit</button>
@@ -107,30 +107,22 @@
                 formData.append('body', this.body);
                 formData.append('description', this.description);
                 formData.append('tags', this.tags);
-                axios.post('/new-article', formData, {
+                axios.post('/new-idea', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
+                }).then((response)=>{
+                    $(location).attr('href',this.$root.home);
+                }).catch((error)=>{
+                    this.error = true;
+                    const errors = error.response.data.errors;
+                    let titleErrors = errors.title ? errors.title : [];
+                    let bodyErrors = errors.body ? errors.body : [];
+                    let descriptionErrors = errors.description ? errors.description : [];
+                    let tagsErrors = errors.tags ? errors.tags : [];
+                    let previewErrors = errors.preview ? errors.preview : [];
+                    this.errors = titleErrors.concat(bodyErrors,descriptionErrors,tagsErrors,previewErrors);
                 });
-                //
-                // axios.post('/new-article',{
-                //     _token:this.csrf,
-                //     title:this.title,
-                //     body:this.body,
-                //     description:this.description,
-                //     tags:this.tags,
-                // }).then((response)=>{
-                //     $(location).attr('href',this.$root.home);
-                // }).catch((error)=>{
-                //     this.error = true;
-                //     console.log(error.response.data.errors);
-                //     const errors = error.response.data.errors;
-                //     let titleErrors = errors.title ? errors.title : [];
-                //     let bodyErrors = errors.body ? errors.body : [];
-                //     let descriptionErrors = errors.description ? errors.description : [];
-                //     let tagsErrors = errors.tags ? errors.tags : [];
-                //     this.errors = titleErrors.concat(bodyErrors,descriptionErrors,tagsErrors);
-                // });
             },
             tagList(data){
                 this.tags = data.map((tag)=>{return tag.id});
