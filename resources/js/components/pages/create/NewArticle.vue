@@ -7,7 +7,13 @@
                                    id="idea-title"
                                    class="col-auto mr-auto ml-auto def-text"
                                    :min-height=10
+                                   maxlength="100"
                                    v-model="title"/>
+            </div>
+            <div class="row">
+                <p class="col-auto bb-2 size-info mr-auto ml-auto def-text text-right" v-if="title.length>50"  v-text="title.length+'/100'"></p>
+            </div>
+            <div class="row">
                 <textarea-autosize placeholder="Express the details"
                                    id="idea-body"
                                    class="col-auto mr-auto ml-auto def-text mt-3"

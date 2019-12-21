@@ -2190,6 +2190,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('body', this.body);
       formData.append('description', this.description);
       formData.append('tags', this.tags);
+      $('#idea-submit').prop("disabled", true).addClass('disabled-button');
       axios.post('/new-idea', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -2197,6 +2198,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         $(location).attr('href', _this2.$root.home);
       })["catch"](function (error) {
+        $('#idea-submit').prop("disabled", false).removeClass('disabled-button');
         _this2.error = true;
         var errors = error.response.data.errors;
         var titleErrors = errors.title ? errors.title : [];
@@ -2662,6 +2664,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     article: {
@@ -2669,8 +2723,18 @@ __webpack_require__.r(__webpack_exports__);
       "default": null
     }
   },
+  data: function data() {
+    return {
+      bookmarked: false
+    };
+  },
   mounted: function mounted() {
     console.log(this.article);
+  },
+  methods: {
+    bookmark: function bookmark() {
+      this.bookmarked = !this.bookmarked;
+    }
   }
 });
 
@@ -2686,6 +2750,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modals_CreateModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../modals/CreateModal */ "./resources/js/components/modals/CreateModal.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -42140,6 +42210,7 @@ var render = function() {
                         {
                           staticClass:
                             "button-primary col-auto create-article-submit",
+                          attrs: { id: "idea-submit" },
                           on: { click: _vm.createArticle }
                         },
                         [_vm._v("Submit")]
@@ -43082,7 +43153,43 @@ var render = function() {
             ])
           ])
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col text-right pointer", on: { click: _vm.bookmark } },
+        [
+          !_vm.bookmarked
+            ? _c(
+                "i",
+                {
+                  staticClass: "material-icons md-24 bookmark",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "top",
+                    title: "Bookmark the idea"
+                  }
+                },
+                [_vm._v("bookmark_border")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.bookmarked
+            ? _c(
+                "i",
+                {
+                  staticClass: "material-icons md-24 bookmark",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "top",
+                    title: "Remove from bookmarks"
+                  }
+                },
+                [_vm._v("bookmark")]
+              )
+            : _vm._e()
+        ]
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row mb-5" }, [
@@ -43098,6 +43205,95 @@ var render = function() {
       _c("div", { staticClass: "col ar-plain-body" }, [
         _vm._v("\n            " + _vm._s(this.article.body) + "\n        ")
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mt-5 mb-4" }, [
+      _c(
+        "div",
+        { staticClass: "col" },
+        _vm._l(this.article.tags, function(tag) {
+          return _c(
+            "div",
+            { staticClass: "tag d-inline-block p-1 fs-16 mr-3" },
+            [_vm._v(_vm._s(tag.name))]
+          )
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row  pl-3 pr-3" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col text-right pointer", on: { click: _vm.bookmark } },
+        [
+          !_vm.bookmarked
+            ? _c(
+                "i",
+                {
+                  staticClass: "material-icons md-24 bookmark",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "top",
+                    title: "Bookmark the idea"
+                  }
+                },
+                [_vm._v("bookmark_border")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.bookmarked
+            ? _c(
+                "i",
+                {
+                  staticClass: "material-icons md-24 bookmark",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "top",
+                    title: "Remove from bookmarks"
+                  }
+                },
+                [_vm._v("bookmark")]
+              )
+            : _vm._e()
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mt-4 border-top border-bottom pt-4 pb-4" }, [
+      _c("div", { staticClass: "col-auto" }, [
+        _c("img", {
+          staticClass: "br-50",
+          attrs: {
+            src: this.article.user.avatar,
+            alt: "",
+            width: "70",
+            height: "70"
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col container" }, [
+        _vm._m(3),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col ar-plain-author" }, [
+            _vm._v(_vm._s(this.article.user.name))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col" }, [
+            _vm._v(_vm._s(this.article.user.bio))
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(4)
     ])
   ])
 }
@@ -43110,6 +43306,48 @@ var staticRenderFns = [
       _c(
         "div",
         { staticClass: "plain-button ar-plain-button text-center mt-05" },
+        [_vm._v("Follow")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "col-auto", attrs: { id: "interesting" } },
+      [
+        _c("i", { staticClass: "material-icons md-gray md-48" }, [
+          _vm._v("emoji_objects")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-auto marks align-middle" }, [
+      _c("span", { staticClass: "d-inline-block" }, [_vm._v("1 points")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col ar-middle-tag" }, [_vm._v("WRITTEN BY")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-auto text-right" }, [
+      _c(
+        "div",
+        { staticClass: "plain-button ar-plain-bottom-button text-center" },
         [_vm._v("Follow")]
       )
     ])
@@ -43155,7 +43393,8 @@ var render = function() {
               attrs: {
                 placeholder: "Name your idea",
                 id: "idea-title",
-                "min-height": 10
+                "min-height": 10,
+                maxlength: "100"
               },
               model: {
                 value: _vm.title,
@@ -43164,8 +43403,25 @@ var render = function() {
                 },
                 expression: "title"
               }
-            }),
-            _vm._v(" "),
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _vm.title.length > 50
+            ? _c("p", {
+                staticClass:
+                  "col-auto bb-2 size-info mr-auto ml-auto def-text text-right",
+                domProps: { textContent: _vm._s(_vm.title.length + "/100") }
+              })
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
             _c("textarea-autosize", {
               staticClass: "col-auto mr-auto ml-auto def-text mt-3",
               attrs: {
@@ -43859,7 +44115,9 @@ var render = function() {
                   {
                     staticClass:
                       "col-sm-auto col-6 border-link edit-link text-center align-middle",
-                    attrs: { href: "/profile/edit" }
+                    attrs: {
+                      href: "/profile/" + this.user.profile_token + "/edit"
+                    }
                   },
                   [_vm._v("Edit profile")]
                 )

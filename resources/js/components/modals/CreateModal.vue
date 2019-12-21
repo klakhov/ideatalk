@@ -61,7 +61,7 @@
                                 <div class="col-auto mb-2 error-box" id="" v-text="er"></div>
                             </div>
                             <div class="row justify-content-center">
-                                <button class="button-primary col-auto create-article-submit" @click="createArticle">Submit</button>
+                                <button class="button-primary col-auto create-article-submit" @click="createArticle" id="idea-submit">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -107,6 +107,7 @@
                 formData.append('body', this.body);
                 formData.append('description', this.description);
                 formData.append('tags', this.tags);
+                $('#idea-submit').prop( "disabled", true ).addClass('disabled-button');
                 axios.post('/new-idea', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
@@ -114,6 +115,7 @@
                 }).then((response)=>{
                     $(location).attr('href',this.$root.home);
                 }).catch((error)=>{
+                    $('#idea-submit').prop( "disabled", false).removeClass('disabled-button');
                     this.error = true;
                     const errors = error.response.data.errors;
                     let titleErrors = errors.title ? errors.title : [];

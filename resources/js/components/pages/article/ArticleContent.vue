@@ -27,6 +27,17 @@
                     </div>
                 </div>
             </div>
+            <div class="col text-right pointer" @click="bookmark">
+                <i class="material-icons md-24 bookmark"
+                   data-toggle="tooltip" data-placement="top"
+                   title="Bookmark the idea"
+                   v-if="!bookmarked">bookmark_border</i>
+
+                <i class="material-icons md-24 bookmark"
+                   data-toggle="tooltip" data-placement="top"
+                   title="Remove from bookmarks"
+                   v-if="bookmarked">bookmark</i>
+            </div>
         </div>
         <div class="row mb-5">
             <div class="col">
@@ -36,6 +47,47 @@
         <div class="row">
             <div class="col ar-plain-body">
                 {{this.article.body}}
+            </div>
+        </div>
+        <div class="row mt-5 mb-4">
+            <div class="col" >
+                <div class="tag d-inline-block p-1 fs-16 mr-3" v-for="tag in this.article.tags">{{tag.name}}</div>
+            </div>
+        </div>
+        <div class="row  pl-3 pr-3">
+            <button class="col-auto" id="interesting">
+                <i class="material-icons md-gray md-48">emoji_objects</i>
+            </button>
+            <div class="col-auto marks align-middle"><span class="d-inline-block">1 points</span></div>
+            <div class="col text-right pointer" @click="bookmark">
+                <i class="material-icons md-24 bookmark"
+                   data-toggle="tooltip" data-placement="top"
+                   title="Bookmark the idea"
+                    v-if="!bookmarked">bookmark_border</i>
+
+                <i class="material-icons md-24 bookmark"
+                   data-toggle="tooltip" data-placement="top"
+                   title="Remove from bookmarks"
+                   v-if="bookmarked">bookmark</i>
+            </div>
+        </div>
+        <div class="row mt-4 border-top border-bottom pt-4 pb-4">
+            <div class="col-auto">
+                <img :src="this.article.user.avatar" alt="" width="70" height="70" class="br-50">
+            </div>
+            <div class="col container">
+                <div class="row">
+                    <div class="col ar-middle-tag">WRITTEN BY</div>
+                </div>
+                <div class="row">
+                    <div class="col ar-plain-author">{{this.article.user.name}}</div>
+                </div>
+                <div class="row">
+                    <div class="col">{{this.article.user.bio}}</div>
+                </div>
+            </div>
+            <div class="col-auto text-right">
+                <div class="plain-button ar-plain-bottom-button text-center">Follow</div>
             </div>
         </div>
     </div>
@@ -49,8 +101,18 @@
                 default: null
             },
         },
+        data() {
+            return {
+                bookmarked: false
+            }
+        },
         mounted() {
             console.log(this.article);
+        },
+        methods: {
+            bookmark() {
+                this.bookmarked = !this.bookmarked;
+            }
         },
     }
 </script>

@@ -33,8 +33,8 @@
 
 @media (min-width: 1200px) {
     .ar-padding{
-        padding-left: 10%;
-        padding-right: 10%;
+        padding-left: 12%;
+        padding-right: 12%;
     }
 }
 .ar-plain-header{
@@ -72,5 +72,20 @@
 }
 .ar-plain-body{
     font-size: 20px;
+}
+.marks{
+    font-size: 16px;
+    margin-top: 1em;
+}
+.ar-plain-bottom-button{
 
+    vertical-align: middle;
+    padding: 4px 8px;
+    margin-top: 1em;
+    font-size: 18px;
+    line-height: 20px;
+}
+.ar-plain-author{
+    font-weight:700;
+    font-size:20px;
 }

@@ -53,6 +53,7 @@ class ArticleController extends Controller
     {
         $article=Article::token($token);
         $article->user;
+        $article->tags;
         return view('article_show',compact('article'));
     }
 

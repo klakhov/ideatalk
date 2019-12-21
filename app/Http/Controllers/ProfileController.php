@@ -19,6 +19,7 @@ class ProfileController extends Controller
     public function index($token)
     {
         $user = User::token($token);
+        Debugbar::info($user);
         $editable = (Auth::id() == $user->id) ? 1 : 0;
         return view('profile',compact('user','editable'));
     }

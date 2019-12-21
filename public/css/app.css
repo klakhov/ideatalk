@@ -11525,6 +11525,10 @@ main {
   border-radius: 50%;
 }
 
+.fs-16 {
+  font-size: 16px;
+}
+
 .button-primary-header {
   font-size: 16px;
   height: 35px;
@@ -12025,6 +12029,11 @@ main {
   font-weight: 700;
 }
 
+.disabled-button {
+  background-color: #e16500;
+  cursor: default;
+}
+
 @media (max-width: 575.98px) {
   .ar-padding {
     padding-left: 1%;
@@ -12055,8 +12064,8 @@ main {
 
 @media (min-width: 1200px) {
   .ar-padding {
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 12%;
+    padding-right: 12%;
   }
 }
 
@@ -12101,5 +12110,91 @@ main {
 
 .ar-plain-body {
   font-size: 20px;
+}
+
+.marks {
+  font-size: 16px;
+  margin-top: 1em;
+}
+
+.ar-plain-bottom-button {
+  vertical-align: middle;
+  padding: 4px 8px;
+  margin-top: 1em;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.ar-plain-author {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+/* Rules for sizing the icon. */
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 44px;
+}
+
+/* Rules for using icons as black on a light background. */
+
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+
+.material-icons.md-light {
+  color: white;
+}
+
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.material-icons.md-gray {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.material-icons.md-gray:hover {
+  color: #ff8520;
+  -webkit-transition-duration: 1.2s;
+          transition-duration: 1.2s;
+}
+
+#interesting {
+  background: none;
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  line-height: 44px;
+}
+
+#interesting:hover {
+  border: 2px solid #ff8520;
+  -webkit-transition-duration: 1.2s;
+          transition-duration: 1.2s;
+}
+
+.bookmark {
+  margin-top: 0.75em;
 }
 
