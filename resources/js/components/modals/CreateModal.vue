@@ -135,7 +135,6 @@
             onFileSelected(event){
                 this.articlePreview = event.target.files[0];
                 this.previewUrl = URL.createObjectURL(this.articlePreview);
-                console.log(this.articlePreview);
             },
         },
         watch:{

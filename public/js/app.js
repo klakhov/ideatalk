@@ -2220,7 +2220,6 @@ __webpack_require__.r(__webpack_exports__);
     onFileSelected: function onFileSelected(event) {
       this.articlePreview = event.target.files[0];
       this.previewUrl = URL.createObjectURL(this.articlePreview);
-      console.log(this.articlePreview);
     }
   },
   watch: {
@@ -3422,18 +3421,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
     return {
       image: this.user.avatar,
       inactive: true,
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      bio: "",
+      previewUrl: null
     };
   },
   mounted: function mounted() {
     var _this = this;
 
+    this.bio = this.user.bio;
     $('#file-label').hover(function () {
       _this.inactive = false;
     });
@@ -3446,6 +3464,12 @@ __webpack_require__.r(__webpack_exports__);
     $('#file-icon').mouseleave(function () {
       _this.inactive = true;
     });
+  },
+  methods: {
+    avatarChange: function avatarChange(event) {
+      var avatarPreview = event.target.files[0];
+      this.previewUrl = URL.createObjectURL(avatarPreview);
+    }
   }
 });
 
@@ -44188,37 +44212,95 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(0)
+            _c(
+              "div",
+              { staticClass: "row mt-3" },
+              [
+                _c("textarea-autosize", {
+                  staticClass: "col mr-3 ml-3 bb small-input",
+                  class: { "bb-1": _vm.bio.length <= 25 },
+                  attrs: {
+                    placeholder: "Enter your short bio",
+                    rows: "1",
+                    maxlength: "50",
+                    "min-height": 25,
+                    name: "bio"
+                  },
+                  model: {
+                    value: _vm.bio,
+                    callback: function($$v) {
+                      _vm.bio = $$v
+                    },
+                    expression: "bio"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _vm.bio.length > 25
+                ? _c("p", {
+                    staticClass: "col mr-3 ml-3 bb-1 size-info text-right",
+                    domProps: { textContent: _vm._s(_vm.bio.length + "/50") }
+                  })
+                : _vm._e()
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-4 text-right" }, [
             _c("input", {
-              attrs: { type: "file", id: "file", name: "avatar" }
+              attrs: { type: "file", id: "file", name: "avatar" },
+              on: { change: _vm.avatarChange }
             }),
             _vm._v(" "),
-            _c(
-              "label",
-              {
-                staticClass: "file-label",
-                style: { backgroundImage: "url(" + _vm.image + ")" },
-                attrs: { for: "file" }
-              },
-              [
-                _c(
-                  "i",
+            _vm.previewUrl == null
+              ? _c(
+                  "label",
                   {
-                    staticClass: "material-icons md-light md-48",
-                    class: { "md-inactive": _vm.inactive },
-                    attrs: { id: "file-icon" }
+                    staticClass: "file-label",
+                    style: { backgroundImage: "url(" + _vm.image + ")" },
+                    attrs: { for: "file" }
                   },
                   [
-                    _vm._v(
-                      "\n                        photo_camera\n                    "
+                    _c(
+                      "i",
+                      {
+                        staticClass: "material-icons md-light md-48",
+                        class: { "md-inactive": _vm.inactive },
+                        attrs: { id: "file-icon" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        photo_camera\n                    "
+                        )
+                      ]
                     )
                   ]
                 )
-              ]
-            ),
+              : _c(
+                  "label",
+                  {
+                    staticClass: "file-label",
+                    style: { backgroundImage: "url(" + _vm.previewUrl + ")" },
+                    attrs: { for: "file" }
+                  },
+                  [
+                    _c(
+                      "i",
+                      {
+                        staticClass: "material-icons md-light md-48",
+                        class: { "md-inactive": _vm.inactive },
+                        attrs: { id: "file-icon" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        photo_camera\n                    "
+                        )
+                      ]
+                    )
+                  ]
+                ),
             _vm._v(" "),
             _c("label", {
               staticClass: "file-label file-label-dark",
@@ -44231,7 +44313,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c("input", {
           attrs: { type: "hidden", name: "_token" },
@@ -44242,14 +44324,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col text-gray" }, [_vm._v("There will be bio")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

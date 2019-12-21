@@ -19,7 +19,6 @@ class ProfileController extends Controller
     public function index($token)
     {
         $user = User::token($token);
-        Debugbar::info($user);
         $editable = (Auth::id() == $user->id) ? 1 : 0;
         return view('profile',compact('user','editable'));
     }
@@ -31,15 +30,16 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        $user = Auth::user();
         if($request->hasFile('avatar')){
             $avatar_path = '/uploads/avatars/';
             $avatar = $request->file('avatar');
             $avatar_name = Str::random(10).'.'.$avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(130,130)->save(public_path($avatar_path.$avatar_name));
-            $user = Auth::user();
+            Image::make($avatar)->fit(130,130)->save(public_path($avatar_path.$avatar_name));
             $user->avatar = $avatar_path.$avatar_name;
-            $user->save();
         }
+        $user->bio = $request->bio;
+        $user->save();
         return view('profile_edit');
     }
 }
