@@ -28,3 +28,4 @@ Route::get('/idea/{token}','ArticleController@show');
 Route::get('/tag','TagController@index')->middleware('auth');
 
 Route::post('/point','PointController@store')->middleware('auth');
+Route::post('/bookmark','BookmarkController@store')->middleware('auth');

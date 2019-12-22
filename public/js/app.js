@@ -2722,33 +2722,42 @@ __webpack_require__.r(__webpack_exports__);
       "default": null
     },
     isPointed: {},
-    pointsCount: {}
+    pointsCount: {},
+    isBookmarked: {}
   },
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      bookmarked: false,
+      bookmarked: null,
       pointed: null,
       points: null
     };
   },
   mounted: function mounted() {
     this.pointed = this.isPointed;
+    this.bookmarked = this.isBookmarked;
     this.points = this.pointsCount;
   },
   methods: {
     bookmark: function bookmark() {
-      this.bookmarked = !this.bookmarked;
+      var _this = this;
+
+      axios.post('/bookmark', {
+        _token: this.csrf,
+        article_id: this.article.id
+      }).then(function () {
+        _this.bookmarked = !_this.bookmarked;
+      });
     },
     point: function point() {
-      var _this = this;
+      var _this2 = this;
 
       axios.post('/point', {
         _token: this.csrf,
         article_id: this.article.id
       }).then(function () {
-        _this.pointed = !_this.pointed;
-        _this.points += _this.pointed ? 1 : -1;
+        _this2.pointed = !_this2.pointed;
+        _this2.points += _this2.pointed ? 1 : -1;
       });
     }
   }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Bookmark;
 use App\Http\Requests\StoreArticle;
 use App\Point;
 use App\Tag;
@@ -56,8 +57,9 @@ class ArticleController extends Controller
         $article->user;
         $article->tags;
         $isPointed = Point::check($article);
+        $isBookmarked = Bookmark::check($article);
         $points_count = $article->points->count();
-        return view('article_show',compact('article','isPointed','points_count'));
+        return view('article_show',compact('article','isPointed','points_count','isBookmarked'));
     }
 
 }

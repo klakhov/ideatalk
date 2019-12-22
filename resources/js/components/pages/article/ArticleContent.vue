@@ -100,27 +100,31 @@
                 type: Object,
                 default: null
             },
-            isPointed:{
-            },
-            pointsCount:{
-            },
-
+            isPointed:{},
+            pointsCount:{},
+            isBookmarked:{}
         },
         data() {
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                bookmarked: false,
+                bookmarked: null,
                 pointed:null,
-                points:null
+                points:null,
             }
         },
         mounted() {
             this.pointed = this.isPointed;
+            this.bookmarked = this.isBookmarked;
             this.points = this.pointsCount;
         },
         methods: {
             bookmark() {
-                this.bookmarked = !this.bookmarked;
+                axios.post('/bookmark',{
+                    _token:this.csrf,
+                    article_id:this.article.id
+                }).then(()=>{
+                    this.bookmarked = !this.bookmarked;
+                });
             },
             point(){
                 axios.post('/point',{

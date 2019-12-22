@@ -57,6 +57,11 @@ class Article extends BaseModel
         return $this->hasMany('App\Point');
     }
 
+    public function bookmarks()
+    {
+        return $this->hasMany('App\Bookmark');
+    }
+
     public function imageConstruct($image)
     {
         $images_path = '/uploads/previews/'.Str::random(10);

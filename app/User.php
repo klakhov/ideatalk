@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','avatar','profile_token','followers','bio','bookmarks'
+        'name', 'email', 'password','avatar','profile_token','followers','bio'
     ];
 
     /**
@@ -35,7 +35,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'bookmarks'=>'array'
     ];
 
 
@@ -52,6 +51,11 @@ class User extends Authenticatable
     public function points()
     {
        return $this->hasMany('App\Point');
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany('App\Bookmark');
     }
 
 }
