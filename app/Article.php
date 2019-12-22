@@ -52,6 +52,11 @@ class Article extends BaseModel
         return $this->belongsToMany('App\Tag');
     }
 
+    public function points()
+    {
+        return $this->hasMany('App\Point');
+    }
+
     public function imageConstruct($image)
     {
         $images_path = '/uploads/previews/'.Str::random(10);

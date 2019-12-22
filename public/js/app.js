@@ -2720,19 +2720,36 @@ __webpack_require__.r(__webpack_exports__);
     article: {
       type: Object,
       "default": null
-    }
+    },
+    isPointed: {},
+    pointsCount: {}
   },
   data: function data() {
     return {
-      bookmarked: false
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      bookmarked: false,
+      pointed: null,
+      points: null
     };
   },
   mounted: function mounted() {
-    console.log(this.article);
+    this.pointed = this.isPointed;
+    this.points = this.pointsCount;
   },
   methods: {
     bookmark: function bookmark() {
       this.bookmarked = !this.bookmarked;
+    },
+    point: function point() {
+      var _this = this;
+
+      axios.post('/point', {
+        _token: this.csrf,
+        article_id: this.article.id
+      }).then(function () {
+        _this.pointed = !_this.pointed;
+        _this.points += _this.pointed ? 1 : -1;
+      });
     }
   }
 });
@@ -43247,45 +43264,65 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row  pl-3 pr-3" }, [
-      _vm._m(1),
-      _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
       _c(
-        "div",
-        { staticClass: "col text-right pointer", on: { click: _vm.bookmark } },
+        "button",
+        {
+          staticClass: "col-aut interesting",
+          class: { pointed: this.pointed },
+          attrs: { id: "interesting" },
+          on: { click: _vm.point }
+        },
         [
-          !_vm.bookmarked
-            ? _c(
-                "i",
-                {
-                  staticClass: "material-icons md-24 bookmark",
-                  attrs: {
-                    "data-toggle": "tooltip",
-                    "data-placement": "top",
-                    title: "Bookmark the idea"
-                  }
-                },
-                [_vm._v("bookmark_border")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.bookmarked
-            ? _c(
-                "i",
-                {
-                  staticClass: "material-icons md-24 bookmark",
-                  attrs: {
-                    "data-toggle": "tooltip",
-                    "data-placement": "top",
-                    title: "Remove from bookmarks"
-                  }
-                },
-                [_vm._v("bookmark")]
-              )
-            : _vm._e()
+          _c(
+            "i",
+            {
+              staticClass: "material-icons md-gray md-48",
+              class: { "pointed-icon": this.pointed }
+            },
+            [_vm._v("emoji_objects")]
+          )
         ]
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-auto marks align-middle" }, [
+        _c("span", { staticClass: "d-inline-block" }, [
+          _vm._v(_vm._s(this.points) + " points")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col text-right" }, [
+        !_vm.bookmarked
+          ? _c(
+              "i",
+              {
+                staticClass: "material-icons md-24 bookmark pointer",
+                attrs: {
+                  "data-toggle": "tooltip",
+                  "data-placement": "top",
+                  title: "Bookmark the idea"
+                },
+                on: { click: _vm.bookmark }
+              },
+              [_vm._v("bookmark_border")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.bookmarked
+          ? _c(
+              "i",
+              {
+                staticClass: "material-icons md-24 bookmark pointer",
+                attrs: {
+                  "data-toggle": "tooltip",
+                  "data-placement": "top",
+                  title: "Remove from bookmarks"
+                },
+                on: { click: _vm.bookmark }
+              },
+              [_vm._v("bookmark")]
+            )
+          : _vm._e()
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-4 border-top border-bottom pt-4 pb-4" }, [
@@ -43302,7 +43339,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col container" }, [
-        _vm._m(3),
+        _vm._m(1),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col ar-plain-author" }, [
@@ -43317,7 +43354,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(4)
+      _vm._m(2)
     ])
   ])
 }
@@ -43332,28 +43369,6 @@ var staticRenderFns = [
         { staticClass: "plain-button ar-plain-button text-center mt-05" },
         [_vm._v("Follow")]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "col-auto", attrs: { id: "interesting" } },
-      [
-        _c("i", { staticClass: "material-icons md-gray md-48" }, [
-          _vm._v("emoji_objects")
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-auto marks align-middle" }, [
-      _c("span", { staticClass: "d-inline-block" }, [_vm._v("1 points")])
     ])
   },
   function() {

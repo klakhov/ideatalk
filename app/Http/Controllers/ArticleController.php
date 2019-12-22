@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Http\Requests\StoreArticle;
+use App\Point;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +55,9 @@ class ArticleController extends Controller
         $article=Article::token($token);
         $article->user;
         $article->tags;
-        return view('article_show',compact('article'));
+        $isPointed = Point::check($article);
+        $points_count = $article->points->count();
+        return view('article_show',compact('article','isPointed','points_count'));
     }
 
 }

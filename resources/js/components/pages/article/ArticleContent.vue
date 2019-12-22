@@ -55,19 +55,19 @@
             </div>
         </div>
         <div class="row  pl-3 pr-3">
-            <button class="col-auto" id="interesting">
-                <i class="material-icons md-gray md-48">emoji_objects</i>
+            <button class="col-aut interesting" id="interesting" @click="point" v-bind:class="{'pointed':this.pointed}">
+                <i class="material-icons md-gray md-48" v-bind:class="{'pointed-icon':this.pointed}">emoji_objects</i>
             </button>
-            <div class="col-auto marks align-middle"><span class="d-inline-block">1 points</span></div>
-            <div class="col text-right pointer" @click="bookmark">
-                <i class="material-icons md-24 bookmark"
+            <div class="col-auto marks align-middle"><span class="d-inline-block">{{this.points}} points</span></div>
+            <div class="col text-right" >
+                <i class="material-icons md-24 bookmark pointer"
                    data-toggle="tooltip" data-placement="top"
-                   title="Bookmark the idea"
+                   title="Bookmark the idea" @click="bookmark"
                     v-if="!bookmarked">bookmark_border</i>
 
-                <i class="material-icons md-24 bookmark"
+                <i class="material-icons md-24 bookmark pointer"
                    data-toggle="tooltip" data-placement="top"
-                   title="Remove from bookmarks"
+                title="Remove from bookmarks" @click="bookmark"
                    v-if="bookmarked">bookmark</i>
             </div>
         </div>
@@ -100,19 +100,37 @@
                 type: Object,
                 default: null
             },
+            isPointed:{
+            },
+            pointsCount:{
+            },
+
         },
         data() {
             return {
-                bookmarked: false
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                bookmarked: false,
+                pointed:null,
+                points:null
             }
         },
         mounted() {
-            console.log(this.article);
+            this.pointed = this.isPointed;
+            this.points = this.pointsCount;
         },
         methods: {
             bookmark() {
                 this.bookmarked = !this.bookmarked;
-            }
+            },
+            point(){
+                axios.post('/point',{
+                   _token:this.csrf,
+                   article_id:this.article.id
+                }).then(()=>{
+                    this.pointed = !this.pointed;
+                    this.points += this.pointed ? 1 : -1;
+                });
+            },
         },
     }
 </script>

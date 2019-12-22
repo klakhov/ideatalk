@@ -19,7 +19,7 @@
     transition-duration: 1.2s;
 }
 
-#interesting{
+.interesting{
     background: none;
     border:2px solid rgba(0, 0, 0, 0.6);
     border-radius: 50%;
@@ -28,10 +28,16 @@
     height:50px;
     line-height: 44px;
 }
-#interesting:hover{
+.interesting:hover{
     border:2px solid $my-orange;
     transition-duration: 1.2s;
 }
 .bookmark{
     margin-top: 0.75em;
+}
+.pointed{
+    border:2px solid $my-orange;
+}
+.material-icons.pointed-icon{
+    color:$my-orange;
 }

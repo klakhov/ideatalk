@@ -30,7 +30,7 @@ $factory->define(User::class, function (Faker $faker) {
         'password' => '$2y$10$6n61mjgH6oiBmRTnVXD3CeZeAH51YLzWu9MMaEyFbm2E.yhTGr0T.', // passworwd
         'remember_token' => Str::random(10),
         'profile_token' => $profile_token,
-        'bio' => $faker->text(500),
+        'bio' => $faker->text(50),
         'followers'=>$faker->numberBetween(1,1000)
     ];
 });

@@ -5,7 +5,6 @@
 
 @section('modal')
 @endsection
-
 @section('content')
-    <article-content v-bind:article="{{$article}}"></article-content>
+    <article-content v-bind:article="{{$article}}" v-bind:is-pointed="'{{$isPointed}}'" v-bind:points-count="{{$points_count}}"></article-content>
 @endsection

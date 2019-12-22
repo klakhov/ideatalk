@@ -12178,7 +12178,7 @@ main {
           transition-duration: 1.2s;
 }
 
-#interesting {
+.interesting {
   background: none;
   border: 2px solid rgba(0, 0, 0, 0.6);
   border-radius: 50%;
@@ -12188,7 +12188,7 @@ main {
   line-height: 44px;
 }
 
-#interesting:hover {
+.interesting:hover {
   border: 2px solid #ff8520;
   -webkit-transition-duration: 1.2s;
           transition-duration: 1.2s;
@@ -12196,5 +12196,13 @@ main {
 
 .bookmark {
   margin-top: 0.75em;
+}
+
+.pointed {
+  border: 2px solid #ff8520;
+}
+
+.material-icons.pointed-icon {
+  color: #ff8520;
 }
 
