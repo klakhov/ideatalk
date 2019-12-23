@@ -13,11 +13,26 @@
                 <a class="row ar-link" :href="'/idea/'+this.article.token">
                     <div class="col ar-middle-description">{{this.article.description}}</div>
                 </a>
-                <div class="row mt-2">
-                    <a class="col-auto ar-middle-author" :href="'/profile/'+this.article.userToken">{{this.article.userName}}</a>
-                </div>
-                <div class="row justify-content-start">
-                    <div class="col article-date text-left">{{this.article.date}}</div>
+                <div class="row">
+                    <div class="col container">
+                        <div class="row mt-2">
+                            <a class="col-auto ar-middle-author" :href="'/profile/'+this.article.userToken">{{this.article.userName}}</a>
+                        </div>
+                        <div class="row justify-content-start">
+                            <div class="col article-date text-left">{{this.article.date}}</div>
+                        </div>
+                    </div>
+                    <div class="col-auto" style="user-select: none;">
+                        <i class="material-icons md-24 bookmark pointer"
+                           data-toggle="tooltip" data-placement="bottom"
+                           title="Bookmark the idea" @click="bookmark"
+                           v-if="!bookmarked">bookmark_border</i>
+
+                        <i class="material-icons md-24 bookmark pointer"
+                           data-toggle="tooltip" data-placement="bot"
+                           title="Remove from bookmarks" @click="bookmark"
+                           v-if="bookmarked">bookmark</i>
+                    </div>
                 </div>
             </div>
             <a class="col-3  ar-link" v-bind:style="{ 'background-image': 'url(' + this.article.images.image_150 + ')' }"
@@ -32,13 +47,26 @@
         props: [
             'article',
         ],
+        data() {
+            return {
+                bookmarked: null
+            }
+        },
         mounted() {
-            console.log(this.article);
+            this.bookmarked = this.article.bookmarked;
         },
         methods: {
             showArticle() {
                 $(location).attr('href',this.$root.idea + this.article.token);
-            }
-        },
+            },
+            bookmark(){
+                axios.post('/bookmark',{
+                    _token:this.csrf,
+                    article_id:this.article.id
+                }).then(()=>{
+                    this.bookmarked = !this.bookmarked;
+                });
+            },
+        }
     }
 </script>

@@ -4,6 +4,7 @@ namespace App;
 
 use Barryvdh\Debugbar\Facade as Debugbar;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -26,8 +27,10 @@ class Article extends BaseModel
            $article->userToken = $article->user->profile_token;
            return $article;
         });
-        $articles->each(function ($item){
+        $user = User::find(Auth::id());
+        $articles->each(function ($item) use($user){
             $item->tagList = array_map(function ($elem){return $elem['name'];}, $item->tags->toArray());
+            $item->bookmarked = !($item->bookmarks->every(function($bookmark) use ($user) {return $bookmark->user_id != $user->id;}));
         });
         return $articles;
     }

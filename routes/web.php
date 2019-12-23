@@ -25,7 +25,11 @@ Route::get('/article','ArticleController@index');
 Route::get('/new-idea','ArticleController@create')->middleware('auth');
 Route::post('/new-idea', 'ArticleController@store')->middleware('auth');
 Route::get('/idea/{token}','ArticleController@show');
-Route::get('/tag','TagController@index')->middleware('auth');
 
+Route::get('/tag','TagController@index')->middleware('auth');
 Route::post('/point','PointController@store')->middleware('auth');
+
+Route::get('/bookmark', 'BookmarkController@index')->middleware('auth');
 Route::post('/bookmark','BookmarkController@store')->middleware('auth');
+
+Route::get('/bookmarks','PagesController@bookmarks')->middleware('auth');

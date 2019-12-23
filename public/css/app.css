@@ -12206,3 +12206,8 @@ main {
   color: #ff8520;
 }
 
+.remove {
+  color: lightgray;
+  font-size: 14px;
+}
+

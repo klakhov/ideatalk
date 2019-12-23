@@ -15,7 +15,6 @@ class BookmarkController extends Controller
     {
         $user = User::find(Auth::id());
         $article = Article::find($request->article_id);
-        Debugbar::info($user->bookmarks);
         $bookmark = $user->bookmarks->where('article_id','=',$request->article_id)->first();
         if($bookmark){
             $bookmark->delete();
@@ -25,6 +24,14 @@ class BookmarkController extends Controller
                 'user_id'=>$user->id
             ]);
         }
+    }
+
+    public function index(Request $request)
+    {
+        $amount = $request->amount;
+        $bookmarks = Bookmark::chunkLoad($amount);
+        Debugbar::info($bookmarks);
+        return response()->json($bookmarks);
     }
 
 }

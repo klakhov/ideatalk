@@ -15,4 +15,9 @@ class PagesController extends Controller
     {
         return view('home');
     }
+
+    public function bookmarks()
+    {
+        return view('bookmarks');
+    }
 }
