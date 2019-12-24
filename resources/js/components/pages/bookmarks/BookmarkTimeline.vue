@@ -1,8 +1,20 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col">
-                Dont forget why you creating for
+            <div class="col-8 bm-header">
+                    Bookmarks
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3 mb-5">
+            <div class="col-8 bm-header container">
+                <div class="row bm-border p-2 justify-content-center justify-content-md-start">
+                    <div class="col-auto">
+                        <i class="material-icons md-24 pointer mt-1 "
+                           data-toggle="tooltip" data-placement="bottom"
+                           title="Bookmark the idea">bookmark</i>
+                    </div>
+                    <div class="col-auto">Dont forget why you creating for</div>
+                </div>
             </div>
         </div>
         <div class="row justify-content-center">

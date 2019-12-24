@@ -2876,6 +2876,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -41858,7 +41870,7 @@ var render = function() {
                         "a",
                         {
                           staticClass: "dropdown-item pop-link p-2 pl-3",
-                          attrs: { href: "" }
+                          attrs: { href: "/bookmarks" }
                         },
                         [_vm._v("Bookmarks")]
                       ),
@@ -43610,72 +43622,68 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mb-5 border-bottom pb-2" }, [
     _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col container", staticStyle: { height: "120px" } },
-        [
-          _c("div", { staticClass: "row" }, [
-            _c(
-              "div",
-              { staticClass: "col ar-middle-tag" },
-              _vm._l(this.article.tagList, function(tag) {
-                return _c("span", {
-                  staticClass: "mr-2",
-                  domProps: { textContent: _vm._s(tag) }
-                })
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
+      _c("div", { staticClass: "col container bm-container" }, [
+        _c("div", { staticClass: "row" }, [
           _c(
-            "a",
-            {
-              staticClass: "row ar-link",
-              attrs: { href: "/idea/" + this.article.token }
-            },
-            [
-              _c("h2", { staticClass: "col ar-middle-header" }, [
-                _vm._v(_vm._s(this.article.header))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "row ar-link mt-2",
-              attrs: { href: "/idea/" + this.article.token }
-            },
-            [
-              _c("div", { staticClass: "col ar-middle-description" }, [
-                _vm._v(_vm._s(this.article.description))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "row mt-2" }, [
-            _c("div", { staticClass: "col container" }, [
-              _c("div", { staticClass: "row" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "col-auto ar-middle-author",
-                    attrs: { href: "/profile/" + this.article.user.token }
-                  },
-                  [_vm._v(_vm._s(this.article.user.name))]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-auto pl-0  article-date text-left" },
-                  [_vm._v(_vm._s(this.article.date))]
-                )
-              ])
+            "div",
+            { staticClass: "col ar-middle-tag" },
+            _vm._l(this.article.tagList, function(tag) {
+              return _c("span", {
+                staticClass: "mr-2",
+                domProps: { textContent: _vm._s(tag) }
+              })
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "row ar-link",
+            attrs: { href: "/idea/" + this.article.token }
+          },
+          [
+            _c("h2", { staticClass: "col ar-middle-header" }, [
+              _vm._v(_vm._s(this.article.header))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "row ar-link mt-2",
+            attrs: { href: "/idea/" + this.article.token }
+          },
+          [
+            _c("div", { staticClass: "col ar-middle-description" }, [
+              _vm._v(_vm._s(this.article.description))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-2" }, [
+          _c("div", { staticClass: "col container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "col-auto ar-middle-author",
+                  attrs: { href: "/profile/" + this.article.user.token }
+                },
+                [_vm._v(_vm._s(this.article.user.name))]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-auto pl-sm-0 article-date text-left" },
+                [_vm._v(_vm._s(this.article.date))]
+              )
             ])
           ])
-        ]
-      ),
+        ])
+      ]),
       _vm._v(" "),
       _c("a", {
         staticClass: "col-3  ar-link ",
@@ -43724,6 +43732,8 @@ var render = function() {
     [
       _vm._m(0),
       _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
       _c("div", { staticClass: "row justify-content-center" }, [
         _c(
           "div",
@@ -43750,8 +43760,44 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col" }, [
-        _vm._v("\n            Dont forget why you creating for\n        ")
+      _c("div", { staticClass: "col-8 bm-header" }, [
+        _vm._v("\n                Bookmarks\n        ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row justify-content-center mt-3 mb-5" }, [
+      _c("div", { staticClass: "col-8 bm-header container" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "row bm-border p-2 justify-content-center justify-content-md-start"
+          },
+          [
+            _c("div", { staticClass: "col-auto" }, [
+              _c(
+                "i",
+                {
+                  staticClass: "material-icons md-24 pointer mt-1 ",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "bottom",
+                    title: "Bookmark the idea"
+                  }
+                },
+                [_vm._v("bookmark")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-auto" }, [
+              _vm._v("Dont forget why you creating for")
+            ])
+          ]
+        )
       ])
     ])
   }

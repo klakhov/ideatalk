@@ -1,7 +1,7 @@
 <template>
     <div class="container mb-5 border-bottom pb-2">
             <div class="row">
-                <div class="col container" style="height: 120px">
+                <div class="col container bm-container">
                     <div class="row">
                         <div class="col ar-middle-tag">
                             <span v-for="tag in this.article.tagList" v-text="tag" class="mr-2"></span>
@@ -17,7 +17,7 @@
                         <div class="col container">
                             <div class="row">
                                 <a class="col-auto ar-middle-author" :href="'/profile/'+this.article.user.token">{{this.article.user.name}}</a>
-                                <div class="col-auto pl-0  article-date text-left">{{this.article.date}}</div>
+                                <div class="col-auto pl-sm-0 article-date text-left">{{this.article.date}}</div>
                             </div>
                         </div>
                     </div>

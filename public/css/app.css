@@ -12211,3 +12211,27 @@ main {
   font-size: 14px;
 }
 
+.bm-header {
+  font-weight: 700;
+  font-size: 20px;
+  padding-left: 2.5%;
+}
+
+.bm-bookmark {
+  margin-top: 5%;
+}
+
+.bm-border {
+  border: 1px solid lightgray;
+}
+
+@media (min-width: 576px) {
+  .bm-container {
+    height: 150px;
+  }
+}
+
+.bm-container {
+  height: 140px;
+}
+
