@@ -62,7 +62,9 @@ class ArticleController extends Controller
 
     public function featured()
     {
-        return Article::homeFeatured();
+
+        return ['best'=>Article::bestFeatured(),
+                 'other'=>Article::otherFeatured()   ];
     }
 
 }

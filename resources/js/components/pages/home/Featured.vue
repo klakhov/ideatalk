@@ -2,15 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col-4">
-                <big-article></big-article>
+                <big-article v-for="article in bigArticle1" :article="article" :key="article.id"/>
             </div>
             <div class="col-4">
-                <small-article></small-article>
-                <small-article></small-article>
-                <small-article></small-article>
+                <small-article v-for="article in smallArticles" :article="article" :key="article.id"/>
             </div>
             <div class="col-4">
-                <big-article></big-article>
+                <big-article v-for="article in bigArticle2" :article="article" :key="article.id"/>
             </div>
         </div>
         <div class="row border-bottom ml-auto mr-auto justify-content-end" style="width: 85%">
@@ -31,7 +29,8 @@
         data() {
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                bigArticles:[],
+                bigArticle1:[],
+                bigArticle2:[],
                 smallArticles:[],
             }
         },
@@ -42,7 +41,16 @@
         mounted() {
             axios.get('/featured?_token='+this.csrf)
                 .then((response)=>{
+                    let articles = Object.values(response.data);
+                    let big = Object.values(articles[0]);
+                    this.bigArticle1.push(big[0]);
+                    this.bigArticle2.push(big[1]);
+                    const small = Object.values(articles[1]);
+                    for(let val of small){
+                        this.smallArticles.push(val);
+                    }
                 });
         }
     }
+
 </script>

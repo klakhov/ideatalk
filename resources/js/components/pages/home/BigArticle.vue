@@ -1,31 +1,34 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <img src="https://picsum.photos/300/200" alt="">
+            <img :src="this.article.images.image_300_200" alt="">
         </div>
         <div class="row justify-content-start">
-            <h1 class="col article-header text-left ml-2">How To Achieve More In A Single Year Than Most Achieve In A Lifetime</h1>
+            <h1 class="col article-header text-left ml-2">{{this.article.header}}</h1>
         </div>
         <div class="row justify-content-start">
-            <h2 class="col article-description text-left ml-2">Live the best year of your life</h2>
+            <h2 class="col article-description text-left ml-2">{{this.article.description}}</h2>
         </div>
         <div class="row justify-content-start mt-1">
-            <div class="col article-author text-left ml-2">George J. Ziogas in Live Your Life On Purpose</div>
+            <div class="col article-author text-left ml-2">{{this.article.user.name}}</div>
         </div>
         <div class="row justify-content-start">
-            <div class="col article-date text-left ml-2">Jan 3</div>
+            <div class="col article-date text-left ml-2">{{this.article.date}}</div>
         </div>
     </div>
 </template>
 
 <script>
     export default {
+        props: {
+            article:{}
+        },
         data() {
             return {
-                image: 'https://picsum.photos/300/200',
             }
         },
         mounted() {
+            console.log(this.article);
         },
     }
 </script>

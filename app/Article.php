@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use function foo\func;
 
 
 class Article extends BaseModel
@@ -98,12 +99,24 @@ class Article extends BaseModel
        return $articles;
     }
 
-    public static function homeFeatured()
+    public static function bestFeatured()
     {
         $articles = Article::all()->each(function ($article){
             $article->points_count = $article->points->count();
+            $article->user;
         });
-        $articles = $articles->sortBy('points_count')->reverse()->take(5);
+        $articles = $articles->sortBy('points_count')->reverse()->take(2);
+        $articles->each(function($item){Debugbar::info($item->id);});
+        return $articles;
+    }
+
+    public static  function otherFeatured()
+    {
+        $articles = Article::all()->each(function ($article){
+            $article->points_count = $article->points->count();
+            $article->user;
+        });
+        $articles = $articles->sortBy('points_count')->reverse()->take(5)->slice(2,3);
         return $articles;
     }
 }

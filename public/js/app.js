@@ -3134,12 +3134,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      image: 'https://picsum.photos/300/200'
-    };
+  props: {
+    article: {}
   },
-  mounted: function mounted() {}
+  data: function data() {
+    return {};
+  },
+  mounted: function mounted() {
+    console.log(this.article);
+  }
 });
 
 /***/ }),
@@ -3179,15 +3182,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      bigArticles: [],
+      bigArticle1: [],
+      bigArticle2: [],
       smallArticles: []
     };
   },
@@ -3196,7 +3198,24 @@ __webpack_require__.r(__webpack_exports__);
     'small-article': _SmallArticle__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
-    axios.get('/featured?_token=' + this.csrf).then(function (response) {});
+    var _this = this;
+
+    axios.get('/featured?_token=' + this.csrf).then(function (response) {
+      var articles = Object.values(response.data);
+      var big = Object.values(articles[0]);
+
+      _this.bigArticle1.push(big[0]);
+
+      _this.bigArticle2.push(big[1]);
+
+      var small = Object.values(articles[1]);
+
+      for (var _i = 0, _small = small; _i < _small.length; _i++) {
+        var val = _small[_i];
+
+        _this.smallArticles.push(val);
+      }
+    });
   }
 });
 
@@ -3472,6 +3491,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    article: {
+      type: Object
+    }
+  },
   mounted: function mounted() {}
 });
 
@@ -44021,46 +44045,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("img", { attrs: { src: "https://picsum.photos/300/200", alt: "" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-start" }, [
-        _c("h1", { staticClass: "col article-header text-left ml-2" }, [
-          _vm._v(
-            "How To Achieve More In A Single Year Than Most Achieve In A Lifetime"
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-start" }, [
-        _c("h2", { staticClass: "col article-description text-left ml-2" }, [
-          _vm._v("Live the best year of your life")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-start mt-1" }, [
-        _c("div", { staticClass: "col article-author text-left ml-2" }, [
-          _vm._v("George J. Ziogas in Live Your Life On Purpose")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-start" }, [
-        _c("div", { staticClass: "col article-date text-left ml-2" }, [
-          _vm._v("Jan 3")
-        ])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("img", { attrs: { src: this.article.images.image_300_200, alt: "" } })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-start" }, [
+      _c("h1", { staticClass: "col article-header text-left ml-2" }, [
+        _vm._v(_vm._s(this.article.header))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-start" }, [
+      _c("h2", { staticClass: "col article-description text-left ml-2" }, [
+        _vm._v(_vm._s(this.article.description))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-start mt-1" }, [
+      _c("div", { staticClass: "col article-author text-left ml-2" }, [
+        _vm._v(_vm._s(this.article.user.name))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-start" }, [
+      _c("div", { staticClass: "col article-date text-left ml-2" }, [
+        _vm._v(_vm._s(this.article.date))
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44084,22 +44099,41 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-4" }, [_c("big-article")], 1),
+      _c(
+        "div",
+        { staticClass: "col-4" },
+        _vm._l(_vm.bigArticle1, function(article) {
+          return _c("big-article", {
+            key: article.id,
+            attrs: { article: article }
+          })
+        }),
+        1
+      ),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "col-4" },
-        [
-          _c("small-article"),
-          _vm._v(" "),
-          _c("small-article"),
-          _vm._v(" "),
-          _c("small-article")
-        ],
+        _vm._l(_vm.smallArticles, function(article) {
+          return _c("small-article", {
+            key: article.id,
+            attrs: { article: article }
+          })
+        }),
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "col-4" }, [_c("big-article")], 1)
+      _c(
+        "div",
+        { staticClass: "col-4" },
+        _vm._l(_vm.bigArticle2, function(article) {
+          return _c("big-article", {
+            key: article.id,
+            attrs: { article: article }
+          })
+        }),
+        1
+      )
     ]),
     _vm._v(" "),
     _vm._m(0)
@@ -44452,49 +44486,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container mb-4" }, [
+    _c("div", { staticClass: "row" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-9 container" }, [
+        _c("div", { staticClass: "row justify-content-start" }, [
+          _c("h1", { staticClass: "col  ar-small-header text-left ml-2" }, [
+            _vm._v(_vm._s(this.article.header))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-start" }, [
+          _c("h2", { staticClass: "col ar-small-description text-left ml-2" }, [
+            _vm._v(_vm._s(this.article.description))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-start mt-3" }, [
+          _c("div", { staticClass: "col ar-small-author text-left ml-2" }, [
+            _vm._v(_vm._s(this.article.user.name))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-start" }, [
+          _c("div", { staticClass: "col article-date text-left ml-2" }, [
+            _vm._v(_vm._s(this.article.date))
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container mb-4" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-3 p-0" }, [
-          _c("img", { attrs: { src: "https://picsum.photos/90", alt: "" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-9 container" }, [
-          _c("div", { staticClass: "row justify-content-start" }, [
-            _c("h1", { staticClass: "col  ar-small-header text-left ml-2" }, [
-              _vm._v(
-                "How To Achieve More In A Single Year Than Most Achieve In A Lifetime"
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row justify-content-start" }, [
-            _c(
-              "h2",
-              { staticClass: "col ar-small-description text-left ml-2" },
-              [_vm._v("Live the best year of your life")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row justify-content-start mt-3" }, [
-            _c("div", { staticClass: "col ar-small-author text-left ml-2" }, [
-              _vm._v("George J. Ziogas in Live Your Life On Purpose")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row justify-content-start" }, [
-            _c("div", { staticClass: "col article-date text-left ml-2" }, [
-              _vm._v("Jan 3")
-            ])
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "col-3 p-0" }, [
+      _c("img", { attrs: { src: "https://picsum.photos/90", alt: "" } })
     ])
   }
 ]
@@ -59077,8 +59107,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! e:\OSPanel\domains\ideatalk\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! e:\OSPanel\domains\ideatalk\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! W:\domains\ideatalk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! W:\domains\ideatalk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

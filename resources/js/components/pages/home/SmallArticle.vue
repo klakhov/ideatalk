@@ -6,16 +6,16 @@
             </div>
             <div class="col-9 container">
                 <div class="row justify-content-start">
-                    <h1 class="col  ar-small-header text-left ml-2">How To Achieve More In A Single Year Than Most Achieve In A Lifetime</h1>
+                    <h1 class="col  ar-small-header text-left ml-2">{{this.article.header}}</h1>
                 </div>
                 <div class="row justify-content-start">
-                    <h2 class="col ar-small-description text-left ml-2">Live the best year of your life</h2>
+                    <h2 class="col ar-small-description text-left ml-2">{{this.article.description}}</h2>
                 </div>
                 <div class="row justify-content-start mt-3">
-                    <div class="col ar-small-author text-left ml-2">George J. Ziogas in Live Your Life On Purpose</div>
+                    <div class="col ar-small-author text-left ml-2">{{this.article.user.name}}</div>
                 </div>
                 <div class="row justify-content-start">
-                    <div class="col article-date text-left ml-2">Jan 3</div>
+                    <div class="col article-date text-left ml-2">{{this.article.date}}</div>
                 </div>
             </div>
         </div>
@@ -25,6 +25,11 @@
 
 <script>
     export default {
+        props: {
+             article: {
+                type: Object,
+            },
+        },
         mounted() {
         },
     }
