@@ -27,18 +27,22 @@
 <script>
     import bigArticle from './BigArticle.vue'
     import smallArticle from './SmallArticle'
-    import midArticle from './MidArticle'
-    import Popular from './Popular'
-    import Observer from "./Observer";
     export default {
         data() {
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                bigArticles:[],
+                smallArticles:[],
             }
         },
         components:{
             'big-article':  bigArticle,
             'small-article': smallArticle,
         },
+        mounted() {
+            axios.get('/featured?_token='+this.csrf)
+                .then((response)=>{
+                });
+        }
     }
 </script>

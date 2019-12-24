@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome','PagesController@welcome')->name('welcome')->middleware('guest');
@@ -33,3 +34,5 @@ Route::get('/bookmark', 'BookmarkController@index')->middleware('auth');
 Route::post('/bookmark','BookmarkController@store')->middleware('auth');
 
 Route::get('/bookmarks','PagesController@bookmarks')->middleware('auth');
+
+Route::get('/featured','ArticleController@featured')->middleware('auth');

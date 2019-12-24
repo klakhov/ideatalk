@@ -54,12 +54,15 @@ class ArticleController extends Controller
     public function show($token)
     {
         $article=Article::token($token);
-        $article->user;
-        $article->tags;
         $isPointed = Point::check($article);
         $isBookmarked = Bookmark::check($article);
         $points_count = $article->points->count();
         return view('article_show',compact('article','isPointed','points_count','isBookmarked'));
+    }
+
+    public function featured()
+    {
+        return Article::homeFeatured();
     }
 
 }

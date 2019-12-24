@@ -3155,9 +3155,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BigArticle_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BigArticle.vue */ "./resources/js/components/pages/home/BigArticle.vue");
 /* harmony import */ var _SmallArticle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SmallArticle */ "./resources/js/components/pages/home/SmallArticle.vue");
-/* harmony import */ var _MidArticle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MidArticle */ "./resources/js/components/pages/home/MidArticle.vue");
-/* harmony import */ var _Popular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Popular */ "./resources/js/components/pages/home/Popular.vue");
-/* harmony import */ var _Observer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Observer */ "./resources/js/components/pages/home/Observer.vue");
 //
 //
 //
@@ -3184,20 +3181,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      bigArticles: [],
+      smallArticles: []
     };
   },
   components: {
     'big-article': _BigArticle_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     'small-article': _SmallArticle__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  mounted: function mounted() {
+    axios.get('/featured?_token=' + this.csrf).then(function (response) {});
   }
 });
 

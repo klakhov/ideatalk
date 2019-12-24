@@ -36,7 +36,7 @@ class Article extends BaseModel
     }
 
     public static function token($token){
-        return Article::where('token','=',$token)->first();
+        return Article::with('user','tags')->where('token','=',$token)->first();
     }
 
     public function addUserInfo()
@@ -87,6 +87,23 @@ class Article extends BaseModel
         $images['image_300_200'] = $image_300_200;
         $this->images = $images;
         $this->save();
-        Debugbar::info($this->images);
+    }
+
+    public static function featured()
+    {
+       $articles = Article::all()->each(function ($article){
+           $article->points_count = $article->points->count();
+       });
+       $articles = $articles->sortBy('points_count')->reverse()->take(20);
+       return $articles;
+    }
+
+    public static function homeFeatured()
+    {
+        $articles = Article::all()->each(function ($article){
+            $article->points_count = $article->points->count();
+        });
+        $articles = $articles->sortBy('points_count')->reverse()->take(5);
+        return $articles;
     }
 }
