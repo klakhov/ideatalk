@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="row  pl-3 pr-3">
-            <button class="col-aut interesting" id="interesting" @click="point" v-bind:class="{'pointed':this.pointed}">
+            <button class="col-auto interesting" id="interesting" @click="point" v-bind:class="{'pointed':this.pointed}">
                 <i class="material-icons md-gray md-48" v-bind:class="{'pointed-icon':this.pointed}">emoji_objects</i>
             </button>
             <div class="col-auto marks align-middle"><span class="d-inline-block">{{this.points}} points</span></div>

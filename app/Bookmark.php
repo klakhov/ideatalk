@@ -28,7 +28,6 @@ class Bookmark extends BaseModel
 
     public static function chunkLoad($amount)
     {
-        Debugbar::info($amount);
         $bookmarks = User::find(Auth::id())->bookmarks->reverse()->splice($amount, 10);
         return $bookmarks->each(function ($bookmark){
             $bookmark->article = Article::with('user')->find($bookmark->article_id);

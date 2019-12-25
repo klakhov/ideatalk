@@ -16,6 +16,7 @@ class ProfileController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index($token)
     {
         $user = User::token($token);
@@ -41,5 +42,12 @@ class ProfileController extends Controller
         $user->bio = $request->bio;
         $user->save();
         return view('profile_edit');
+    }
+
+    public function publications(Request $request)
+    {
+        $user = User::token($request->token);
+        $articles = $user->publicationsChunkLoad($request->amount);
+        return response()->json($articles);
     }
 }
