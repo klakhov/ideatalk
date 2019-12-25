@@ -62,9 +62,15 @@ class ArticleController extends Controller
 
     public function featured()
     {
+        $articles = Article::featured();
+        return view('featured',compact('articles'));
+    }
+
+    public function subFeatured()
+    {
 
         return ['best'=>Article::bestFeatured(),
-                 'other'=>Article::otherFeatured()   ];
+                'other'=>Article::otherFeatured()];
     }
 
 }

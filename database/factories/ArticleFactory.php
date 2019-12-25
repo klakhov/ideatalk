@@ -8,10 +8,10 @@ use Illuminate\Support\Str;
 
 $factory->define(Article::class, function (Faker $faker) {
     $images = [
-        'image_def'=>'uploads/previews/def.jpg',
-        'image_150'=>'uploads/previews/image_150.jpg',
-        'image_90'=>'uploads/previews/image_90.jpg',
-        'image_300_200'=>'uploads/previews/image300_200.jpg'
+        'image_def'=>'/uploads/previews/def.jpg',
+        'image_150'=>'/uploads/previews/img150.jpg',
+        'image_90'=>'/uploads/previews/img90.jpg',
+        'image_300_200'=>'/uploads/previews/img300_200.jpg'
     ];
     return [
         'user_id' => factory(App\User::class),

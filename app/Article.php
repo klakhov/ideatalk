@@ -94,6 +94,7 @@ class Article extends BaseModel
     {
        $articles = Article::all()->each(function ($article){
            $article->points_count = $article->points->count();
+           $article->user;
        });
        $articles = $articles->sortBy('points_count')->reverse()->take(20);
        return $articles;

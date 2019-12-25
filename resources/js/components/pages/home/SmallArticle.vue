@@ -11,7 +11,7 @@
                 <div class="row justify-content-start">
                     <h2 class="col ar-small-description text-left ml-2">{{this.article.description}}</h2>
                 </div>
-                <div class="row justify-content-start mt-3">
+                <div class="row justify-content-start mt-1">
                     <div class="col ar-small-author text-left ml-2">{{this.article.user.name}}</div>
                 </div>
                 <div class="row justify-content-start">

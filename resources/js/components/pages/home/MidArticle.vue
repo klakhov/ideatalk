@@ -1,5 +1,5 @@
 <template>
-    <div class="container mb-5"  >
+    <div class="container mb-5">
         <div class="row">
             <div class="col container" style="height: 150px">
                 <div class="row">
@@ -13,10 +13,10 @@
                 <a class="row ar-link" :href="'/idea/'+this.article.token">
                     <div class="col ar-middle-description">{{this.article.description}}</div>
                 </a>
-                <div class="row">
+                <div class="row" v-bind:class="{'mt-3':isFeatured}">
                     <div class="col container">
                         <div class="row mt-2">
-                            <a class="col-auto ar-middle-author" :href="'/profile/'+this.article.userToken">{{this.article.userName}}</a>
+                            <a class="col-auto ar-middle-author" :href="'/profile/'+this.article.user.profile_token">{{this.article.user.name}}</a>
                         </div>
                         <div class="row justify-content-start">
                             <div class="col article-date text-left">{{this.article.date}}</div>
@@ -35,7 +35,8 @@
                     </div>
                 </div>
             </div>
-            <a class="col-3  ar-link" v-bind:style="{ 'background-image': 'url(' + this.article.images.image_150 + ')' }"
+            <a class="col-3  ar-link" v-bind:style="{ 'background-image': 'url(' + this.article.images.image_150 + ')',
+            'background-repeat':'no-repeat' }"
                :href="'/idea/'+this.article.token">
             </a>
         </div>
@@ -46,6 +47,7 @@
     export default {
         props: [
             'article',
+            'isFeatured'
         ],
         data() {
             return {

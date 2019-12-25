@@ -13,7 +13,7 @@
         </div>
         <div class="row border-bottom ml-auto mr-auto justify-content-end" style="width: 85%">
             <div class="col-auto text-right mt-2 mb-3 pr-0">
-                <a href="#" class="featured-link">SEE ALL FEATURED </a>
+                <a href="/featured" class="featured-link">SEE ALL FEATURED </a>
             </div>
             <div class="col-auto text-right pl-0 orange-text">
                 <i class="material-icons md-14 arrow-m">arrow_forward_ios</i>
@@ -39,7 +39,7 @@
             'small-article': smallArticle,
         },
         mounted() {
-            axios.get('/featured?_token='+this.csrf)
+            axios.get('/sub-featured?_token='+this.csrf)
                 .then((response)=>{
                     let articles = Object.values(response.data);
                     let big = Object.values(articles[0]);
