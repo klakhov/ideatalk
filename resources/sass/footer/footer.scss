@@ -1,0 +1,24 @@
+.b-black{
+    background: $my-dark;
+}
+.c-white{
+    color:white;
+}
+.fs-14{
+    font-size: 14px;
+}
+.fw-700{
+    font-weight: 700;
+}
+
+.c-silver{
+    color:$silver;
+}
+.footer-link:hover{
+    color:$silver;
+}
+@media (min-width: 992px) {
+    .w-lg-60{
+        width:60%;
+    }
+}

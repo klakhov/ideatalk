@@ -37,6 +37,7 @@
         <main class="py-4 page-container" style="background: white">
             @yield('content')
         </main>
+        <idea-footer></idea-footer>
     </div>
 </body>
 </html>

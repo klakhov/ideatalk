@@ -12352,3 +12352,33 @@ main {
           transition-duration: 1.2s;
 }
 
+.b-black {
+  background: #191919;
+}
+
+.c-white {
+  color: white;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.c-silver {
+  color: silver;
+}
+
+.footer-link:hover {
+  color: silver;
+}
+
+@media (min-width: 992px) {
+  .w-lg-60 {
+    width: 60%;
+  }
+}
+
