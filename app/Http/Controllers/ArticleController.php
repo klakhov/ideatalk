@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Bookmark;
+use App\Follow;
 use App\Http\Requests\StoreArticle;
 use App\Point;
 use App\Tag;
@@ -54,10 +55,13 @@ class ArticleController extends Controller
     public function show($token)
     {
         $article=Article::token($token);
-        $isPointed = Point::check($article);
-        $isBookmarked = Bookmark::check($article);
-        $points_count = $article->points->count();
-        return view('article_show',compact('article','isPointed','points_count','isBookmarked'));
+        $props = json_encode([
+            'pointed' => Point::check($article),
+            'bookmarked' => Bookmark::check($article),
+            'followed' => Follow::check($article->user),
+            'points_count' => $article->points->count(),
+        ]);
+        return view('article_show',compact('article','props'));
     }
 
     public function featured()
@@ -68,7 +72,6 @@ class ArticleController extends Controller
 
     public function subFeatured()
     {
-
         return ['best'=>Article::bestFeatured(),
                 'other'=>Article::otherFeatured()];
     }

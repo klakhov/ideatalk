@@ -60,6 +60,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Bookmark');
     }
 
+    public function follows()
+    {
+        return $this->hasMany(Follow::class);
+    }
+
     public function publicationsChunkLoad($amount)
     {
         $articles = $this->articles->reverse()->splice($amount,10);
@@ -70,6 +75,22 @@ class User extends Authenticatable
             $item->points_count = $item->points->count();
         });
         return $articles;
+    }
+
+    public function addFollow(Follow $follow)
+    {
+        return $this->follows()->save($follow);
+    }
+
+    public function removeFollow(User $user)
+    {
+        $follow = $this->follows->where('followed_id','=' ,$user->id)->first();
+        $follow->delete();
+    }
+
+    public function followedBy()
+    {
+        return Follow::where('followed_id', '=', $this->id)->count();
     }
 
 }

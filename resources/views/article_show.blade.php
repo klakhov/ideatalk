@@ -7,7 +7,5 @@
 @endsection
 @section('content')
     <article-content v-bind:article="{{$article}}"
-                     v-bind:is-pointed="'{{$isPointed}}'"
-                     v-bind:points-count="{{$points_count}}"
-                     v-bind:is-bookmarked="'{{$isBookmarked}}'"></article-content>
+    v-bind:settings="{{$props}}"></article-content>
 @endsection

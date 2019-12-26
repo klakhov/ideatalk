@@ -18,7 +18,8 @@
                                <span class="ar-plain-username">{{this.article.user.name}}</span>
                            </div>
                             <div class="col-auto p-0">
-                                <div class="plain-button ar-plain-button text-center mt-05">Follow</div>
+                                <div v-if="!followed" class="plain-button ar-plain-button text-center mt-05" @click="follow">Follow</div>
+                                <button v-else class="button-primary ar-plain-button text-center" @click="follow">Following</button>
                             </div>
                         </div>
                         <div class="row">
@@ -87,7 +88,8 @@
                 </div>
             </div>
             <div class="col-auto text-right">
-                <div class="plain-button ar-plain-bottom-button text-center">Follow</div>
+                <div v-if="!followed" class="plain-button ar-plain-bottom-button text-center" @click="follow">Follow</div>
+                <button v-else class="button-primary ar-plain-bottom-button" @click="follow">Following</button>
             </div>
         </div>
     </div>
@@ -100,9 +102,7 @@
                 type: Object,
                 default: null
             },
-            isPointed:{},
-            pointsCount:{},
-            isBookmarked:{}
+            settings:{},
         },
         data() {
             return {
@@ -110,12 +110,15 @@
                 bookmarked: null,
                 pointed:null,
                 points:null,
+                followed:null,
             }
         },
         mounted() {
-            this.pointed = this.isPointed;
-            this.bookmarked = this.isBookmarked;
-            this.points = this.pointsCount;
+            console.log(this.settings);
+            this.pointed = this.settings.pointed;
+            this.bookmarked = this.settings.bookmarked;
+            this.points = this.settings.points_count;
+            this.followed = this.settings.followed;
         },
         methods: {
             bookmark() {
@@ -133,6 +136,14 @@
                 }).then(()=>{
                     this.pointed = !this.pointed;
                     this.points += this.pointed ? 1 : -1;
+                });
+            },
+            follow(){
+                axios.post('/follow',{
+                    _token:this.csrf,
+                    user_to_follow_id:this.article.user.id,
+                }).then((response)=>{
+                    this.followed = response.data;
                 });
             },
         },

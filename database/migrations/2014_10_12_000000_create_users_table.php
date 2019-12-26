@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->default('/uploads/avatars/default.jpg');
             $table->string('profile_token')->default('@');
             $table->text('bio')->nullable();
-            $table->integer('followers')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

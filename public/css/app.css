@@ -11526,7 +11526,11 @@ main {
 }
 
 .fs-16 {
-  font-size: 16px;
+  font-size: 16px !important;
+}
+
+.fs-20 {
+  font-size: 20px;
 }
 
 .button-primary-header {
@@ -12145,6 +12149,14 @@ main {
 .ar-plain-author {
   font-weight: 700;
   font-size: 20px;
+}
+
+.unfollow {
+  vertical-align: middle;
+  padding: 4px 8px;
+  margin-top: 1em;
+  font-size: 18px;
+  line-height: 20px;
 }
 
 /* Rules for sizing the icon. */

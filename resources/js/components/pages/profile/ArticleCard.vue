@@ -41,7 +41,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="row justify-content-end">
+                <div class="row justify-content-end pr-2">
                     <div class="col-auto marks align-middle"><span class="d-inline-block">{{this.points}} points</span></div>
                     <button class="col-auto pub-interesting" id="interesting" @click="point" v-bind:class="{'pointed':this.pointed}">
                         <i class="material-icons md-gray md-30" v-bind:class="{'pointed-icon':this.pointed}">emoji_objects</i>

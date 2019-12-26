@@ -2715,28 +2715,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     article: {
       type: Object,
       "default": null
     },
-    isPointed: {},
-    pointsCount: {},
-    isBookmarked: {}
+    settings: {}
   },
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       bookmarked: null,
       pointed: null,
-      points: null
+      points: null,
+      followed: null
     };
   },
   mounted: function mounted() {
-    this.pointed = this.isPointed;
-    this.bookmarked = this.isBookmarked;
-    this.points = this.pointsCount;
+    console.log(this.settings);
+    this.pointed = this.settings.pointed;
+    this.bookmarked = this.settings.bookmarked;
+    this.points = this.settings.points_count;
+    this.followed = this.settings.followed;
   },
   methods: {
     bookmark: function bookmark() {
@@ -2758,6 +2761,16 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function () {
         _this2.pointed = !_this2.pointed;
         _this2.points += _this2.pointed ? 1 : -1;
+      });
+    },
+    follow: function follow() {
+      var _this3 = this;
+
+      axios.post('/follow', {
+        _token: this.csrf,
+        user_to_follow_id: this.article.user.id
+      }).then(function (response) {
+        _this3.followed = response.data;
       });
     }
   }
@@ -3537,6 +3550,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     article: {
@@ -3775,19 +3789,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     ProfileTimeline: _ProfileTimeline__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['user', 'editable'],
+  props: ['user', 'settings'],
   data: function data() {
     return {
-      edit: false
+      editable: null,
+      followed: null
     };
   },
   mounted: function mounted() {
-    this.edit = this.editable === 1;
+    this.editable = this.settings.editable;
+    this.followed = this.settings.followed;
+  },
+  methods: {
+    follow: function follow() {
+      var _this = this;
+
+      axios.post('/follow', {
+        _token: this.csrf,
+        user_to_follow_id: this.user.id
+      }).then(function (response) {
+        _this.followed = response.data;
+      });
+    }
   }
 });
 
@@ -43638,7 +43673,27 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(0)
+              _c("div", { staticClass: "col-auto p-0" }, [
+                !_vm.followed
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "plain-button ar-plain-button text-center mt-05",
+                        on: { click: _vm.follow }
+                      },
+                      [_vm._v("Follow")]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass:
+                          "button-primary ar-plain-button text-center",
+                        on: { click: _vm.follow }
+                      },
+                      [_vm._v("Following")]
+                    )
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
@@ -43793,7 +43848,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col container" }, [
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col ar-plain-author" }, [
@@ -43808,7 +43863,25 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(2)
+      _c("div", { staticClass: "col-auto text-right" }, [
+        !_vm.followed
+          ? _c(
+              "div",
+              {
+                staticClass: "plain-button ar-plain-bottom-button text-center",
+                on: { click: _vm.follow }
+              },
+              [_vm._v("Follow")]
+            )
+          : _c(
+              "button",
+              {
+                staticClass: "button-primary ar-plain-bottom-button",
+                on: { click: _vm.follow }
+              },
+              [_vm._v("Following")]
+            )
+      ])
     ])
   ])
 }
@@ -43817,32 +43890,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-auto p-0" }, [
-      _c(
-        "div",
-        { staticClass: "plain-button ar-plain-button text-center mt-05" },
-        [_vm._v("Follow")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col ar-middle-tag" }, [_vm._v("WRITTEN BY")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-auto text-right" }, [
-      _c(
-        "div",
-        { staticClass: "plain-button ar-plain-bottom-button text-center" },
-        [_vm._v("Follow")]
-      )
     ])
   }
 ]
@@ -44785,7 +44834,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mb-4" }, [
     _c("div", { staticClass: "row" }, [
-      _vm._m(0),
+      _c("a", {
+        staticClass: "col-3 p-0 ar-link",
+        style: {
+          "background-image": "url(" + this.article.images.image_90 + ")",
+          "background-repeat": "no-repeat"
+        },
+        attrs: { href: "/idea/" + this.article.token }
+      }),
       _vm._v(" "),
       _c("div", { staticClass: "col-9 container" }, [
         _c("div", { staticClass: "row justify-content-start" }, [
@@ -44815,16 +44871,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-3 p-0" }, [
-      _c("img", { attrs: { src: "https://picsum.photos/90", alt: "" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -45037,7 +45084,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row justify-content-end" }, [
+        _c("div", { staticClass: "row justify-content-end pr-2" }, [
           _c("div", { staticClass: "col-auto marks align-middle" }, [
             _c("span", { staticClass: "d-inline-block" }, [
               _vm._v(_vm._s(this.points) + " points")
@@ -45094,7 +45141,7 @@ var render = function() {
     "div",
     { staticClass: "container profile-container" },
     [
-      _c("div", { staticClass: "row mt-5" }, [
+      _c("div", { staticClass: "row mt-5 pb-3 mb-5 border-bottom" }, [
         _c("div", { staticClass: "col-8 container" }, [
           _c(
             "div",
@@ -45111,7 +45158,7 @@ var render = function() {
                 [_c("strong", [_vm._v(_vm._s(this.user.name))])]
               ),
               _vm._v(" "),
-              _vm.edit
+              _vm.editable
                 ? _c(
                     "a",
                     {
@@ -45131,11 +45178,45 @@ var render = function() {
             "div",
             { staticClass: "row mt-md-2 mt-4 justify-content-center" },
             [
-              _c("div", { staticClass: "col-auto col-md text-gray" }, [
-                _vm._v("followers: " + _vm._s(this.user.followers))
+              _c("div", { staticClass: "col-auto col-md text-gray fs-20" }, [
+                _vm._v(_vm._s(this.user.bio))
               ])
             ]
-          )
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "row justify-content-start mt-3" }, [
+            _c("div", { staticClass: "col-auto text-gray" }, [
+              _vm._v("following: " + _vm._s(this.user.follows_count))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-auto text-gray" }, [
+              _vm._v("followers: " + _vm._s(this.user.followedBy))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-auto text-right" }, [
+              !_vm.followed
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "fs-16 plain-button ar-plain-bottom-button  text-center",
+                      on: { click: _vm.follow }
+                    },
+                    [_vm._v("Follow")]
+                  )
+                : _c(
+                    "button",
+                    {
+                      staticClass:
+                        "fs-16 button-primary ar-plain-bottom-button  text-center",
+                      on: { click: _vm.follow }
+                    },
+                    [_vm._v("Following")]
+                  )
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 text-right" }, [
@@ -45148,12 +45229,6 @@ var render = function() {
               width: "130"
             }
           })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-start" }, [
-        _c("div", { staticClass: "col-8 text-gray" }, [
-          _vm._v(_vm._s(this.user.bio))
         ])
       ]),
       _vm._v(" "),

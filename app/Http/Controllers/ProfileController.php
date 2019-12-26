@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Follow;
 use App\User;
 use Barryvdh\Debugbar\Facade as Debugbar;
 
@@ -20,8 +21,13 @@ class ProfileController extends Controller
     public function index($token)
     {
         $user = User::token($token);
-        $editable = (Auth::id() == $user->id) ? 1 : 0;
-        return view('profile',compact('user','editable'));
+        $user->follows_count = $user->follows->count();
+        $user->followedBy = $user->followedBy();
+        $props = json_encode([
+            'editable'=>Auth::id() == $user->id,
+            'followed'=>Follow::check($user),
+        ]);
+        return view('profile',compact('user','props'));
     }
 
     public function edit()

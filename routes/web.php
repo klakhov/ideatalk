@@ -38,3 +38,5 @@ Route::get('/bookmarks','PagesController@bookmarks')->middleware('auth');
 
 Route::get('/featured','ArticleController@featured')->middleware('auth');
 Route::get('/sub-featured','ArticleController@subFeatured')->middleware('auth');
+
+Route::post('/follow','FollowController@store')->middleware('auth');

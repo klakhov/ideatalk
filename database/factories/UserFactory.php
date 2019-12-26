@@ -31,6 +31,5 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
         'profile_token' => $profile_token,
         'bio' => $faker->text(50),
-        'followers'=>$faker->numberBetween(1,1000)
     ];
 });
