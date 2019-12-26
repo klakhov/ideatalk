@@ -1,5 +1,5 @@
 <template>
-    <div class="container  sticky-top popular mt-5">
+    <div class="container sticky-top popular mt-5 ">
         <div class="row">
             <h3 class="col border-bottom p-header">
                 Popular on IdeaTalk

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="row border-bottom ml-auto mr-auto justify-content-end" style="width: 85%">
-            <div class="col-8">
+        <div class="row border-bottom justify-content-end addition-margin">
+            <div class="col-auto col-xl-8">
                 <div class="container mt-5">
                     <div class="row" v-for="article in midArticles">
                         <div class="col">
@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-4 d-none d-xl-block">
                 <popular></popular>
             </div>
         </div>

@@ -1,11 +1,11 @@
 <template>
     <div class="container mb-4">
         <div class="row">
-            <a class="col-3 p-0 ar-link" v-bind:style="{ 'background-image': 'url(' + this.article.images.image_90 + ')',
+            <a class="col-auto ar-link d-90 p-0" v-bind:style="{ 'background-image': 'url(' + this.article.images.image_90 + ')',
             'background-repeat':'no-repeat' }"
                :href="'/idea/'+this.article.token">
             </a>
-            <div class="col-9 container">
+            <div class="col container-fluid">
                 <div class="row justify-content-start">
                     <h1 class="col  ar-small-header text-left ml-2">{{this.article.header}}</h1>
                 </div>

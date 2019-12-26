@@ -1,14 +1,16 @@
 <template>
     <div class="container mb-5">
         <div class="row">
-            <div class="col container" style="height: 150px">
+            <div class="col container height-reg">
                 <div class="row">
-                    <div class="col ar-middle-tag">
-                        <span v-for="tag in this.article.tagList" v-text="tag" class="mr-2"></span>
+                    <div class="col container-fluid ar-middle-tag">
+                        <div class="row">
+                            <span v-for="tag in this.article.tagList" v-text="tag" class="col-auto"></span>
+                        </div>
                     </div>
                 </div>
                 <a class="row ar-link" :href="'/idea/'+this.article.token">
-                    <h2 class="col ar-middle-header">{{this.article.header}}</h2>
+                    <h2 class="col-auto ar-middle-header">{{this.article.header}}</h2>
                 </a>
                 <a class="row ar-link" :href="'/idea/'+this.article.token">
                     <div class="col ar-middle-description">{{this.article.description}}</div>
@@ -35,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <a class="col-3  ar-link" v-bind:style="{ 'background-image': 'url(' + this.article.images.image_150 + ')',
+            <a class="col-auto  p-0 ar-link d-150" v-bind:style="{ 'background-image': 'url(' + this.article.images.image_150 + ')',
             'background-repeat':'no-repeat' }"
                :href="'/idea/'+this.article.token">
             </a>

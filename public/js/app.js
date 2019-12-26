@@ -3334,6 +3334,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['article', 'isFeatured'],
   data: function data() {
@@ -44442,7 +44444,7 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c(
         "div",
-        { staticClass: "col-4" },
+        { staticClass: "col  col-md-5 col-xl-4" },
         _vm._l(_vm.bigArticle1, function(article) {
           return _c("big-article", {
             key: article.id,
@@ -44454,7 +44456,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-4" },
+        { staticClass: "col pl-2 pl-md-5 col-md-7 col-xl-4 d-none d-md-block" },
         _vm._l(_vm.smallArticles, function(article) {
           return _c("small-article", {
             key: article.id,
@@ -44466,7 +44468,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-4" },
+        { staticClass: "col col-xl-4 d-none d-xl-block" },
         _vm._l(_vm.bigArticle2, function(article) {
           return _c("big-article", {
             key: article.id,
@@ -44496,7 +44498,7 @@ var staticRenderFns = [
           _c(
             "a",
             { staticClass: "featured-link", attrs: { href: "/featured" } },
-            [_vm._v("SEE ALL FEATURED ")]
+            [_vm._v("SEE ALL FEATURED")]
           )
         ]),
         _vm._v(" "),
@@ -44532,118 +44534,111 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mb-5" }, [
     _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col container", staticStyle: { height: "150px" } },
-        [
-          _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col container height-reg" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col container-fluid ar-middle-tag" }, [
             _c(
               "div",
-              { staticClass: "col ar-middle-tag" },
+              { staticClass: "row" },
               _vm._l(this.article.tagList, function(tag) {
                 return _c("span", {
-                  staticClass: "mr-2",
+                  staticClass: "col-auto",
                   domProps: { textContent: _vm._s(tag) }
                 })
               }),
               0
             )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "row ar-link",
+            attrs: { href: "/idea/" + this.article.token }
+          },
+          [
+            _c("h2", { staticClass: "col-auto ar-middle-header" }, [
+              _vm._v(_vm._s(this.article.header))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "row ar-link",
+            attrs: { href: "/idea/" + this.article.token }
+          },
+          [
+            _c("div", { staticClass: "col ar-middle-description" }, [
+              _vm._v(_vm._s(this.article.description))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "row", class: { "mt-3": _vm.isFeatured } }, [
+          _c("div", { staticClass: "col container" }, [
+            _c("div", { staticClass: "row mt-2" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "col-auto ar-middle-author",
+                  attrs: { href: "/profile/" + this.article.user.profile_token }
+                },
+                [_vm._v(_vm._s(this.article.user.name))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row justify-content-start" }, [
+              _c("div", { staticClass: "col article-date text-left" }, [
+                _vm._v(_vm._s(this.article.date))
+              ])
+            ])
           ]),
           _vm._v(" "),
           _c(
-            "a",
-            {
-              staticClass: "row ar-link",
-              attrs: { href: "/idea/" + this.article.token }
-            },
+            "div",
+            { staticClass: "col-auto", staticStyle: { "user-select": "none" } },
             [
-              _c("h2", { staticClass: "col ar-middle-header" }, [
-                _vm._v(_vm._s(this.article.header))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "row ar-link",
-              attrs: { href: "/idea/" + this.article.token }
-            },
-            [
-              _c("div", { staticClass: "col ar-middle-description" }, [
-                _vm._v(_vm._s(this.article.description))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "row", class: { "mt-3": _vm.isFeatured } }, [
-            _c("div", { staticClass: "col container" }, [
-              _c("div", { staticClass: "row mt-2" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "col-auto ar-middle-author",
-                    attrs: {
-                      href: "/profile/" + this.article.user.profile_token
-                    }
-                  },
-                  [_vm._v(_vm._s(this.article.user.name))]
-                )
-              ]),
+              !_vm.bookmarked
+                ? _c(
+                    "i",
+                    {
+                      staticClass: "material-icons md-24 bookmark pointer",
+                      attrs: {
+                        "data-toggle": "tooltip",
+                        "data-placement": "bottom",
+                        title: "Bookmark the idea"
+                      },
+                      on: { click: _vm.bookmark }
+                    },
+                    [_vm._v("bookmark_border")]
+                  )
+                : _vm._e(),
               _vm._v(" "),
-              _c("div", { staticClass: "row justify-content-start" }, [
-                _c("div", { staticClass: "col article-date text-left" }, [
-                  _vm._v(_vm._s(this.article.date))
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "col-auto",
-                staticStyle: { "user-select": "none" }
-              },
-              [
-                !_vm.bookmarked
-                  ? _c(
-                      "i",
-                      {
-                        staticClass: "material-icons md-24 bookmark pointer",
-                        attrs: {
-                          "data-toggle": "tooltip",
-                          "data-placement": "bottom",
-                          title: "Bookmark the idea"
-                        },
-                        on: { click: _vm.bookmark }
+              _vm.bookmarked
+                ? _c(
+                    "i",
+                    {
+                      staticClass: "material-icons md-24 bookmark pointer",
+                      attrs: {
+                        "data-toggle": "tooltip",
+                        "data-placement": "bot",
+                        title: "Remove from bookmarks"
                       },
-                      [_vm._v("bookmark_border")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.bookmarked
-                  ? _c(
-                      "i",
-                      {
-                        staticClass: "material-icons md-24 bookmark pointer",
-                        attrs: {
-                          "data-toggle": "tooltip",
-                          "data-placement": "bot",
-                          title: "Remove from bookmarks"
-                        },
-                        on: { click: _vm.bookmark }
-                      },
-                      [_vm._v("bookmark")]
-                    )
-                  : _vm._e()
-              ]
-            )
-          ])
-        ]
-      ),
+                      on: { click: _vm.bookmark }
+                    },
+                    [_vm._v("bookmark")]
+                  )
+                : _vm._e()
+            ]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("a", {
-        staticClass: "col-3  ar-link",
+        staticClass: "col-auto  p-0 ar-link d-150",
         style: {
           "background-image": "url(" + this.article.images.image_150 + ")",
           "background-repeat": "no-repeat"
@@ -44702,7 +44697,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container  sticky-top popular mt-5" }, [
+  return _c("div", { staticClass: "container sticky-top popular mt-5 " }, [
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-3" }, [
@@ -44835,7 +44830,7 @@ var render = function() {
   return _c("div", { staticClass: "container mb-4" }, [
     _c("div", { staticClass: "row" }, [
       _c("a", {
-        staticClass: "col-3 p-0 ar-link",
+        staticClass: "col-auto ar-link d-90 p-0",
         style: {
           "background-image": "url(" + this.article.images.image_90 + ")",
           "background-repeat": "no-repeat"
@@ -44843,7 +44838,7 @@ var render = function() {
         attrs: { href: "/idea/" + this.article.token }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "col-9 container" }, [
+      _c("div", { staticClass: "col container-fluid" }, [
         _c("div", { staticClass: "row justify-content-start" }, [
           _c("h1", { staticClass: "col  ar-small-header text-left ml-2" }, [
             _vm._v(_vm._s(this.article.header))
@@ -44900,11 +44895,10 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "row border-bottom ml-auto mr-auto justify-content-end",
-          staticStyle: { width: "85%" }
+          staticClass: "row border-bottom justify-content-end addition-margin"
         },
         [
-          _c("div", { staticClass: "col-8" }, [
+          _c("div", { staticClass: "col-auto col-xl-8" }, [
             _c(
               "div",
               { staticClass: "container mt-5" },
@@ -44927,7 +44921,12 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-4" }, [_c("popular")], 1)
+          _c(
+            "div",
+            { staticClass: "col-4 d-none d-xl-block" },
+            [_c("popular")],
+            1
+          )
         ]
       ),
       _vm._v(" "),
@@ -45043,46 +45042,53 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row justify-content-start" }, [
-          _c("div", { staticClass: "col-auto" }, [
-            _c("img", {
-              attrs: {
-                src: this.article.images.image_300_200,
-                alt: "",
-                width: "300px",
-                height: "200px"
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col container p-0" }, [
-            _c(
-              "a",
-              {
-                staticClass: "row ar-link",
-                attrs: { href: "/idea/" + this.article.token }
-              },
-              [
-                _c("h2", { staticClass: "col pub-header" }, [
-                  _vm._v(_vm._s(this.article.header))
-                ])
-              ]
-            ),
+        _c(
+          "div",
+          {
+            staticClass: "row justify-content-center justify-content-lg-start"
+          },
+          [
+            _c("div", { staticClass: "col-auto" }, [
+              _c("img", {
+                staticClass: "img-fluid",
+                attrs: {
+                  src: this.article.images.image_300_200,
+                  alt: "",
+                  width: "300px",
+                  height: "200px"
+                }
+              })
+            ]),
             _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "row ar-link",
-                attrs: { href: "/idea/" + this.article.token }
-              },
-              [
-                _c("div", { staticClass: "col pub-description" }, [
-                  _vm._v(_vm._s(this.article.description))
-                ])
-              ]
-            )
-          ])
-        ]),
+            _c("div", { staticClass: "col container-fluid " }, [
+              _c(
+                "a",
+                {
+                  staticClass: "row justify-content-start ar-link",
+                  attrs: { href: "/idea/" + this.article.token }
+                },
+                [
+                  _c("h2", { staticClass: "col-auto pub-header" }, [
+                    _vm._v(_vm._s(this.article.header))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "row justify-content-start ar-link",
+                  attrs: { href: "/idea/" + this.article.token }
+                },
+                [
+                  _c("div", { staticClass: "col-auto pub-description" }, [
+                    _vm._v(_vm._s(this.article.description))
+                  ])
+                ]
+              )
+            ])
+          ]
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "row justify-content-end pr-2" }, [
           _c("div", { staticClass: "col-auto marks align-middle" }, [
@@ -45147,7 +45153,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "row align-middle justify-content-md-start justify-content-center"
+                "row align-middle justify-content-lg-start justify-content-center"
             },
             [
               _c(

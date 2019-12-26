@@ -2,7 +2,7 @@
     <div class="container profile-container">
             <div class="row mt-5 pb-3 mb-5 border-bottom">
                 <div class="col-8 container">
-                    <div class="row align-middle justify-content-md-start justify-content-center">
+                    <div class="row align-middle justify-content-lg-start justify-content-center">
                         <div class="col-sm-auto  user-name text-center text-md-left"><strong>{{this.user.name}}</strong></div>
                         <a class="col-sm-auto col-6 border-link edit-link text-center align-middle"  v-if="editable"
                            :href="'/profile/'+this.user.profile_token +'/edit'">Edit profile</a>

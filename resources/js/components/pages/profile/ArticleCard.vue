@@ -28,16 +28,16 @@
                            v-if="bookmarked">bookmark</i>
                     </div>
                 </div>
-                <div class="row justify-content-start">
+                <div class="row justify-content-center justify-content-lg-start">
                     <div class="col-auto">
-                        <img :src="this.article.images.image_300_200" alt="" class="" width="300px" height="200px">
+                        <img :src="this.article.images.image_300_200" alt="" class="img-fluid" width="300px" height="200px">
                     </div>
-                    <div class="col container p-0">
-                        <a class="row ar-link" :href="'/idea/'+this.article.token">
-                            <h2 class="col pub-header">{{this.article.header}}</h2>
+                    <div class="col container-fluid ">
+                        <a class="row justify-content-start ar-link" :href="'/idea/'+this.article.token">
+                            <h2 class="col-auto pub-header">{{this.article.header}}</h2>
                         </a>
-                        <a class="row ar-link" :href="'/idea/'+this.article.token">
-                            <div class="col pub-description">{{this.article.description}}</div>
+                        <a class="row justify-content-start ar-link" :href="'/idea/'+this.article.token">
+                            <div class="col-auto pub-description">{{this.article.description}}</div>
                         </a>
                     </div>
                 </div>

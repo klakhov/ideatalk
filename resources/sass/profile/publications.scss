@@ -7,19 +7,15 @@
     font-size: 13px;
     color:gray;
     text-overflow:ellipsis;
-    -webkit-line-clamp: 5;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 .pub-header{
     font-weight: 600;
     font-size: 22px;
     text-overflow:ellipsis;
-    -webkit-line-clamp: 5;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 .pub-interesting{
     background: none;

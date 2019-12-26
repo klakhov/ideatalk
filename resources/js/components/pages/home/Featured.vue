@@ -1,19 +1,19 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-4">
+            <div class="col  col-md-5 col-xl-4">
                 <big-article v-for="article in bigArticle1" :article="article" :key="article.id"/>
             </div>
-            <div class="col-4">
+            <div class="col pl-2 pl-md-5 col-md-7 col-xl-4 d-none d-md-block">
                 <small-article v-for="article in smallArticles" :article="article" :key="article.id"/>
             </div>
-            <div class="col-4">
+            <div class="col col-xl-4 d-none d-xl-block">
                 <big-article v-for="article in bigArticle2" :article="article" :key="article.id"/>
             </div>
         </div>
         <div class="row border-bottom ml-auto mr-auto justify-content-end" style="width: 85%">
             <div class="col-auto text-right mt-2 mb-3 pr-0">
-                <a href="/featured" class="featured-link">SEE ALL FEATURED </a>
+                <a href="/featured" class="featured-link">SEE ALL FEATURED</a>
             </div>
             <div class="col-auto text-right pl-0 orange-text">
                 <i class="material-icons md-14 arrow-m">arrow_forward_ios</i>
