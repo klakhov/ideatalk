@@ -6,14 +6,14 @@
                :href="'/idea/'+this.article.token">
             </a>
             <div class="col container-fluid">
-                <div class="row justify-content-start">
-                    <h1 class="col  ar-small-header text-left ml-2">{{this.article.header}}</h1>
-                </div>
-                <div class="row justify-content-start">
+                <a class="row justify-content-start ar-link" :href="'/idea/'+this.article.token">
+                    <h1 class="col ar-small-header text-left ml-2">{{this.article.header}}</h1>
+                </a>
+                <a class="row justify-content-start ar-link" :href="'/idea/'+this.article.token">
                     <h2 class="col ar-small-description text-left ml-2">{{this.article.description}}</h2>
-                </div>
+                </a>
                 <div class="row justify-content-start mt-1">
-                    <div class="col ar-small-author text-left ml-2">{{this.article.user.name}}</div>
+                    <a class="col-auto ar-small-author text-left ml-2" :href="'/profile/'+this.article.user.profile_token">{{this.article.user.name}}</a>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col article-date text-left ml-2">{{this.article.date}}</div>

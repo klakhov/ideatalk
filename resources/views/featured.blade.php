@@ -11,3 +11,7 @@
 @section('content')
     <featured-timeline v-bind:articles="{{$articles}}"></featured-timeline>
 @endsection
+
+@section('footer')
+    <idea-footer></idea-footer>
+@endsection

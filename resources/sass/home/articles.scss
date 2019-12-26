@@ -22,6 +22,10 @@
 .article-author{
     font-size: 14px;
     line-height:20px;
+    color:black;
+}
+.article-author:hover{
+    color:black;
 }
 .article-date{
     font-weight: 400;
@@ -58,6 +62,10 @@
     white-space:nowrap;
     max-width: 240px;
     text-overflow:ellipsis;
+    color:black;
+}
+.ar-small-author:hover{
+    color:black;
 }
 .featured-link{
     color:$my-orange;

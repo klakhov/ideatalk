@@ -2015,6 +2015,13 @@ __webpack_require__.r(__webpack_exports__);
         next.addClass("unclickable");
       }
     });
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 5) {
+        $('#meta-bar').addClass("bb-2");
+      } else {
+        $('#meta-bar').removeClass("bb-2");
+      }
+    });
   }
 });
 
@@ -2740,6 +2747,13 @@ __webpack_require__.r(__webpack_exports__);
     this.bookmarked = this.settings.bookmarked;
     this.points = this.settings.points_count;
     this.followed = this.settings.followed;
+    var lamp = $('#interesting');
+    lamp.on('mouseover', function () {
+      $("#interesting-hover").addClass("pointed-icon-tohov");
+    });
+    lamp.on('mouseleave', function () {
+      $("#interesting-hover").removeClass("pointed-icon-tohov");
+    });
   },
   methods: {
     bookmark: function bookmark() {
@@ -3172,6 +3186,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -3729,6 +3746,13 @@ __webpack_require__.r(__webpack_exports__);
     this.bookmarked = this.isBookmarked;
     this.pointed = this.isPointed;
     this.points = this.pointsCount;
+    var lamp = $('#interesting');
+    lamp.on('mouseover', function () {
+      $("#interesting-hover").addClass("pointed-icon-tohov");
+    });
+    lamp.on('mouseleave', function () {
+      $("#interesting-hover").removeClass("pointed-icon-tohov");
+    });
   },
   methods: {
     bookmark: function bookmark() {
@@ -42337,7 +42361,8 @@ var staticRenderFns = [
       "div",
       {
         staticClass: "sticky-top container-fluid bg-white",
-        staticStyle: { "z-index": "100" }
+        staticStyle: { "z-index": "100" },
+        attrs: { id: "meta-bar" }
       },
       [
         _c("div", { staticClass: "d-flex mt-3", attrs: { id: "meta-menu" } }, [
@@ -42478,7 +42503,7 @@ var staticRenderFns = [
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "arrow", attrs: { id: "next" } }, [
+          _c("div", { staticClass: "arrow text-gray", attrs: { id: "next" } }, [
             _c(
               "i",
               { staticClass: "material-icons md-18 ml-1 mt-05 noselect" },
@@ -43858,7 +43883,8 @@ var render = function() {
             "i",
             {
               staticClass: "material-icons md-gray md-48",
-              class: { "pointed-icon": this.pointed }
+              class: { "pointed-icon": this.pointed },
+              attrs: { id: "interesting-hover" }
             },
             [_vm._v("emoji_objects")]
           )
@@ -44460,25 +44486,51 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("img", { attrs: { src: this.article.images.image_300_200, alt: "" } })
+      _c("a", {
+        staticClass: "col-auto  p-0 ar-link d-300-200",
+        style: {
+          "background-image": "url(" + this.article.images.image_300_200 + ")",
+          "background-repeat": "no-repeat"
+        },
+        attrs: { href: "/idea/" + this.article.token }
+      })
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-start" }, [
-      _c("h1", { staticClass: "col article-header text-left ml-2" }, [
-        _vm._v(_vm._s(this.article.header))
-      ])
-    ]),
+    _c(
+      "a",
+      {
+        staticClass: "row justify-content-start ar-link",
+        attrs: { href: "/idea/" + this.article.token }
+      },
+      [
+        _c("h1", { staticClass: "col article-header text-left ml-2" }, [
+          _vm._v(_vm._s(this.article.header))
+        ])
+      ]
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-start" }, [
-      _c("h2", { staticClass: "col article-description text-left ml-2" }, [
-        _vm._v(_vm._s(this.article.description))
-      ])
-    ]),
+    _c(
+      "a",
+      {
+        staticClass: "row ar-link justify-content-start",
+        attrs: { href: "/idea/" + this.article.token }
+      },
+      [
+        _c("h2", { staticClass: "col article-description text-left ml-2" }, [
+          _vm._v(_vm._s(this.article.description))
+        ])
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "row justify-content-start mt-1" }, [
-      _c("div", { staticClass: "col article-author text-left ml-2" }, [
-        _vm._v(_vm._s(this.article.user.name))
-      ])
+      _c(
+        "a",
+        {
+          staticClass: "col-auto article-author text-left ml-2",
+          attrs: { href: "/profile/" + this.article.user.profile_token }
+        },
+        [_vm._v(_vm._s(this.article.user.name))]
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row justify-content-start" }, [
@@ -44909,22 +44961,43 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("div", { staticClass: "col container-fluid" }, [
-        _c("div", { staticClass: "row justify-content-start" }, [
-          _c("h1", { staticClass: "col  ar-small-header text-left ml-2" }, [
-            _vm._v(_vm._s(this.article.header))
-          ])
-        ]),
+        _c(
+          "a",
+          {
+            staticClass: "row justify-content-start ar-link",
+            attrs: { href: "/idea/" + this.article.token }
+          },
+          [
+            _c("h1", { staticClass: "col ar-small-header text-left ml-2" }, [
+              _vm._v(_vm._s(this.article.header))
+            ])
+          ]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "row justify-content-start" }, [
-          _c("h2", { staticClass: "col ar-small-description text-left ml-2" }, [
-            _vm._v(_vm._s(this.article.description))
-          ])
-        ]),
+        _c(
+          "a",
+          {
+            staticClass: "row justify-content-start ar-link",
+            attrs: { href: "/idea/" + this.article.token }
+          },
+          [
+            _c(
+              "h2",
+              { staticClass: "col ar-small-description text-left ml-2" },
+              [_vm._v(_vm._s(this.article.description))]
+            )
+          ]
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "row justify-content-start mt-1" }, [
-          _c("div", { staticClass: "col ar-small-author text-left ml-2" }, [
-            _vm._v(_vm._s(this.article.user.name))
-          ])
+          _c(
+            "a",
+            {
+              staticClass: "col-auto ar-small-author text-left ml-2",
+              attrs: { href: "/profile/" + this.article.user.profile_token }
+            },
+            [_vm._v(_vm._s(this.article.user.name))]
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row justify-content-start" }, [
@@ -45180,7 +45253,8 @@ var render = function() {
                 "i",
                 {
                   staticClass: "material-icons md-gray md-30",
-                  class: { "pointed-icon": this.pointed }
+                  class: { "pointed-icon": this.pointed },
+                  attrs: { id: "interesting-hover" }
                 },
                 [_vm._v("emoji_objects")]
               )

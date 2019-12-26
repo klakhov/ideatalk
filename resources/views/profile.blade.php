@@ -9,3 +9,6 @@
 @section('content')
     <profile v-bind:user="{{$user}}" v-bind:settings="{{$props}}"></profile>
 @endsection
+@section('footer')
+    <idea-footer></idea-footer>
+@endsection

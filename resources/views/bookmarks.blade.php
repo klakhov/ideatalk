@@ -9,3 +9,6 @@
 @section('content')
     <bookmark-timeline></bookmark-timeline>
 @endsection
+
+@section('footer')
+@endsection

@@ -11555,6 +11555,11 @@ main {
   height: 90px;
 }
 
+.d-300-200 {
+  width: 300px;
+  height: 200px;
+}
+
 .button-primary-header {
   font-size: 16px;
   height: 35px;
@@ -11766,6 +11771,11 @@ main {
 .article-author {
   font-size: 14px;
   line-height: 20px;
+  color: black;
+}
+
+.article-author:hover {
+  color: black;
 }
 
 .article-date {
@@ -11806,6 +11816,11 @@ main {
   white-space: nowrap;
   max-width: 240px;
   text-overflow: ellipsis;
+  color: black;
+}
+
+.ar-small-author:hover {
+  color: black;
 }
 
 .featured-link {
@@ -12271,6 +12286,12 @@ main {
   color: #ff8520;
 }
 
+.material-icons.pointed-icon-tohov {
+  color: #ff8520;
+  -webkit-transition-duration: 1.2s;
+          transition-duration: 1.2s;
+}
+
 .remove {
   color: lightgray;
   font-size: 14px;
@@ -12343,6 +12364,7 @@ main {
   height: 35px;
   line-height: 34px;
   margin-top: 0.5em;
+  margin-right: 0.3em;
 }
 
 .pub-interesting:hover {

@@ -9,3 +9,6 @@
 @section('content')
     <new-article></new-article>
 @endsection
+
+@section('footer')
+@endsection

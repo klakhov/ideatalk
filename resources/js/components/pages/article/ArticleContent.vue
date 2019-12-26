@@ -57,7 +57,7 @@
         </div>
         <div class="row  pl-3 pr-3">
             <button class="col-auto interesting" id="interesting" @click="point" v-bind:class="{'pointed':this.pointed}">
-                <i class="material-icons md-gray md-48" v-bind:class="{'pointed-icon':this.pointed}">emoji_objects</i>
+                <i class="material-icons md-gray md-48" id="interesting-hover" v-bind:class="{'pointed-icon':this.pointed}">emoji_objects</i>
             </button>
             <div class="col-auto marks align-middle"><span class="d-inline-block">{{this.points}} points</span></div>
             <div class="col text-right" >
@@ -119,6 +119,13 @@
             this.bookmarked = this.settings.bookmarked;
             this.points = this.settings.points_count;
             this.followed = this.settings.followed;
+            const lamp = $('#interesting');
+            lamp.on('mouseover',function () {
+                $("#interesting-hover").addClass("pointed-icon-tohov");
+            });
+            lamp.on('mouseleave',function () {
+                $("#interesting-hover").removeClass("pointed-icon-tohov");
+            });
         },
         methods: {
             bookmark() {

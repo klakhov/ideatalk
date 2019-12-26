@@ -9,3 +9,7 @@
     <article-content v-bind:article="{{$article}}"
     v-bind:settings="{{$props}}"></article-content>
 @endsection
+
+@section('footer')
+    <idea-footer></idea-footer>
+@endsection

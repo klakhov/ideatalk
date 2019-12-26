@@ -1,16 +1,19 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <img :src="this.article.images.image_300_200" alt="">
+            <a class="col-auto  p-0 ar-link d-300-200" v-bind:style="{ 'background-image': 'url(' + this.article.images.image_300_200 + ')',
+            'background-repeat':'no-repeat' }"
+               :href="'/idea/'+this.article.token">
+            </a>
         </div>
-        <div class="row justify-content-start">
+        <a :href="'/idea/'+this.article.token" class="row justify-content-start ar-link">
             <h1 class="col article-header text-left ml-2">{{this.article.header}}</h1>
-        </div>
-        <div class="row justify-content-start">
+        </a>
+        <a :href="'/idea/'+this.article.token" class="row ar-link justify-content-start">
             <h2 class="col article-description text-left ml-2">{{this.article.description}}</h2>
-        </div>
+        </a>
         <div class="row justify-content-start mt-1">
-            <div class="col article-author text-left ml-2">{{this.article.user.name}}</div>
+            <a class="col-auto article-author text-left ml-2" :href="'/profile/'+this.article.user.profile_token">{{this.article.user.name}}</a>
         </div>
         <div class="row justify-content-start">
             <div class="col article-date text-left ml-2">{{this.article.date}}</div>
