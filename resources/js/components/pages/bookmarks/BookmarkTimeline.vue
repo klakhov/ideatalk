@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center bookmark-container">
             <div class="col-8">
                 <bookmark v-for="bookmark in bookmarks"
                           v-bind:key="bookmark.id" v-bind:article="bookmark.article"

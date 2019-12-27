@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="container profile-articles">
     <article-card v-for="article in articles" v-bind:article="article"
                   v-bind:user="user" v-bind:key="article.id"
                   v-bind:is-bookmarked="article.bookmarked"

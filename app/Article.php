@@ -104,10 +104,12 @@ class Article extends BaseModel
     {
         $articles = Article::all()->each(function ($article){
             $article->points_count = $article->points->count();
-            $article->user;
         });
         $articles = $articles->sortBy('points_count')->reverse()->take(2);
-        $articles->each(function($item){Debugbar::info($item->id);});
+        $articles->each(function($article){
+            $article->user;
+            $article->render_tag = $article->getRndTag();
+        });
         return $articles;
     }
 
@@ -115,9 +117,31 @@ class Article extends BaseModel
     {
         $articles = Article::all()->each(function ($article){
             $article->points_count = $article->points->count();
-            $article->user;
         });
         $articles = $articles->sortBy('points_count')->reverse()->take(5)->slice(2,3);
+        $articles->each(function($article){
+            $article->user;
+            $article->render_tag = $article->getRndTag();
+        });
         return $articles;
+    }
+
+    public static function popular()
+    {
+        $articles = Article::all()->each(function($article){
+            $article->bookmarks_count = $article->bookmarks->count();
+            $article->user;
+        });
+        $articles = $articles->sortBy('bookmarks_count')->reverse()->take(5);
+        $articles->each(function($article){
+           $article->user;
+           $article->render_tag = $article->getRndTag();
+        });
+        return json_encode($articles);
+    }
+
+    public function getRndTag()
+    {
+        return $this->tags->random();
     }
 }

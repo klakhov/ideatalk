@@ -11,4 +11,5 @@
 @endsection
 
 @section('footer')
+    <idea-footer></idea-footer>
 @endsection

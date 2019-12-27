@@ -42,7 +42,7 @@
                     <button class="button-primary button-profile" type="submit">Save</button>
                 </div>
                 <div class="col-auto">
-                    <a href="/profile" class="border-link link-profile">Cancel</a>
+                    <a :href="'/profile/'+this.user.profile_token" class="border-link link-profile">Cancel</a>
                 </div>
             </div>
             <input type="hidden" name="_token" :value="csrf">

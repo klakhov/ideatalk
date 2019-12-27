@@ -76,4 +76,8 @@ class ArticleController extends Controller
                 'other'=>Article::otherFeatured()];
     }
 
+    public function popular()
+    {
+        return Article::popular();
+    }
 }

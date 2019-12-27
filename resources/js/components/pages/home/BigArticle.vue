@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div class="container">
         <div class="row justify-content-center">
             <a class="col-auto  p-0 ar-link d-300-200" v-bind:style="{ 'background-image': 'url(' + this.article.images.image_300_200 + ')',
@@ -13,7 +13,9 @@
             <h2 class="col article-description text-left ml-2">{{this.article.description}}</h2>
         </a>
         <div class="row justify-content-start mt-1">
-            <a class="col-auto article-author text-left ml-2" :href="'/profile/'+this.article.user.profile_token">{{this.article.user.name}}</a>
+            <a class="col-auto article-author pr-1 text-left ml-2" :href="'/profile/'+this.article.user.profile_token">{{this.article.user.name}}</a>
+            <span class="col-auto p-0 pr-1 article-author">in </span>
+            <a href="#" class="col-auto p-0 article-author">{{this.article.render_tag.name}}</a>
         </div>
         <div class="row justify-content-start">
             <div class="col article-date text-left ml-2">{{this.article.date}}</div>

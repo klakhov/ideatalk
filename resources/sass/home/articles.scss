@@ -1,22 +1,21 @@
-.article-header{
-    font-weight: 600;
-    font-size: 22px;
+@mixin ellipsis($lines){
     text-overflow:ellipsis;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: $lines;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+.article-header{
+    font-weight: 600;
+    font-size: 22px;
+    @include ellipsis(2);
 }
 
 .article-description{
     font-weight: 400;
     font-size: 13px;
     color:gray;
-    text-overflow:ellipsis;
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    @include ellipsis(2);
 }
 
 .article-author{
@@ -34,34 +33,23 @@
 }
 .ar-small-header{
     font-weight: 600;
-    overflow: hidden;
     line-height: 15px;
     max-height: 32px;
     font-size:14px;
     max-width: 240px;
-    text-overflow:ellipsis;
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
+    @include ellipsis(2);
 }
 .ar-small-description{
     font-weight: 400;
     font-size: 12px;
     color:gray;
     margin-bottom: 0;
-    text-overflow:ellipsis;
-    -webkit-line-clamp: 1;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    @include ellipsis(1);
 }
 .ar-small-author{
     font-size: 12px;
     line-height:20px;
-    overflow: hidden;
-    white-space:nowrap;
     max-width: 240px;
-    text-overflow:ellipsis;
     color:black;
 }
 .ar-small-author:hover{
@@ -83,30 +71,21 @@
     font-weight: 400;
 }
 .ar-middle-header{
-    overflow: hidden;
-    text-overflow:ellipsis;
     font-weight:600;
     font-size:17px;
     max-height: 64px;
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
+    @include ellipsis(2);
 }
 .ar-middle-description{
     color:gray;
-    overflow: hidden;
     font-size:14px;
     max-height: 40px;
-    text-overflow:ellipsis;
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
     line-height: 1.2;
+    @include ellipsis(2);
 }
 .ar-middle-author{
     font-size: 12px;
     overflow: hidden;
-    text-overflow:ellipsis;
     max-height: 20px;
     color:black;
 }
@@ -115,11 +94,12 @@
 }
 .ar-link{
     color:black;
+    &:hover{
+        color:black;
+        text-decoration: none;
+    }
 }
-.ar-link:hover{
-    color:black;
-    text-decoration: none;
-}
+
 .height-reg{
     height:160px
 }

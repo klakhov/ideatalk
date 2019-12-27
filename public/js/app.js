@@ -3209,6 +3209,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     article: {}
@@ -3454,48 +3456,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'pop-article': _PopularArticle__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mounted: function mounted() {}
+  data: function data() {
+    return {
+      popularArticles: [],
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/popular?_token=' + this.csrf).then(function (response) {
+      var counter = 1;
+      var temp = Object.values(response.data);
+
+      for (var _i = 0, _temp = temp; _i < _temp.length; _i++) {
+        var article = _temp[_i];
+        article.number = '0' + (counter++).toString();
+      }
+
+      _this.popularArticles = temp;
+    });
+  }
 });
 
 /***/ }),
@@ -3529,7 +3515,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    article: {
+      type: Object,
+      "default": 0
+    }
+  },
   mounted: function mounted() {}
 });
 
@@ -3544,6 +3538,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -44196,20 +44192,24 @@ var render = function() {
       _vm._v(" "),
       _vm._m(1),
       _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c(
-          "div",
-          { staticClass: "col-8" },
-          _vm._l(_vm.bookmarks, function(bookmark) {
-            return _c("bookmark", {
-              key: bookmark.id,
-              attrs: { article: bookmark.article },
-              on: { bookmarkRemoved: _vm.remove }
-            })
-          }),
-          1
-        )
-      ]),
+      _c(
+        "div",
+        { staticClass: "row justify-content-center bookmark-container" },
+        [
+          _c(
+            "div",
+            { staticClass: "col-8" },
+            _vm._l(_vm.bookmarks, function(bookmark) {
+              return _c("bookmark", {
+                key: bookmark.id,
+                attrs: { article: bookmark.article },
+                on: { bookmarkRemoved: _vm.remove }
+              })
+            }),
+            1
+          )
+        ]
+      ),
       _vm._v(" "),
       _c("observer", { on: { intersect: _vm.intersected } })
     ],
@@ -44526,10 +44526,20 @@ var render = function() {
       _c(
         "a",
         {
-          staticClass: "col-auto article-author text-left ml-2",
+          staticClass: "col-auto article-author pr-1 text-left ml-2",
           attrs: { href: "/profile/" + this.article.user.profile_token }
         },
         [_vm._v(_vm._s(this.article.user.name))]
+      ),
+      _vm._v(" "),
+      _c("span", { staticClass: "col-auto p-0 pr-1 article-author" }, [
+        _vm._v("in ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "col-auto p-0 article-author", attrs: { href: "#" } },
+        [_vm._v(_vm._s(this.article.render_tag.name))]
       )
     ]),
     _vm._v(" "),
@@ -44819,49 +44829,34 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container sticky-top popular mt-5 " }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-3" }, [
-      _c("div", { staticClass: "col-2 p-number" }, [
-        _vm._v("\n            01\n        ")
-      ]),
+  return _c(
+    "div",
+    { staticClass: "container sticky-top popular mt-5 " },
+    [
+      _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "col-10" }, [_c("pop-article")], 1)
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-3" }, [
-      _c("div", { staticClass: "col-2 p-number" }, [
-        _vm._v("\n            02\n        ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-10" }, [_c("pop-article")], 1)
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-3" }, [
-      _c("div", { staticClass: "col-2 p-number" }, [
-        _vm._v("\n            03\n        ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-10" }, [_c("pop-article")], 1)
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-3" }, [
-      _c("div", { staticClass: "col-2 p-number" }, [
-        _vm._v("\n            04\n        ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-10" }, [_c("pop-article")], 1)
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-3" }, [
-      _c("div", { staticClass: "col-2 p-number" }, [
-        _vm._v("\n            05\n        ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-10" }, [_c("pop-article")], 1)
-    ])
-  ])
+      _vm._l(_vm.popularArticles, function(article) {
+        return _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col-2 p-number" }, [
+            _vm._v("\n            " + _vm._s(article.number) + "\n        ")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-10" },
+            [
+              _c("pop-article", {
+                key: article.id,
+                attrs: { article: article }
+              })
+            ],
+            1
+          )
+        ])
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {
@@ -44896,38 +44891,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "a",
+      {
+        staticClass: "row ar-link",
+        attrs: { href: "/idea/" + this.article.token }
+      },
+      [
         _c("div", { staticClass: "col pop-header" }, [
-          _vm._v(
-            "\n            How To Achieve More In A Single Year Than Most Achieve In A Lifetime\n        "
-          )
+          _vm._v("\n           " + _vm._s(this.article.header) + "\n        ")
         ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "a",
+        {
+          staticClass: "col-auto pop-author pr-1 ar-link",
+          attrs: { href: "/profile/" + this.article.user.profile_token }
+        },
+        [
+          _vm._v(
+            "\n            " + _vm._s(this.article.user.name) + "\n        "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("span", { staticClass: "col-auto p-0 pr-1 pop-author" }, [
+        _vm._v("in ")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col pop-author" }, [
-          _vm._v(
-            "\n            George J. Ziogas in Live Your Life On Purpose\n        "
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col article-date" }, [
-          _vm._v("\n            Jan 3\n        ")
-        ])
+      _c(
+        "a",
+        {
+          staticClass: "col-auto p-0 pop-author ar-link",
+          attrs: { href: "#" }
+        },
+        [_vm._v(_vm._s(this.article.render_tag.name))]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col article-date" }, [
+        _vm._v("\n            " + _vm._s(this.article.date) + "\n        ")
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44993,10 +45006,23 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "col-auto ar-small-author text-left ml-2",
+              staticClass: "col-auto ar-small-author pr-1 text-left ml-2",
               attrs: { href: "/profile/" + this.article.user.profile_token }
             },
             [_vm._v(_vm._s(this.article.user.name))]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "col-auto p-0 pr-1 ar-small-author" }, [
+            _vm._v("in ")
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "col-auto p-0 ar-small-author",
+              attrs: { href: "#" }
+            },
+            [_vm._v(_vm._s(this.article.render_tag.name))]
           )
         ]),
         _vm._v(" "),
@@ -45529,7 +45555,20 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0),
+        _c("div", { staticClass: "row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-auto" }, [
+            _c(
+              "a",
+              {
+                staticClass: "border-link link-profile",
+                attrs: { href: "/profile/" + this.user.profile_token }
+              },
+              [_vm._v("Cancel")]
+            )
+          ])
+        ]),
         _vm._v(" "),
         _c("input", {
           attrs: { type: "hidden", name: "_token" },
@@ -45544,28 +45583,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-auto pr-0" }, [
-        _c(
-          "button",
-          {
-            staticClass: "button-primary button-profile",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Save")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-auto" }, [
-        _c(
-          "a",
-          {
-            staticClass: "border-link link-profile",
-            attrs: { href: "/profile" }
-          },
-          [_vm._v("Cancel")]
-        )
-      ])
+    return _c("div", { staticClass: "col-auto pr-0" }, [
+      _c(
+        "button",
+        {
+          staticClass: "button-primary button-profile",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Save")]
+      )
     ])
   }
 ]
@@ -45592,7 +45618,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "container profile-articles" },
     [
       _vm._l(_vm.articles, function(article) {
         return _c("article-card", {
@@ -45708,7 +45734,7 @@ var staticRenderFns = [
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "row w-lg-60 mr-auto ml-auto pb-5 mt-md-5" }, [
+        _c("div", { staticClass: "row w-lg-60 mr-auto ml-auto pb-3 mt-md-5" }, [
           _c("div", { staticClass: "col fs-20 fw-700" }, [_vm._v("IdeaTalk")]),
           _vm._v(" "),
           _c("div", { staticClass: "col-auto" }, [
@@ -60275,8 +60301,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! e:\OSPanel\domains\ideatalk\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! e:\OSPanel\domains\ideatalk\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! W:\domains\ideatalk\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! W:\domains\ideatalk\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

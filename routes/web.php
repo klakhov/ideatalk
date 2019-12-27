@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/featured','ArticleController@featured');
     Route::get('/sub-featured','ArticleController@subFeatured');
 
+    Route::get('/popular','ArticleController@popular');
+
     Route::post('/follow','FollowController@store');
 });
 

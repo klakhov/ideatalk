@@ -13,7 +13,9 @@
                     <h2 class="col ar-small-description text-left ml-2">{{this.article.description}}</h2>
                 </a>
                 <div class="row justify-content-start mt-1">
-                    <a class="col-auto ar-small-author text-left ml-2" :href="'/profile/'+this.article.user.profile_token">{{this.article.user.name}}</a>
+                    <a class="col-auto ar-small-author pr-1 text-left ml-2" :href="'/profile/'+this.article.user.profile_token">{{this.article.user.name}}</a>
+                    <span class="col-auto p-0 pr-1 ar-small-author">in </span>
+                    <a href="#" class="col-auto p-0 ar-small-author">{{this.article.render_tag.name}}</a>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col article-date text-left ml-2">{{this.article.date}}</div>

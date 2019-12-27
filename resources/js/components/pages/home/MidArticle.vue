@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col container-fluid ar-middle-tag">
                         <div class="row">
-                            <span v-for="tag in this.article.tagList" v-text="tag" class="col-auto"></span>
+                            <span v-for="tag in this.article.tagList" v-text="tag" class="col-auto"/>
                         </div>
                     </div>
                 </div>

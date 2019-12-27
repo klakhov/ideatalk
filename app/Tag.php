@@ -22,4 +22,5 @@ class Tag extends BaseModel
         if(count($tags)>5) return $tags->take(5);
         return $tags;
     }
+
 }

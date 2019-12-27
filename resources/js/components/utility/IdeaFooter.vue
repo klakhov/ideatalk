@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row w-lg-60 mr-auto ml-auto pb-5 mt-md-5">
+                <div class="row w-lg-60 mr-auto ml-auto pb-3 mt-md-5">
                     <div class="col fs-20 fw-700">IdeaTalk</div>
                     <div class="col-auto">
                         <a href="" class="c-silver footer-link">About</a>

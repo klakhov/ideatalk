@@ -11617,6 +11617,11 @@ main {
   color: gray;
 }
 
+.pop-link:focus {
+  color: white;
+  background: #ff8520;
+}
+
 .pop-link-main {
   color: black;
   font-size: 14px;
@@ -11625,6 +11630,11 @@ main {
 .pop-link-main:hover {
   text-decoration: none;
   color: gray;
+}
+
+.pop-link-main:focus {
+  color: white;
+  background: #ff8520;
 }
 
 .divider {
@@ -11702,6 +11712,10 @@ main {
 
 .material-icons.md-light.md-inactive {
   color: rgba(255, 255, 255, 0.4);
+}
+
+.profile-articles {
+  min-height: 500px;
 }
 
 #meta-menu {
@@ -11786,7 +11800,6 @@ main {
 
 .ar-small-header {
   font-weight: 600;
-  overflow: hidden;
   line-height: 15px;
   max-height: 32px;
   font-size: 14px;
@@ -11795,6 +11808,7 @@ main {
   -webkit-line-clamp: 2;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .ar-small-description {
@@ -11812,10 +11826,7 @@ main {
 .ar-small-author {
   font-size: 12px;
   line-height: 20px;
-  overflow: hidden;
-  white-space: nowrap;
   max-width: 240px;
-  text-overflow: ellipsis;
   color: black;
 }
 
@@ -11843,32 +11854,31 @@ main {
 }
 
 .ar-middle-header {
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-weight: 600;
   font-size: 17px;
   max-height: 64px;
+  text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .ar-middle-description {
   color: gray;
-  overflow: hidden;
   font-size: 14px;
   max-height: 40px;
+  line-height: 1.2;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  line-height: 1.2;
+  overflow: hidden;
 }
 
 .ar-middle-author {
   font-size: 12px;
   overflow: hidden;
-  text-overflow: ellipsis;
   max-height: 20px;
   color: black;
 }
@@ -11928,6 +11938,10 @@ main {
   -webkit-line-clamp: 1;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+}
+
+.pop-author:hover {
+  text-decoration: underline;
 }
 
 .def-text {
@@ -12290,6 +12304,10 @@ main {
   color: #ff8520;
   -webkit-transition-duration: 1.2s;
           transition-duration: 1.2s;
+}
+
+.bookmark-container {
+  min-height: 500px;
 }
 
 .remove {

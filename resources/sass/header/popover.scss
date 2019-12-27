@@ -9,6 +9,10 @@
     text-decoration:none;
     color:gray;
 }
+.pop-link:focus{
+    color:white;
+    background: $my-orange;
+}
 .pop-link-main{
     color:black;
     font-size: 14px;
@@ -16,6 +20,10 @@
 .pop-link-main:hover{
     text-decoration:none;
     color:gray;
+}
+.pop-link-main:focus{
+    color:white;
+    background: $my-orange;
 }
 .divider{
     margin:0;
