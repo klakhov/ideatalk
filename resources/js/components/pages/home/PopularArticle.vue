@@ -10,7 +10,7 @@
                 {{this.article.user.name}}
             </a>
             <span class="col-auto p-0 pr-1 pop-author">in </span>
-            <a href="#" class="col-auto p-0 pop-author ar-link">{{this.article.render_tag.name}}</a>
+            <a :href="'/tag/'+article.render_tag.name" class="col-auto p-0 pop-author ar-link">{{this.article.render_tag.name}}</a>
         </div>
         <div class="row">
             <div class="col article-date">

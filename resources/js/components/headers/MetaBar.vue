@@ -5,32 +5,7 @@
                 <i class="material-icons md-18 mt-05 noselect">arrow_back_ios</i>
             </div>
             <div id="meta-list" >
-                <a href="" class="meta-item">Lorem.</a><a href="" class="meta-item">Tenetur?</a><a href=""
-                                                                                                   class="meta-item">Sed.</a><a
-                href="" class="meta-item">Facilis.</a><a href="" class="meta-item">Quae.</a><a href=""
-                                                                                               class="meta-item">Repellat.</a><a
-                href="" class="meta-item">Doloremque?</a><a href="" class="meta-item">Illo.</a><a href=""
-                                                                                                  class="meta-item">In.</a><a
-                href="" class="meta-item">Quam!</a><a href="" class="meta-item">Placeat.</a><a href=""
-                                                                                               class="meta-item">Nobis?</a><a
-                href="" class="meta-item">Officia.</a><a href="" class="meta-item">Dolorum.</a><a href=""
-                                                                                                  class="meta-item">Hic.</a><a
-                href="" class="meta-item">Necessitatibus.</a><a href="" class="meta-item">Nisi?</a><a href=""
-                                                                                                      class="meta-item">Exercitationem?</a><a
-                href="" class="meta-item">Libero!</a><a href="" class="meta-item">Laboriosam.</a>
-                <a href="" class="meta-item">Lorem.</a><a href="" class="meta-item">Tenetur?</a><a href=""
-                                                                                                   class="meta-item">Sed.</a><a
-                href="" class="meta-item">Facilis.</a><a href="" class="meta-item">Quae.</a><a href=""
-                                                                                               class="meta-item">Repellat.</a><a
-                href="" class="meta-item">Doloremque?</a><a href="" class="meta-item">Illo.</a><a href=""
-                                                                                                  class="meta-item">In.</a><a
-                href="" class="meta-item">Quam!</a><a href="" class="meta-item">Placeat.</a><a href=""
-                                                                                               class="meta-item">Nobis?</a><a
-                href="" class="meta-item">Officia.</a><a href="" class="meta-item">Dolorum.</a><a href=""
-                                                                                                  class="meta-item">Hic.</a><a
-                href="" class="meta-item">Necessitatibus.</a><a href="" class="meta-item">Nisi?</a><a href=""
-                                                                                                      class="meta-item">Exercitationem?</a><a
-                href="" class="meta-item">Libero!</a><a href="" class="meta-item">Laboriosam.</a>
+                <a :href="'/tag/'+tag.name" class="meta-item" v-for="tag in tags">{{tag.name}}</a>
             </div>
             <div id="next" class="arrow text-gray">
                 <i class="material-icons md-18 ml-1 mt-05 noselect">arrow_forward_ios</i>
@@ -41,7 +16,17 @@
 
 <script>
     export default {
+        data() {
+            return {
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                tags:[],
+            }
+        },
         mounted() {
+            axios.get('/tag?_token'+this.csrf)
+                .then((response)=>{
+                    this.tags = response.data;
+                })
             let list = $('#meta-list');
             let toogler = list.get(0);
             let previous = $('#previous');

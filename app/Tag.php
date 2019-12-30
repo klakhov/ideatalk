@@ -23,4 +23,17 @@ class Tag extends BaseModel
         return $tags;
     }
 
+    public static function getByName($name)
+    {
+        return Tag::where('name',$name)->first();
+    }
+
+    public function chunkLoad($amount)
+    {
+        $articles = $this->articles->reverse()->splice($amount,9);
+        $articles->each(function ($item) {
+            $item->user;
+        });
+        return $articles;
+    }
 }

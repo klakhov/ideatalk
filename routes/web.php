@@ -24,8 +24,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/', 'PagesController@home')->name('home');
     Route::get('/bookmarks','PagesController@bookmarks');
 
-    Route::get('/profile/{token}','ProfileController@index');
     Route::get('/profile/publications','ProfileController@publications');
+    Route::get('/profile/{token}','ProfileController@index');
     Route::post('/profile/edit','ProfileController@update');
     Route::get('/profile/{token}/edit','ProfileController@edit')->middleware('can_edit');
 
@@ -33,6 +33,9 @@ Route::middleware('auth')->group(function(){
     Route::post('/new-idea', 'ArticleController@store');
 
     Route::get('/tag','TagController@index');
+    Route::get('/tag/search','TagController@search');
+    Route::get('/tag/load','TagController@load');
+    Route::get('/tag/{name}','TagController@show');
 
     Route::post('/point','PointController@store');
 

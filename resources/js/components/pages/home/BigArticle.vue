@@ -15,7 +15,7 @@
         <div class="row justify-content-start mt-1">
             <a class="col-auto article-author pr-1 text-left ml-2" :href="'/profile/'+this.article.user.profile_token">{{this.article.user.name}}</a>
             <span class="col-auto p-0 pr-1 article-author">in </span>
-            <a href="#" class="col-auto p-0 article-author">{{this.article.render_tag.name}}</a>
+            <a :href="'/tag/'+article.render_tag.name" class="col-auto p-0 article-author">{{this.article.render_tag.name}}</a>
         </div>
         <div class="row justify-content-start">
             <div class="col article-date text-left ml-2">{{this.article.date}}</div>

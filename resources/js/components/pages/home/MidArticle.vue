@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col container height-reg">
                 <div class="row">
-                    <div class="col container-fluid ar-middle-tag">
+                    <div class="col container-fluid">
                         <div class="row">
-                            <span v-for="tag in this.article.tagList" v-text="tag" class="col-auto"/>
+                            <a v-for="tag in this.article.tagList" v-text="tag" :href="'/tag/'+tag" class="col-auto ar-middle-tag"></a>
                         </div>
                     </div>
                 </div>

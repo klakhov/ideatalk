@@ -11750,6 +11750,7 @@ main {
   display: inline;
   color: gray;
   margin-left: 2%;
+  text-transform: uppercase;
 }
 
 .meta-item:hover {
@@ -11853,6 +11854,10 @@ main {
   font-weight: 400;
 }
 
+.ar-middle-tag:hover {
+  color: gray;
+}
+
 .ar-middle-header {
   font-weight: 600;
   font-size: 17px;
@@ -11898,6 +11903,10 @@ main {
 
 .height-reg {
   height: 160px;
+}
+
+.blink {
+  max-width: 300px;
 }
 
 @media (min-width: 576px) {
