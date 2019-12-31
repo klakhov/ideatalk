@@ -21,7 +21,7 @@
                             <a class="col-auto ar-middle-author" :href="'/profile/'+this.article.user.profile_token">{{this.article.user.name}}</a>
                         </div>
                         <div class="row justify-content-start">
-                            <div class="col article-date text-left">{{this.article.date}}</div>
+                            <div class="col article-date text-left" data-toggle="popover" data-content="'Updated '+this.article.date">{{this.article.date}}</div>
                         </div>
                     </div>
                     <div class="col-auto" style="user-select: none;">

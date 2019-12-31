@@ -12231,6 +12231,14 @@ main {
 
 /* Rules for sizing the icon. */
 
+.material-icons.md-14 {
+  font-size: 14px;
+}
+
+.material-icons.md-16 {
+  font-size: 16px;
+}
+
 .material-icons.md-18 {
   font-size: 18px;
 }
@@ -12429,5 +12437,63 @@ main {
   .w-lg-60 {
     width: 60%;
   }
+}
+
+.menububble {
+  position: absolute;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s, visibility 0.2s;
+  transition: opacity 0.2s, visibility 0.2s;
+  background: black;
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+
+.menububble.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.material-icons.light {
+  color: white;
+}
+
+.menububble__button {
+  display: inline-block;
+  background: black;
+  margin: 6px 5px 3px 0;
+  padding: 3px 5px 3px 5px;
+  line-height: 12px;
+  border-radius: 3px;
+}
+
+.menububble__button:hover {
+  background: gray;
+  cursor: pointer;
+}
+
+.editor {
+  font-size: 18px;
+}
+
+.editor h2 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.editor h3 {
+  color: gray;
+  font-size: 22px;
+}
+
+.tag-container {
+  min-height: 800px;
+}
+
+.tag-title {
+  font-size: 58px;
+  font-weight: 700;
 }
 

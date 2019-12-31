@@ -46,8 +46,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col ar-plain-body">
-                {{this.article.body}}
+            <div class="col ar-plain-body" v-html="this.article.body">
             </div>
         </div>
         <div class="row mt-5 mb-4">

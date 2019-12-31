@@ -13,12 +13,9 @@
             <div class="row">
                 <p class="col-auto bb-2 size-info mr-auto ml-auto def-text text-right" v-if="title.length>50"  v-text="title.length+'/100'"></p>
             </div>
+
             <div class="row">
-                <textarea-autosize placeholder="Express the details"
-                                   id="idea-body"
-                                   class="col-auto mr-auto ml-auto def-text mt-3"
-                                   :min-height=10
-                                   v-model="body"/>
+                <text-editor v-on:bodyChange="bodyChange"></text-editor>
             </div>
         </div>
     </div>
@@ -26,9 +23,11 @@
 
 <script>
     import CreateModal from "../../modals/CreateModal";
+    import TextEditor from "./TextEditor";
     export default {
         components:{
-            CreateModal
+            CreateModal,
+            TextEditor
         },
         data() {
             return {
@@ -41,6 +40,9 @@
         methods: {
             titleChange(data){
                 this.title = data;
+            },
+            bodyChange(data){
+                this.body = data;
             }
         },
     }

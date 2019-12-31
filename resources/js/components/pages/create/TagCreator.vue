@@ -47,7 +47,7 @@
 
             search.on('keyup',()=>{
                 if(search.val().length){
-                    axios.get('/tag?_token='+this.csrf+'&name='+search.val())
+                    axios.get('/tag/search?_token='+this.csrf+'&name='+search.val())
                         .then((response)=>{
                             this.found = Object.values(response.data);
                         });

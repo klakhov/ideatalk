@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <h1 class="col">{{this.tag.name}}</h1>
+    <div class="container tag-container">
+        <div class="row justify-content-start">
+            <h1 class="col-auto tag-title mb-5">{{this.tag.name}}</h1>
         </div>
         <div class="row">
             <div class="col">

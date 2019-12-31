@@ -1,0 +1,32 @@
+.menububble
+    position: absolute
+    z-index: 1
+    visibility: hidden
+    opacity: 0
+    transition: opacity 0.2s, visibility 0.2s
+    background: black
+    border-radius: 5px
+    padding: 2px 5px
+    &.is-active
+        opacity: 1
+        visibility: visible
+.material-icons.light
+    color: white
+.menububble__button
+    display: inline-block
+    background: black
+    margin: 6px 5px 3px 0
+    padding: 3px 5px 3px 5px
+    line-height: 12px
+    border-radius: 3px
+    &:hover
+        background: gray
+        cursor: pointer
+.editor
+    font-size: 18px
+    h2
+        font-size: 28px
+        font-weight: 700
+    h3
+        color: gray
+        font-size: 22px

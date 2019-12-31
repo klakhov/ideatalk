@@ -1,6 +1,6 @@
 <template>
-    <div class="col-4 container mb-5">
-        <div class="row justify-content-center blink p-0">
+    <div class="container col-auto col-xl-4 mb-5 p-0">
+        <div class="row justify-content-center blink" >
             <a class="col-auto  p-0 ar-link d-300-200" v-bind:style="{ 'background-image': 'url(' + this.article.images.image_300_200 + ')',
             'background-repeat':'no-repeat' }"
                :href="'/idea/'+this.article.token">

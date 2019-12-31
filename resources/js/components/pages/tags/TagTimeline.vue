@@ -1,7 +1,7 @@
 <template>
         <div class="container">
             <div class="row">
-                <tag-article v-for="article in articles" :article="article" :key="article.id"></tag-article>
+                <tag-article v-for="article in articles" :article="article" :key="article.id" :more-than-four="moreThanFour"></tag-article>
             </div>
             <div class="row">
                 <div class="col">
@@ -36,10 +36,12 @@
         },
         methods: {
             intersected() {
-                axios.get('/tag/load?_token='+this.csrf+'&name='+this.tag.name+'&amount='+this.articles.length)
-                    .then((response)=>{
-                        this.articles = [...this.articles,...response.data];
-                    }).catch((error)=>{})
+                if(this.articles.length){
+                    axios.get('/tag/load?_token='+this.csrf+'&name='+this.tag.name+'&amount='+this.articles.length)
+                        .then((response)=>{
+                            this.articles = [...this.articles,...response.data];
+                        }).catch((error)=>{})
+                }
             }
         },
     }

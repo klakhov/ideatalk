@@ -9,3 +9,6 @@
 @section('content')
     <tag-pallet :tag="{{$tag}}"></tag-pallet>
 @endsection
+@section('footer')
+    <idea-footer></idea-footer>
+@endsection
