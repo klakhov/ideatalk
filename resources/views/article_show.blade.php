@@ -7,7 +7,7 @@
 @endsection
 @section('content')
     <article-content v-bind:article="{{$article}}"
-    v-bind:settings="{{$props}}"></article-content>
+    v-bind:settings="{{$props}}" v-bind:user="{{Auth::user()}}"></article-content>
 @endsection
 
 @section('footer')

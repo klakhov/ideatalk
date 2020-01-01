@@ -51,6 +51,10 @@
 .ar-plain-username{
     color:black;
     font-size: 16px;
+    &:hover{
+        text-decoration: none;
+        color:black;
+    }
 }
 .plain-button{
     background: none;
@@ -87,6 +91,11 @@
 .ar-plain-author{
     font-weight:700;
     font-size:20px;
+    color:black;
+    &:hover{
+        text-decoration: none;
+        color:black;
+    }
 }
 .unfollow{
     vertical-align: middle;

@@ -11560,6 +11560,11 @@ main {
   height: 200px;
 }
 
+.underline:hover {
+  text-decoration: underline;
+  color: #e16500;
+}
+
 .button-primary-header {
   font-size: 16px;
   height: 35px;
@@ -12179,6 +12184,11 @@ main {
   font-size: 16px;
 }
 
+.ar-plain-username:hover {
+  text-decoration: none;
+  color: black;
+}
+
 .plain-button {
   background: none;
   border: 1px solid gray;
@@ -12219,6 +12229,12 @@ main {
 .ar-plain-author {
   font-weight: 700;
   font-size: 20px;
+  color: black;
+}
+
+.ar-plain-author:hover {
+  text-decoration: none;
+  color: black;
 }
 
 .unfollow {

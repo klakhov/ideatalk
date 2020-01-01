@@ -15,7 +15,7 @@
                     <div class="col container">
                         <div class="row">
                            <div class="col-auto">
-                               <span class="ar-plain-username">{{this.article.user.name}}</span>
+                               <a class="ar-plain-username" :href="'/profile/'+this.article.user.profile_token">{{this.article.user.name}}</a>
                            </div>
                             <div class="col-auto p-0">
                                 <div v-if="!followed" class="plain-button ar-plain-button text-center mt-05" @click="follow">Follow</div>
@@ -80,13 +80,13 @@
                     <div class="col ar-middle-tag">WRITTEN BY</div>
                 </div>
                 <div class="row">
-                    <div class="col ar-plain-author">{{this.article.user.name}}</div>
+                    <a class="col ar-plain-author" :href="'/profile/'+this.article.user.profile_token">{{this.article.user.name}}</a>
                 </div>
                 <div class="row">
                     <div class="col">{{this.article.user.bio}}</div>
                 </div>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-auto text-right" v-if="!isMe">
                 <div v-if="!followed" class="plain-button ar-plain-bottom-button text-center" @click="follow">Follow</div>
                 <button v-else class="button-primary ar-plain-bottom-button" @click="follow">Following</button>
             </div>
@@ -102,6 +102,7 @@
                 default: null
             },
             settings:{},
+            user:{},
         },
         data() {
             return {
@@ -110,14 +111,15 @@
                 pointed:null,
                 points:null,
                 followed:null,
+                isMe:null,
             }
         },
         mounted() {
-            console.log(this.settings);
             this.pointed = this.settings.pointed;
             this.bookmarked = this.settings.bookmarked;
             this.points = this.settings.points_count;
             this.followed = this.settings.followed;
+            this.isMe = this.user.name === this.article.user.name;
             const lamp = $('#interesting');
             lamp.on('mouseover',function () {
                 $("#interesting-hover").addClass("pointed-icon-tohov");

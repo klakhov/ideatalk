@@ -9,13 +9,13 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <button class="button-primary button-primary-welcome col-3">
+            <button class="button-primary button-primary-welcome col-3" @click="registerModal">
                 Lets begin
             </button>
         </div>
         <div class="row justify-content-center">
             <div class="col welcome-announcement text-center">
-                Already have an account? <a href="" class="orange-text">Sign in.</a>
+                Already have an account? <span  class="orange-text pointer underline" @click="loginModal">Sign in.</span>
             </div>
         </div>
         <div class="row welcome-panel justify-content-center">
@@ -41,7 +41,7 @@
         <div class="container welcome-second-panel mt-4">
             <div class="row">
                 <div class="col-md-6 row align-items-end justify-content-center justify-content-md-start order-2 order-md-1">
-                    <button class="button-primary button-primary-welcome col-6 mt-3">Lets begin</button>
+                    <button class="button-primary button-primary-welcome col-6 mt-3" @click="loginModal">Lets begin</button>
                 </div>
                 <div class="col-md-6 row align-items-start order-1 order-md-2">
                     <div class="col-12 welcome-second-panel-header">We implement a lot of things</div>
@@ -58,6 +58,14 @@
 <script>
     export default {
         mounted() {
+        },
+        methods: {
+            registerModal() {
+                $('#registerModal').modal();
+            },
+            loginModal(){
+                $('#loginModal').modal();
+            }
         },
     }
 </script>

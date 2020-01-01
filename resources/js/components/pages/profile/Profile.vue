@@ -14,7 +14,7 @@
                         <div class="col-auto text-gray">following: {{this.user.follows_count}}</div>
                         <div class="col-auto text-gray">followers: {{this.user.followedBy}}</div>
                     </div>
-                    <div class="row">
+                    <div class="row" v-if="!editable">
                         <div class="col-auto text-right">
                             <div v-if="!followed" class="fs-16 plain-button ar-plain-bottom-button  text-center" @click="follow">Follow</div>
                             <button v-else class="fs-16 button-primary ar-plain-bottom-button  text-center" @click="follow">Following</button>

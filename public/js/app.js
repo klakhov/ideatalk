@@ -2599,7 +2599,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {}
+  mounted: function mounted() {},
+  methods: {
+    registerModal: function registerModal() {
+      $('#registerModal').modal();
+    },
+    loginModal: function loginModal() {
+      $('#loginModal').modal();
+    }
+  }
 });
 
 /***/ }),
@@ -2715,7 +2723,8 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       "default": null
     },
-    settings: {}
+    settings: {},
+    user: {}
   },
   data: function data() {
     return {
@@ -2723,15 +2732,16 @@ __webpack_require__.r(__webpack_exports__);
       bookmarked: null,
       pointed: null,
       points: null,
-      followed: null
+      followed: null,
+      isMe: null
     };
   },
   mounted: function mounted() {
-    console.log(this.settings);
     this.pointed = this.settings.pointed;
     this.bookmarked = this.settings.bookmarked;
     this.points = this.settings.points_count;
     this.followed = this.settings.followed;
+    this.isMe = this.user.name === this.article.user.name;
     var lamp = $('#interesting');
     lamp.on('mouseover', function () {
       $("#interesting-hover").addClass("pointed-icon-tohov");
@@ -72455,46 +72465,104 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c(
+        "button",
+        {
+          staticClass: "button-primary button-primary-welcome col-3",
+          on: { click: _vm.registerModal }
+        },
+        [_vm._v("\n            Lets begin\n        ")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col welcome-announcement text-center" }, [
+        _vm._v("\n            Already have an account? "),
+        _c(
+          "span",
+          {
+            staticClass: "orange-text pointer underline",
+            on: { click: _vm.loginModal }
+          },
+          [_vm._v("Sign in.")]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _vm._m(3),
+    _vm._v(" "),
+    _vm._m(4),
+    _vm._v(" "),
+    _c("div", { staticClass: "container welcome-second-panel mt-4" }, [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "col-md-6 row align-items-end justify-content-center justify-content-md-start order-2 order-md-1"
+          },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "button-primary button-primary-welcome col-6 mt-3",
+                on: { click: _vm.loginModal }
+              },
+              [_vm._v("Lets begin")]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(5),
+        _vm._v(" "),
+        _c("hr", {
+          staticClass: "mt-5 order-3",
+          staticStyle: { "margin-right": "23%" },
+          attrs: { width: "60%" }
+        })
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col welcome-big-greeting text-center" }, [
-          _vm._v("Get the greatest ideas for your projects")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col welcome-small-greeting text-center" }, [
-          _vm._v(
-            "\n            Tired of looking for new ideas? Look here.\n        "
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c(
-          "button",
-          { staticClass: "button-primary button-primary-welcome col-3" },
-          [_vm._v("\n            Lets begin\n        ")]
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col welcome-big-greeting text-center" }, [
+        _vm._v("Get the greatest ideas for your projects")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col welcome-small-greeting text-center" }, [
+        _vm._v(
+          "\n            Tired of looking for new ideas? Look here.\n        "
         )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col welcome-announcement text-center" }, [
-          _vm._v("\n            Already have an account? "),
-          _c("a", { staticClass: "orange-text", attrs: { href: "" } }, [
-            _vm._v("Sign in.")
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row welcome-panel justify-content-center" }, [
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "row welcome-panel justify-content-center" },
+      [
         _c(
           "div",
           {
@@ -72560,66 +72628,48 @@ var staticRenderFns = [
             ])
           ]
         )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row welcome-big-greeting text-left" }, [
-        _c("div", { staticClass: "col" }, [
-          _vm._v("Looking for a project to practise?")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row welcome-shadow-greeting text-left" }, [
-        _c("div", { staticClass: "col" }, [
-          _vm._v("We have a lot of ideas for you!")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "container welcome-second-panel mt-4" }, [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "col-md-6 row align-items-end justify-content-center justify-content-md-start order-2 order-md-1"
-            },
-            [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "button-primary button-primary-welcome col-6 mt-3"
-                },
-                [_vm._v("Lets begin")]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "col-md-6 row align-items-start order-1 order-md-2"
-            },
-            [
-              _c("div", { staticClass: "col-12 welcome-second-panel-header" }, [
-                _vm._v("We implement a lot of things")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12 welcome-second-panel-text" }, [
-                _vm._v(
-                  "\n                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias autem, consequuntur culpa cupiditate deserunt ea esse eum, fuga impedit in nam quam quasi repudiandae sed ullam ut voluptates voluptatum?\n                "
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("hr", {
-            staticClass: "mt-5 order-3",
-            staticStyle: { "margin-right": "23%" },
-            attrs: { width: "60%" }
-          })
-        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row welcome-big-greeting text-left" }, [
+      _c("div", { staticClass: "col" }, [
+        _vm._v("Looking for a project to practise?")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row welcome-shadow-greeting text-left" }, [
+      _c("div", { staticClass: "col" }, [
+        _vm._v("We have a lot of ideas for you!")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col-md-6 row align-items-start order-1 order-md-2" },
+      [
+        _c("div", { staticClass: "col-12 welcome-second-panel-header" }, [
+          _vm._v("We implement a lot of things")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12 welcome-second-panel-text" }, [
+          _vm._v(
+            "\n                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias autem, consequuntur culpa cupiditate deserunt ea esse eum, fuga impedit in nam quam quasi repudiandae sed ullam ut voluptates voluptatum?\n                "
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -72674,9 +72724,16 @@ var render = function() {
           _c("div", { staticClass: "col container" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-auto" }, [
-                _c("span", { staticClass: "ar-plain-username" }, [
-                  _vm._v(_vm._s(this.article.user.name))
-                ])
+                _c(
+                  "a",
+                  {
+                    staticClass: "ar-plain-username",
+                    attrs: {
+                      href: "/profile/" + this.article.user.profile_token
+                    }
+                  },
+                  [_vm._v(_vm._s(this.article.user.name))]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-auto p-0" }, [
@@ -72859,9 +72916,14 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col ar-plain-author" }, [
-            _vm._v(_vm._s(this.article.user.name))
-          ])
+          _c(
+            "a",
+            {
+              staticClass: "col ar-plain-author",
+              attrs: { href: "/profile/" + this.article.user.profile_token }
+            },
+            [_vm._v(_vm._s(this.article.user.name))]
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
@@ -72871,25 +72933,28 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-auto text-right" }, [
-        !_vm.followed
-          ? _c(
-              "div",
-              {
-                staticClass: "plain-button ar-plain-bottom-button text-center",
-                on: { click: _vm.follow }
-              },
-              [_vm._v("Follow")]
-            )
-          : _c(
-              "button",
-              {
-                staticClass: "button-primary ar-plain-bottom-button",
-                on: { click: _vm.follow }
-              },
-              [_vm._v("Following")]
-            )
-      ])
+      !_vm.isMe
+        ? _c("div", { staticClass: "col-auto text-right" }, [
+            !_vm.followed
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "plain-button ar-plain-bottom-button text-center",
+                    on: { click: _vm.follow }
+                  },
+                  [_vm._v("Follow")]
+                )
+              : _c(
+                  "button",
+                  {
+                    staticClass: "button-primary ar-plain-bottom-button",
+                    on: { click: _vm.follow }
+                  },
+                  [_vm._v("Following")]
+                )
+          ])
+        : _vm._e()
     ])
   ])
 }
@@ -74057,7 +74122,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("span", { staticClass: "col-auto p-0 pr-1 pop-author" }, [
-        _vm._v("in ")
+        _vm._v("in")
       ]),
       _vm._v(" "),
       _c(
@@ -74477,29 +74542,31 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-auto text-right" }, [
-              !_vm.followed
-                ? _c(
-                    "div",
-                    {
-                      staticClass:
-                        "fs-16 plain-button ar-plain-bottom-button  text-center",
-                      on: { click: _vm.follow }
-                    },
-                    [_vm._v("Follow")]
-                  )
-                : _c(
-                    "button",
-                    {
-                      staticClass:
-                        "fs-16 button-primary ar-plain-bottom-button  text-center",
-                      on: { click: _vm.follow }
-                    },
-                    [_vm._v("Following")]
-                  )
-            ])
-          ])
+          !_vm.editable
+            ? _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-auto text-right" }, [
+                  !_vm.followed
+                    ? _c(
+                        "div",
+                        {
+                          staticClass:
+                            "fs-16 plain-button ar-plain-bottom-button  text-center",
+                          on: { click: _vm.follow }
+                        },
+                        [_vm._v("Follow")]
+                      )
+                    : _c(
+                        "button",
+                        {
+                          staticClass:
+                            "fs-16 button-primary ar-plain-bottom-button  text-center",
+                          on: { click: _vm.follow }
+                        },
+                        [_vm._v("Following")]
+                      )
+                ])
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 text-right" }, [
